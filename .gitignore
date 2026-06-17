@@ -6,6 +6,7 @@
 !xcad_code/**
 !baselines/
 !baselines/**
+!README.md
 
 # Ignore large files
 xcad_code/_archive/graph_seq.bin
