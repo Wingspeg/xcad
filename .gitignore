@@ -1,0 +1,17 @@
+# Ignore everything
+*
+
+# But not these:
+!xcad_code/
+!xcad_code/**
+!baselines/
+!baselines/**
+
+# Ignore large files
+xcad_code/_archive/graph_seq.bin
+baselines/_archive/ATISE/xcad/train.txt
+baselines/_archive/GETER/data/ICEWS14/train.json
+baselines/_archive/GETER/data/ICEWS14/ICEWS14_train.json
+baselines/_archive/GETER/data/ICEWS14/regcn/train_graph_emb.pt
+baselines/_archive/TCompoundE/src_data/GDELT/train
+baselines/_archive/TCompoundE/src_data/xcad/train
