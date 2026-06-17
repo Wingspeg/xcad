@@ -1,0 +1,163 @@
+2026-05-29 11:24:12,019 - INFO - ============================================================
+2026-05-29 11:24:12,020 - INFO - Starting temporal split
+2026-05-29 11:24:12,020 - INFO - ============================================================
+2026-05-29 11:24:12,020 - INFO - Loading all edges...
+2026-05-29 11:24:12,524 - INFO -   placement: 7,164,359 edges
+2026-05-29 11:24:12,530 - INFO -   r1_suits: 100,446 edges
+2026-05-29 11:24:12,532 - INFO -   r2_requires: 1,399 edges
+2026-05-29 11:24:12,537 - INFO -   r3_drives: 102,610 edges
+2026-05-29 11:24:12,538 - INFO -   r4_shifts: 5 edges
+2026-05-29 11:24:12,538 - INFO -   placement: 7,164,359 edges, columns: ['src', 'dst', 'edge_type', 'weight']
+2026-05-29 11:24:12,538 - INFO -   r1_suits: 100,446 edges, columns: ['src', 'dst', 'success_rate', 'cooccur_count', 'edge_type', 'weight']
+2026-05-29 11:24:12,538 - INFO -   r2_requires: 1,399 edges, columns: ['src', 'dst', 'weight', 'count', 'edge_type']
+2026-05-29 11:24:12,538 - INFO -   r3_drives: 102,610 edges, columns: ['src', 'dst', 'weight', 'count', 'edge_type']
+2026-05-29 11:24:12,538 - INFO -   r4_shifts: 5 edges, columns: ['src', 'dst', 'weight', 'edge_type']
+2026-05-29 11:24:12,538 - INFO - Splitting edges by temporal windows...
+2026-05-29 11:24:12,538 - INFO -   TRAIN: days in [1, 60]
+2026-05-29 11:24:12,538 - INFO -   VAL:   days in [61, 65]
+2026-05-29 11:24:12,538 - INFO -   TEST:  days in [66, 69]
+2026-05-29 11:24:12,546 - WARNING -   placement: missing ID columns, skipping
+2026-05-29 11:24:12,548 - WARNING -   r1_suits: missing ID columns, skipping
+2026-05-29 11:24:12,548 - WARNING -   r2_requires: missing ID columns, skipping
+2026-05-29 11:24:12,548 - WARNING -   r3_drives: missing ID columns, skipping
+2026-05-29 11:24:12,548 - WARNING -   r4_shifts: missing ID columns, skipping
+2026-05-29 11:24:12,549 - INFO -   Train edges: 0
+2026-05-29 11:24:12,549 - INFO -   Val edges: 0
+2026-05-29 11:24:12,549 - INFO -   Test edges: 0
+2026-05-29 11:24:12,549 - INFO - Saving split parquet files...
+2026-05-29 11:24:12,549 - WARNING -   Train set is empty, no file saved
+2026-05-29 11:24:12,549 - WARNING -   Val set is empty, no file saved
+2026-05-29 11:24:12,549 - WARNING -   Test set is empty, no file saved
+2026-05-29 11:24:12,549 - INFO - Generating split report...
+2026-05-29 11:24:12,549 - INFO -   Saved report to /Volumes/code/xcad/xcad_code/outputs/reports/temporal_split.md
+2026-05-29 11:24:12,549 - INFO - ============================================================
+2026-05-29 11:24:12,549 - INFO - Temporal split complete
+2026-05-29 11:24:12,549 - INFO - ============================================================
+2026-05-29 11:24:46,561 - INFO - ============================================================
+2026-05-29 11:24:46,561 - INFO - Starting temporal split
+2026-05-29 11:24:46,561 - INFO - ============================================================
+2026-05-29 11:24:46,561 - INFO - Loading all edges...
+2026-05-29 11:24:47,285 - INFO -   placement: 7,164,359 edges, cols: ['src', 'dst', 'edge_type', 'weight']
+2026-05-29 11:24:47,291 - INFO -   r1_suits: 100,446 edges, cols: ['src', 'dst', 'success_rate', 'cooccur_count', 'edge_type', 'weight']
+2026-05-29 11:24:47,293 - INFO -   r2_requires: 1,399 edges, cols: ['src', 'dst', 'weight', 'count', 'edge_type']
+2026-05-29 11:24:47,299 - INFO -   r3_drives: 102,610 edges, cols: ['src', 'dst', 'weight', 'count', 'edge_type']
+2026-05-29 11:24:47,300 - INFO -   r4_shifts: 5 edges, cols: ['src', 'dst', 'weight', 'edge_type']
+2026-05-29 11:24:47,300 - INFO - Splitting edges by temporal windows...
+2026-05-29 11:24:47,300 - INFO -   TRAIN: days in [1, 60]
+2026-05-29 11:24:47,300 - INFO -   VAL:   days in [61, 65]
+2026-05-29 11:24:47,300 - INFO -   TEST:  days in [66, 69]
+2026-05-29 11:24:47,345 - WARNING -   placement: no tau column, all 7,164,359 edges go to train set
+2026-05-29 11:24:47,346 - WARNING -   r1_suits: no tau column, all 100,446 edges go to train set
+2026-05-29 11:24:47,347 - WARNING -   r2_requires: no tau column, all 1,399 edges go to train set
+2026-05-29 11:24:47,348 - WARNING -   r3_drives: no tau column, all 102,610 edges go to train set
+2026-05-29 11:24:47,348 - WARNING -   r4_shifts: no tau column, all 5 edges go to train set
+2026-05-29 11:24:47,416 - INFO - 
+Split Summary:
+2026-05-29 11:24:47,416 - INFO -   Train edges: 7,368,819
+2026-05-29 11:24:47,416 - INFO -   Val edges: 0
+2026-05-29 11:24:47,416 - INFO -   Test edges: 0
+2026-05-29 11:24:47,416 - INFO - Saving split parquet files...
+2026-05-29 11:24:48,820 - INFO -   Saved train: 7,368,819 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/train_edges.parquet
+2026-05-29 11:24:48,820 - WARNING -   Val set is empty, no file saved
+2026-05-29 11:24:48,820 - WARNING -   Test set is empty, no file saved
+2026-05-29 11:24:48,820 - INFO - Generating split report...
+2026-05-29 11:24:50,040 - INFO -   Saved report to /Volumes/code/xcad/xcad_code/outputs/reports/temporal_split.md
+2026-05-29 11:24:50,040 - INFO - ============================================================
+2026-05-29 11:24:50,040 - INFO - Temporal split complete
+2026-05-29 11:24:50,040 - INFO - ============================================================
+2026-05-29 14:29:52,065 - INFO - ============================================================
+2026-05-29 14:29:52,065 - INFO - Starting temporal split
+2026-05-29 14:29:52,065 - INFO - ============================================================
+2026-05-29 14:29:52,065 - INFO - Loading all edges...
+2026-05-29 14:29:52,403 - INFO -   placement: 7,164,768 edges, cols: ['src', 'dst', 'tau', 'edge_type', 'weight']
+2026-05-29 14:29:52,406 - INFO -   r1_suits: 100,446 edges, cols: ['src', 'dst', 'success_rate', 'cooccur_count', 'tau', 'edge_type', 'weight']
+2026-05-29 14:29:52,407 - INFO -   r2_requires: 1,399 edges, cols: ['src', 'dst', 'weight', 'count', 'tau', 'edge_type']
+2026-05-29 14:29:52,410 - INFO -   r3_drives: 102,610 edges, cols: ['src', 'dst', 'weight', 'count', 'tau', 'edge_type']
+2026-05-29 14:29:52,411 - INFO -   r4_shifts: 5 edges, cols: ['src', 'dst', 'weight', 'edge_type', 'tau']
+2026-05-29 14:29:52,411 - INFO - Splitting edges by temporal windows...
+2026-05-29 14:29:52,411 - INFO -   TRAIN: days in [1, 60]
+2026-05-29 14:29:52,411 - INFO -   VAL:   days in [61, 65]
+2026-05-29 14:29:52,411 - INFO -   TEST:  days in [66, 69]
+2026-05-29 14:29:52,919 - INFO -   placement: tau found, train=6302935, val=571350, test=290483
+2026-05-29 14:29:52,925 - INFO -   r1_suits: tau found, train=98811, val=1635, test=0
+2026-05-29 14:29:52,925 - INFO -   r2_requires: tau found, train=1378, val=21, test=0
+2026-05-29 14:29:52,928 - INFO -   r3_drives: tau found, train=100865, val=1745, test=0
+2026-05-29 14:29:52,930 - INFO -   r4_shifts: tau found, train=5, val=0, test=0
+2026-05-29 14:29:53,004 - INFO - 
+Split Summary:
+2026-05-29 14:29:53,005 - INFO -   Train edges: 6,503,994
+2026-05-29 14:29:53,005 - INFO -   Val edges: 574,751
+2026-05-29 14:29:53,005 - INFO -   Test edges: 290,483
+2026-05-29 14:29:53,005 - INFO - Saving split parquet files...
+2026-05-29 14:29:54,172 - INFO -   Saved train: 6,503,994 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/train_edges.parquet
+2026-05-29 14:29:54,272 - INFO -   Saved val: 574,751 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/val_edges.parquet
+2026-05-29 14:29:54,322 - INFO -   Saved test: 290,483 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/test_edges.parquet
+2026-05-29 14:29:54,322 - INFO - Generating split report...
+2026-05-29 14:29:54,881 - INFO -   Saved report to /Volumes/code/xcad/xcad_code/outputs/reports/temporal_split.md
+2026-05-29 14:29:54,881 - INFO - ============================================================
+2026-05-29 14:29:54,881 - INFO - Temporal split complete
+2026-05-29 14:29:54,881 - INFO - ============================================================
+2026-05-29 14:56:01,568 - INFO - ============================================================
+2026-05-29 14:56:01,568 - INFO - Starting temporal split
+2026-05-29 14:56:01,568 - INFO - ============================================================
+2026-05-29 14:56:01,568 - INFO - Loading all edges...
+2026-05-29 14:56:01,640 - INFO -   placement: 5,192,335 edges, cols: ['src', 'dst', 'tau', 'edge_type', 'weight']
+2026-05-29 14:56:01,643 - INFO -   r1_suits: 109,667 edges, cols: ['src', 'dst', 'success_rate', 'cooccur_count', 'tau', 'edge_type', 'weight']
+2026-05-29 14:56:01,644 - INFO -   r2_requires: 1,399 edges, cols: ['src', 'dst', 'weight', 'count', 'tau', 'edge_type']
+2026-05-29 14:56:01,647 - INFO -   r3_drives: 102,610 edges, cols: ['src', 'dst', 'weight', 'count', 'tau', 'edge_type']
+2026-05-29 14:56:01,648 - INFO -   r4_shifts: 5 edges, cols: ['src', 'dst', 'weight', 'edge_type', 'tau']
+2026-05-29 14:56:01,648 - INFO - Splitting edges by temporal windows...
+2026-05-29 14:56:01,648 - INFO -   TRAIN: days in [1, 60]
+2026-05-29 14:56:01,648 - INFO -   VAL:   days in [61, 65]
+2026-05-29 14:56:01,648 - INFO -   TEST:  days in [66, 69]
+2026-05-29 14:56:01,823 - INFO -   placement: tau found, train=4567990, val=417033, test=207312
+2026-05-29 14:56:01,828 - INFO -   r1_suits: tau found, train=107778, val=1889, test=0
+2026-05-29 14:56:01,828 - INFO -   r2_requires: tau found, train=1378, val=21, test=0
+2026-05-29 14:56:01,831 - INFO -   r3_drives: tau found, train=100865, val=1745, test=0
+2026-05-29 14:56:01,832 - INFO -   r4_shifts: tau found, train=5, val=0, test=0
+2026-05-29 14:56:01,860 - INFO - 
+Split Summary:
+2026-05-29 14:56:01,860 - INFO -   Train edges: 4,778,016
+2026-05-29 14:56:01,860 - INFO -   Val edges: 420,688
+2026-05-29 14:56:01,860 - INFO -   Test edges: 207,312
+2026-05-29 14:56:01,860 - INFO - Saving split parquet files...
+2026-05-29 14:56:02,239 - INFO -   Saved train: 4,778,016 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/train_edges.parquet
+2026-05-29 14:56:02,273 - INFO -   Saved val: 420,688 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/val_edges.parquet
+2026-05-29 14:56:02,291 - INFO -   Saved test: 207,312 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/test_edges.parquet
+2026-05-29 14:56:02,291 - INFO - Generating split report...
+2026-05-29 14:56:02,560 - INFO -   Saved report to /Volumes/code/xcad/xcad_code/outputs/reports/temporal_split.md
+2026-05-29 14:56:02,560 - INFO - ============================================================
+2026-05-29 14:56:02,560 - INFO - Temporal split complete
+2026-05-29 14:56:02,560 - INFO - ============================================================
+2026-06-01 14:45:40,929 - INFO - ============================================================
+2026-06-01 14:45:40,929 - INFO - Starting temporal split (per-relation boundaries)
+2026-06-01 14:45:40,929 - INFO - ============================================================
+2026-06-01 14:45:40,929 - INFO - Loading all edges...
+2026-06-01 14:45:41,105 - INFO -   placement: 5,192,335 edges, cols: ['src', 'dst', 'tau', 'edge_type', 'weight']
+2026-06-01 14:45:41,110 - INFO -   r1_suits: 109,667 edges, cols: ['src', 'dst', 'success_rate', 'cooccur_count', 'tau', 'edge_type', 'weight']
+2026-06-01 14:45:41,112 - INFO -   r2_requires: 1,399 edges, cols: ['src', 'dst', 'weight', 'count', 'tau', 'edge_type']
+2026-06-01 14:45:41,117 - INFO -   r3_drives: 102,610 edges, cols: ['src', 'dst', 'weight', 'count', 'tau', 'edge_type']
+2026-06-01 14:45:41,118 - INFO -   r4_shifts: 5 edges, cols: ['src', 'dst', 'weight', 'edge_type', 'tau']
+2026-06-01 14:45:41,118 - INFO - Splitting edges with per-relation temporal boundaries...
+2026-06-01 14:45:41,118 - INFO -   r1/r2/r3: Train [1,50] / Val [51,55] / Test [56,62]
+2026-06-01 14:45:41,118 - INFO -   placement: Train [1,60] / Val [61,65] / Test [66,69]
+2026-06-01 14:45:41,118 - INFO -   r4_shifts: τ=-1, random 80/10/10
+2026-06-01 14:45:41,387 - INFO -   placement: train=[1,60] 4,567,990, val=[61,65] 417,033, test=[66,69] 207,312
+2026-06-01 14:45:41,393 - INFO -   r1_suits: train=[1,50] 87,064, val=[51,55] 10,182, test=[56,62] 12,421
+2026-06-01 14:45:41,394 - INFO -   r2_requires: train=[1,50] 1,217, val=[51,55] 31, test=[56,62] 151
+2026-06-01 14:45:41,398 - INFO -   r3_drives: train=[1,50] 80,869, val=[51,55] 9,817, test=[56,62] 11,924
+2026-06-01 14:45:41,399 - INFO -   r4_shifts: train=4, val=0, test=1 (random 80/10/10)
+2026-06-01 14:45:41,440 - INFO - 
+Split Summary:
+2026-06-01 14:45:41,440 - INFO -   Train edges: 4,737,144
+2026-06-01 14:45:41,440 - INFO -   Val edges: 437,063
+2026-06-01 14:45:41,440 - INFO -   Test edges: 231,809
+2026-06-01 14:45:41,440 - INFO - Saving split parquet files...
+2026-06-01 14:45:41,883 - INFO -   Saved train: 4,737,144 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/train_edges.parquet
+2026-06-01 14:45:41,926 - INFO -   Saved val: 437,063 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/val_edges.parquet
+2026-06-01 14:45:41,953 - INFO -   Saved test: 231,809 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/test_edges.parquet
+2026-06-01 14:45:41,953 - INFO - Generating split report...
+2026-06-01 14:45:42,253 - INFO -   Saved report to /Volumes/code/xcad/xcad_code/outputs/reports/temporal_split.md
+2026-06-01 14:45:42,523 - INFO - ============================================================
+2026-06-01 14:45:42,523 - INFO - Temporal split complete
+2026-06-01 14:45:42,523 - INFO - ============================================================

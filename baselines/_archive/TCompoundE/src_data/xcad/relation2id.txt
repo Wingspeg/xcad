@@ -1,0 +1,4 @@
+placement	0
+r1_suits	1
+r2_requires	2
+r3_drives	3

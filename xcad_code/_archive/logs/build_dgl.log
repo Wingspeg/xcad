@@ -1,0 +1,287 @@
+2026-05-29 11:19:22,290 - INFO - ============================================================
+2026-05-29 11:19:22,290 - INFO - Starting DGL graph construction
+2026-05-29 11:19:22,290 - INFO - ============================================================
+2026-05-29 11:19:22,290 - INFO - Loading nodes from parquet files...
+2026-05-29 11:19:43,768 - INFO - ============================================================
+2026-05-29 11:19:43,768 - INFO - Starting DGL graph construction
+2026-05-29 11:19:43,768 - INFO - ============================================================
+2026-05-29 11:19:43,768 - INFO - Loading nodes from parquet files...
+2026-05-29 11:19:43,873 - INFO -   algorithm: 102610 nodes, 102610 unique IDs
+2026-05-29 11:19:43,876 - INFO -   compute: 1897 nodes, 1897 unique IDs
+2026-05-29 11:19:43,888 - INFO -   data: 20378 nodes, 20378 unique IDs
+2026-05-29 11:19:43,888 - INFO - Node counts: {'algorithm': 102610, 'compute': 1897, 'data': 20378}
+2026-05-29 11:19:43,888 - INFO - Preprocessing node features...
+2026-05-29 11:19:43,896 - INFO -   compute: 16 features (['machine_gpu_type', 'machine_cap_cpu', 'machine_cap_mem', 'machine_cap_gpu', 'gpu_type_ordinal', 'avg_gpu_util', 'max_gpu_mem', 'avg_host_mem', 'max_host_mem', 'avg_cpu_usage', 'avg_net_read', 'avg_net_write', 'avg_machine_load', 'avg_num_worker', 'avg_machine_cpu', 'avg_machine_gpu'])
+2026-05-29 11:19:43,914 - INFO -   algorithm: 14 features (['workload', 'avg_plan_cpu', 'std_plan_cpu', 'min_plan_cpu', 'max_plan_cpu', 'avg_plan_mem', 'std_plan_mem', 'min_plan_mem', 'max_plan_mem', 'avg_plan_gpu', 'std_plan_gpu', 'min_plan_gpu', 'max_plan_gpu', 'instance_count'])
+2026-05-29 11:19:43,916 - INFO -   data: 11 features (['avg_read', 'sum_read', 'max_read', 'avg_write', 'sum_write', 'max_write', 'avg_read_count', 'sum_read_count', 'avg_write_count', 'sum_write_count', 'instance_count'])
+2026-05-29 11:19:43,916 - INFO -   compute features shape: torch.Size([1897, 16])
+2026-05-29 11:19:43,916 - INFO -   algorithm features shape: torch.Size([102610, 14])
+2026-05-29 11:19:43,916 - INFO -   data features shape: torch.Size([20378, 11])
+2026-05-29 11:19:43,916 - INFO - Loading edges from parquet files...
+2026-05-29 11:19:45,802 - INFO -   placement: 0 edges (algorithm → compute)
+2026-05-29 11:19:45,840 - INFO -   r1_suits: 0 edges (algorithm → compute)
+2026-05-29 11:19:45,859 - INFO -   r2_requires: 0 edges (algorithm → compute)
+2026-05-29 11:19:45,900 - INFO -   r3_drives: 51,498 edges (data → algorithm)
+2026-05-29 11:19:45,903 - INFO -   r4_shifts: 0 edges (compute → compute)
+2026-05-29 11:19:45,903 - INFO - Building temporal graph sequence (69 windows)...
+2026-05-29 11:19:45,909 - INFO -   τ=1: nodes={'algorithm': 102610, 'compute': 0, 'data': 20373}, edges={'placement': 0, 'r1_suits': 0, 'r2_requires': 0, 'r3_drives': 51498, 'r4_shifts': 0}
+2026-05-29 11:19:45,910 - INFO -   τ=2: nodes={'algorithm': 102610, 'compute': 0, 'data': 20373}, edges={'placement': 0, 'r1_suits': 0, 'r2_requires': 0, 'r3_drives': 51498, 'r4_shifts': 0}
+2026-05-29 11:19:45,911 - INFO -   τ=3: nodes={'algorithm': 102610, 'compute': 0, 'data': 20373}, edges={'placement': 0, 'r1_suits': 0, 'r2_requires': 0, 'r3_drives': 51498, 'r4_shifts': 0}
+2026-05-29 11:19:45,916 - INFO -   τ=10: nodes={'algorithm': 102610, 'compute': 0, 'data': 20373}, edges={'placement': 0, 'r1_suits': 0, 'r2_requires': 0, 'r3_drives': 51498, 'r4_shifts': 0}
+2026-05-29 11:19:45,923 - INFO -   τ=20: nodes={'algorithm': 102610, 'compute': 0, 'data': 20373}, edges={'placement': 0, 'r1_suits': 0, 'r2_requires': 0, 'r3_drives': 51498, 'r4_shifts': 0}
+2026-05-29 11:19:45,930 - INFO -   τ=30: nodes={'algorithm': 102610, 'compute': 0, 'data': 20373}, edges={'placement': 0, 'r1_suits': 0, 'r2_requires': 0, 'r3_drives': 51498, 'r4_shifts': 0}
+2026-05-29 11:19:45,937 - INFO -   τ=40: nodes={'algorithm': 102610, 'compute': 0, 'data': 20373}, edges={'placement': 0, 'r1_suits': 0, 'r2_requires': 0, 'r3_drives': 51498, 'r4_shifts': 0}
+2026-05-29 11:19:45,944 - INFO -   τ=50: nodes={'algorithm': 102610, 'compute': 0, 'data': 20373}, edges={'placement': 0, 'r1_suits': 0, 'r2_requires': 0, 'r3_drives': 51498, 'r4_shifts': 0}
+2026-05-29 11:19:45,951 - INFO -   τ=60: nodes={'algorithm': 102610, 'compute': 0, 'data': 20373}, edges={'placement': 0, 'r1_suits': 0, 'r2_requires': 0, 'r3_drives': 51498, 'r4_shifts': 0}
+2026-05-29 11:19:45,957 - INFO -   No empty snapshots found.
+2026-05-29 11:19:45,978 - INFO - Saved graph sequence to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_seq.bin
+2026-05-29 11:19:46,024 - INFO - Saved graph metadata to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_meta.pt
+2026-05-29 11:19:46,024 - INFO - ============================================================
+2026-05-29 11:19:46,025 - INFO - Graph construction complete
+2026-05-29 11:19:46,025 - INFO - ============================================================
+2026-05-29 11:21:03,850 - INFO - ============================================================
+2026-05-29 11:21:03,850 - INFO - Starting DGL graph construction
+2026-05-29 11:21:03,850 - INFO - ============================================================
+2026-05-29 11:21:03,850 - INFO - Loading algorithm and data nodes...
+2026-05-29 11:21:03,955 - INFO -   algorithm: 102610 nodes, 102610 unique IDs
+2026-05-29 11:21:03,968 - INFO -   data: 20378 nodes, 20378 unique IDs
+2026-05-29 11:21:03,968 - INFO - Creating compute nodes with gpu_type pool...
+2026-05-29 11:21:03,970 - INFO -   Individual machines: 1897, unique IDs: 1897
+2026-05-29 11:21:03,970 - INFO -   GPU type pool: 6 types, IDs: [('CPU', 1897), ('T4', 1898), ('MISC', 1899), ('P100', 1900), ('V100', 1901), ('V100M32', 1902)]
+2026-05-29 11:21:03,972 - INFO - Node counts: {'algorithm': 102610, 'compute': 1903, 'data': 20378}
+2026-05-29 11:21:03,972 - INFO - Loading and mapping edges...
+2026-05-29 11:21:06,672 - INFO -   placement: 0 edges (Algorithm → Machine)
+2026-05-29 11:21:06,716 - INFO -   r1_suits: 100,446 edges (Algorithm → GPU_Type)
+2026-05-29 11:21:06,737 - INFO -   r2_requires: 1,399 edges (Algorithm → GPU_Type)
+2026-05-29 11:21:06,803 - INFO -   r3_drives: 51,498 edges (Data → Algorithm)
+2026-05-29 11:21:06,805 - INFO -   r4_shifts: 5 edges (GPU_Type → GPU_Type)
+2026-05-29 11:21:06,805 - INFO - Preprocessing node features...
+2026-05-29 11:21:06,815 - INFO -   compute: 16 features (['machine_gpu_type', 'gpu_type_ordinal', 'machine_cap_cpu', 'machine_cap_mem', 'machine_cap_gpu', 'avg_gpu_util', 'max_gpu_mem', 'avg_host_mem', 'max_host_mem', 'avg_cpu_usage', 'avg_net_read', 'avg_net_write', 'avg_machine_load', 'avg_num_worker', 'avg_machine_cpu', 'avg_machine_gpu'])
+2026-05-29 11:21:06,835 - INFO -   algorithm: 14 features (['workload', 'avg_plan_cpu', 'std_plan_cpu', 'min_plan_cpu', 'max_plan_cpu', 'avg_plan_mem', 'std_plan_mem', 'min_plan_mem', 'max_plan_mem', 'avg_plan_gpu', 'std_plan_gpu', 'min_plan_gpu', 'max_plan_gpu', 'instance_count'])
+2026-05-29 11:21:06,837 - INFO -   data: 11 features (['avg_read', 'sum_read', 'max_read', 'avg_write', 'sum_write', 'max_write', 'avg_read_count', 'sum_read_count', 'avg_write_count', 'sum_write_count', 'instance_count'])
+2026-05-29 11:21:06,837 - INFO -   compute features shape: torch.Size([1897, 16])
+2026-05-29 11:21:06,837 - INFO -   algorithm features shape: torch.Size([102610, 14])
+2026-05-29 11:21:06,837 - INFO -   data features shape: torch.Size([20378, 11])
+2026-05-29 11:21:06,837 - INFO - Building temporal graph sequence (69 windows)...
+2026-05-29 11:21:06,845 - INFO -   τ=1: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:21:06,847 - INFO -   τ=2: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:21:06,848 - INFO -   τ=3: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:21:06,855 - INFO -   τ=10: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:21:06,866 - INFO -   τ=20: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:21:06,876 - INFO -   τ=30: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:21:06,887 - INFO -   τ=40: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:21:06,899 - INFO -   τ=50: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:21:06,910 - INFO -   τ=60: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:21:06,919 - INFO -   No empty snapshots found.
+2026-05-29 11:21:06,990 - INFO - Saved graph sequence to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_seq.bin
+2026-05-29 11:21:07,038 - INFO - Saved graph metadata to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_meta.pt
+2026-05-29 11:21:07,038 - INFO - ============================================================
+2026-05-29 11:21:07,038 - INFO - Graph construction complete
+2026-05-29 11:21:07,038 - INFO - ============================================================
+2026-05-29 11:26:45,998 - INFO - ============================================================
+2026-05-29 11:26:45,998 - INFO - Starting DGL graph construction
+2026-05-29 11:26:45,998 - INFO - ============================================================
+2026-05-29 11:26:45,998 - INFO - Loading algorithm and data nodes...
+2026-05-29 11:26:46,107 - INFO -   algorithm: 102610 nodes, 102610 unique IDs
+2026-05-29 11:26:46,119 - INFO -   data: 20378 nodes, 20378 unique IDs
+2026-05-29 11:26:46,119 - INFO - Creating compute nodes with gpu_type pool...
+2026-05-29 11:26:46,122 - INFO -   Individual machines: 1897, unique IDs: 1897
+2026-05-29 11:26:46,122 - INFO -   GPU type pool: 6 types, IDs: [('CPU', 1897), ('T4', 1898), ('MISC', 1899), ('P100', 1900), ('V100', 1901), ('V100M32', 1902)]
+2026-05-29 11:26:46,123 - INFO - Node counts: {'algorithm': 102610, 'compute': 1903, 'data': 20378}
+2026-05-29 11:26:46,123 - INFO - Loading and mapping edges...
+2026-05-29 11:26:48,183 - INFO -   placement: 0 edges (Algorithm → Machine)
+2026-05-29 11:26:48,183 - WARNING -   WARNING: placement edges are 0 (src is worker_name, not job_name). This edge type will have no edges in the graph.
+2026-05-29 11:26:48,220 - INFO -   r1_suits: 100,446 edges (Algorithm → GPU_Type)
+2026-05-29 11:26:48,238 - INFO -   r2_requires: 1,399 edges (Algorithm → GPU_Type)
+2026-05-29 11:26:48,283 - INFO -   r3_drives: 51,498 edges (Data → Algorithm)
+2026-05-29 11:26:48,285 - INFO -   r4_shifts: 5 edges (GPU_Type → GPU_Type)
+2026-05-29 11:26:48,285 - INFO - Preprocessing node features...
+2026-05-29 11:26:48,293 - INFO -   compute: 16 features (['machine_gpu_type', 'gpu_type_ordinal', 'machine_cap_cpu', 'machine_cap_mem', 'machine_cap_gpu', 'avg_gpu_util', 'max_gpu_mem', 'avg_host_mem', 'max_host_mem', 'avg_cpu_usage', 'avg_net_read', 'avg_net_write', 'avg_machine_load', 'avg_num_worker', 'avg_machine_cpu', 'avg_machine_gpu'])
+2026-05-29 11:26:48,310 - INFO -   algorithm: 14 features (['workload', 'avg_plan_cpu', 'std_plan_cpu', 'min_plan_cpu', 'max_plan_cpu', 'avg_plan_mem', 'std_plan_mem', 'min_plan_mem', 'max_plan_mem', 'avg_plan_gpu', 'std_plan_gpu', 'min_plan_gpu', 'max_plan_gpu', 'instance_count'])
+2026-05-29 11:26:48,312 - INFO -   data: 11 features (['avg_read', 'sum_read', 'max_read', 'avg_write', 'sum_write', 'max_write', 'avg_read_count', 'sum_read_count', 'avg_write_count', 'sum_write_count', 'instance_count'])
+2026-05-29 11:26:48,312 - INFO -   compute features shape: torch.Size([1897, 16])
+2026-05-29 11:26:48,312 - INFO -   algorithm features shape: torch.Size([102610, 14])
+2026-05-29 11:26:48,312 - INFO -   data features shape: torch.Size([20378, 11])
+2026-05-29 11:26:48,312 - INFO - Building temporal graph sequence (69 windows)...
+2026-05-29 11:26:48,319 - INFO -   τ=1: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:26:48,321 - INFO -   τ=2: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:26:48,322 - INFO -   τ=3: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:26:48,329 - INFO -   τ=10: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:26:48,339 - INFO -   τ=20: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:26:48,349 - INFO -   τ=30: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:26:48,358 - INFO -   τ=40: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:26:48,368 - INFO -   τ=50: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:26:48,378 - INFO -   τ=60: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 11:26:48,387 - INFO -   No empty snapshots found.
+2026-05-29 11:26:48,447 - INFO - Saved graph sequence to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_seq.bin
+2026-05-29 11:26:48,492 - INFO - Saved graph metadata to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_meta.pt
+2026-05-29 11:26:48,502 - INFO - Saved node features to /Volumes/code/xcad/xcad_code/outputs/dgl/node_features.pt
+2026-05-29 11:26:48,502 - INFO - ============================================================
+2026-05-29 11:26:48,503 - INFO - Graph construction complete
+2026-05-29 11:26:48,503 - INFO - ============================================================
+2026-05-29 14:28:30,555 - INFO - ============================================================
+2026-05-29 14:28:30,555 - INFO - Starting DGL graph construction
+2026-05-29 14:28:30,555 - INFO - ============================================================
+2026-05-29 14:28:30,555 - INFO - Loading algorithm and data nodes...
+2026-05-29 14:28:30,631 - INFO -   algorithm: 102610 nodes, 102610 unique IDs
+2026-05-29 14:28:30,644 - INFO -   data: 20378 nodes, 20378 unique IDs
+2026-05-29 14:28:30,644 - INFO - Creating compute nodes with gpu_type pool...
+2026-05-29 14:28:30,647 - INFO -   Individual machines: 1897, unique IDs: 1897
+2026-05-29 14:28:30,647 - INFO -   GPU type pool: 6 types, IDs: [('CPU', 1897), ('T4', 1898), ('MISC', 1899), ('P100', 1900), ('V100', 1901), ('V100M32', 1902)]
+2026-05-29 14:28:30,648 - INFO - Node counts: {'algorithm': 102610, 'compute': 1903, 'data': 20378}
+2026-05-29 14:28:30,648 - INFO - Loading and mapping edges...
+2026-05-29 14:28:31,821 - INFO -   placement: 0 edges (Algorithm → Machine)
+2026-05-29 14:28:31,821 - WARNING -   WARNING: placement edges are 0 (src is worker_name, not job_name). This edge type will have no edges in the graph.
+2026-05-29 14:28:31,855 - INFO -   r1_suits: 100,446 edges (Algorithm → GPU_Type)
+2026-05-29 14:28:31,872 - INFO -   r2_requires: 1,399 edges (Algorithm → GPU_Type)
+2026-05-29 14:28:31,913 - INFO -   r3_drives: 51,498 edges (Data → Algorithm)
+2026-05-29 14:28:31,914 - INFO -   r4_shifts: 5 edges (GPU_Type → GPU_Type)
+2026-05-29 14:28:31,914 - INFO - Preprocessing node features...
+2026-05-29 14:28:31,921 - INFO -   compute: 16 features (['machine_gpu_type', 'gpu_type_ordinal', 'machine_cap_cpu', 'machine_cap_mem', 'machine_cap_gpu', 'avg_gpu_util', 'max_gpu_mem', 'avg_host_mem', 'max_host_mem', 'avg_cpu_usage', 'avg_net_read', 'avg_net_write', 'avg_machine_load', 'avg_num_worker', 'avg_machine_cpu', 'avg_machine_gpu'])
+2026-05-29 14:28:31,938 - INFO -   algorithm: 14 features (['workload', 'avg_plan_cpu', 'std_plan_cpu', 'min_plan_cpu', 'max_plan_cpu', 'avg_plan_mem', 'std_plan_mem', 'min_plan_mem', 'max_plan_mem', 'avg_plan_gpu', 'std_plan_gpu', 'min_plan_gpu', 'max_plan_gpu', 'instance_count'])
+2026-05-29 14:28:31,940 - INFO -   data: 11 features (['avg_read', 'sum_read', 'max_read', 'avg_write', 'sum_write', 'max_write', 'avg_read_count', 'sum_read_count', 'avg_write_count', 'sum_write_count', 'instance_count'])
+2026-05-29 14:28:31,940 - INFO -   compute features shape: torch.Size([1897, 16])
+2026-05-29 14:28:31,940 - INFO -   algorithm features shape: torch.Size([102610, 14])
+2026-05-29 14:28:31,940 - INFO -   data features shape: torch.Size([20378, 11])
+2026-05-29 14:28:31,940 - INFO - Building temporal graph sequence (69 windows)...
+2026-05-29 14:28:31,947 - INFO -   τ=1: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:28:31,948 - INFO -   τ=2: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:28:31,949 - INFO -   τ=3: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:28:31,955 - INFO -   τ=10: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:28:31,965 - INFO -   τ=20: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:28:31,974 - INFO -   τ=30: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:28:31,983 - INFO -   τ=40: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:28:31,993 - INFO -   τ=50: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:28:32,002 - INFO -   τ=60: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:28:32,011 - INFO -   No empty snapshots found.
+2026-05-29 14:28:32,066 - INFO - Saved graph sequence to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_seq.bin
+2026-05-29 14:28:32,106 - INFO - Saved graph metadata to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_meta.pt
+2026-05-29 14:28:32,112 - INFO - Saved node features to /Volumes/code/xcad/xcad_code/outputs/dgl/node_features.pt
+2026-05-29 14:28:32,112 - INFO - ============================================================
+2026-05-29 14:28:32,112 - INFO - Graph construction complete
+2026-05-29 14:28:32,112 - INFO - ============================================================
+2026-05-29 14:29:28,746 - INFO - ============================================================
+2026-05-29 14:29:28,746 - INFO - Starting DGL graph construction
+2026-05-29 14:29:28,746 - INFO - ============================================================
+2026-05-29 14:29:28,746 - INFO - Loading algorithm and data nodes...
+2026-05-29 14:29:28,839 - INFO -   algorithm: 102610 nodes, 102610 unique IDs
+2026-05-29 14:29:28,851 - INFO -   data: 20378 nodes, 20378 unique IDs
+2026-05-29 14:29:28,851 - INFO - Creating compute nodes with gpu_type pool...
+2026-05-29 14:29:28,853 - INFO -   Individual machines: 1897, unique IDs: 1897
+2026-05-29 14:29:28,853 - INFO -   GPU type pool: 6 types, IDs: [('CPU', 1897), ('T4', 1898), ('MISC', 1899), ('P100', 1900), ('V100', 1901), ('V100M32', 1902)]
+2026-05-29 14:29:28,854 - INFO - Node counts: {'algorithm': 102610, 'compute': 1903, 'data': 20378}
+2026-05-29 14:29:28,854 - INFO - Loading and mapping edges...
+2026-05-29 14:29:30,164 - INFO -   placement: 0 edges (Algorithm → Machine)
+2026-05-29 14:29:30,165 - WARNING -   WARNING: placement edges are 0 (src is worker_name, not job_name). This edge type will have no edges in the graph.
+2026-05-29 14:29:30,199 - INFO -   r1_suits: 100,446 edges (Algorithm → GPU_Type)
+2026-05-29 14:29:30,218 - INFO -   r2_requires: 1,399 edges (Algorithm → GPU_Type)
+2026-05-29 14:29:30,259 - INFO -   r3_drives: 51,498 edges (Data → Algorithm)
+2026-05-29 14:29:30,259 - INFO -     NOTE: 51,112 edges dropped (group not in filtered data_nodes, MIN_GROUP_SIZE=5 filter). This is expected behavior.
+2026-05-29 14:29:30,261 - INFO -   r4_shifts: 5 edges (GPU_Type → GPU_Type)
+2026-05-29 14:29:30,261 - INFO - Preprocessing node features...
+2026-05-29 14:29:30,264 - INFO -   compute: 16 features (['machine_gpu_type', 'gpu_type_ordinal', 'machine_cap_cpu', 'machine_cap_mem', 'machine_cap_gpu', 'avg_gpu_util', 'max_gpu_mem', 'avg_host_mem', 'max_host_mem', 'avg_cpu_usage', 'avg_net_read', 'avg_net_write', 'avg_machine_load', 'avg_num_worker', 'avg_machine_cpu', 'avg_machine_gpu'])
+2026-05-29 14:29:30,280 - INFO -   algorithm: 14 features (['workload', 'avg_plan_cpu', 'std_plan_cpu', 'min_plan_cpu', 'max_plan_cpu', 'avg_plan_mem', 'std_plan_mem', 'min_plan_mem', 'max_plan_mem', 'avg_plan_gpu', 'std_plan_gpu', 'min_plan_gpu', 'max_plan_gpu', 'instance_count'])
+2026-05-29 14:29:30,282 - INFO -   data: 11 features (['avg_read', 'sum_read', 'max_read', 'avg_write', 'sum_write', 'max_write', 'avg_read_count', 'sum_read_count', 'avg_write_count', 'sum_write_count', 'instance_count'])
+2026-05-29 14:29:30,282 - INFO -   compute features shape: torch.Size([1897, 16])
+2026-05-29 14:29:30,282 - INFO -   algorithm features shape: torch.Size([102610, 14])
+2026-05-29 14:29:30,282 - INFO -   data features shape: torch.Size([20378, 11])
+2026-05-29 14:29:30,282 - INFO - Building temporal graph sequence (69 windows)...
+2026-05-29 14:29:30,284 - INFO -   τ=1: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:29:30,285 - INFO -   τ=2: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:29:30,286 - INFO -   τ=3: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:29:30,294 - INFO -   τ=10: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:29:30,307 - INFO -   τ=20: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:29:30,318 - INFO -   τ=30: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:29:30,331 - INFO -   τ=40: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:29:30,341 - INFO -   τ=50: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:29:30,351 - INFO -   τ=60: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:29:30,360 - INFO -   No empty snapshots found.
+2026-05-29 14:29:30,415 - INFO - Saved graph sequence to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_seq.bin
+2026-05-29 14:29:30,455 - INFO - Saved graph metadata to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_meta.pt
+2026-05-29 14:29:30,460 - INFO - Saved node features to /Volumes/code/xcad/xcad_code/outputs/dgl/node_features.pt
+2026-05-29 14:29:30,460 - INFO - ============================================================
+2026-05-29 14:29:30,460 - INFO - Graph construction complete
+2026-05-29 14:29:30,460 - INFO - ============================================================
+2026-05-29 14:30:55,703 - INFO - ============================================================
+2026-05-29 14:30:55,703 - INFO - Starting DGL graph construction
+2026-05-29 14:30:55,704 - INFO - ============================================================
+2026-05-29 14:30:55,704 - INFO - Loading algorithm and data nodes...
+2026-05-29 14:30:55,763 - INFO -   algorithm: 102610 nodes, 102610 unique IDs
+2026-05-29 14:30:55,775 - INFO -   data: 20378 nodes, 20378 unique IDs
+2026-05-29 14:30:55,775 - INFO - Creating compute nodes with gpu_type pool...
+2026-05-29 14:30:55,778 - INFO -   Individual machines: 1897, unique IDs: 1897
+2026-05-29 14:30:55,778 - INFO -   GPU type pool: 6 types, IDs: [('CPU', 1897), ('T4', 1898), ('MISC', 1899), ('P100', 1900), ('V100', 1901), ('V100M32', 1902)]
+2026-05-29 14:30:55,779 - INFO - Node counts: {'algorithm': 102610, 'compute': 1903, 'data': 20378}
+2026-05-29 14:30:55,779 - INFO - Loading and mapping edges...
+2026-05-29 14:30:57,083 - INFO -   placement: 0 edges (Algorithm → Machine)
+2026-05-29 14:30:57,083 - WARNING -   WARNING: placement edges are 0 (src is worker_name, not job_name). This edge type will have no edges in the graph.
+2026-05-29 14:30:57,115 - INFO -   r1_suits: 100,446 edges (Algorithm → GPU_Type)
+2026-05-29 14:30:57,132 - INFO -   r2_requires: 1,399 edges (Algorithm → GPU_Type)
+2026-05-29 14:30:57,171 - INFO -   r3_drives: 51,498 edges (Data → Algorithm)
+2026-05-29 14:30:57,171 - INFO -     NOTE: 51,112 edges dropped (group not in filtered data_nodes, MIN_GROUP_SIZE=5 filter). This is expected behavior.
+2026-05-29 14:30:57,173 - INFO -   r4_shifts: 5 edges (GPU_Type → GPU_Type)
+2026-05-29 14:30:57,173 - INFO - Preprocessing node features...
+2026-05-29 14:30:57,179 - INFO -   compute: 16 features (['machine_gpu_type', 'gpu_type_ordinal', 'machine_cap_cpu', 'machine_cap_mem', 'machine_cap_gpu', 'avg_gpu_util', 'max_gpu_mem', 'avg_host_mem', 'max_host_mem', 'avg_cpu_usage', 'avg_net_read', 'avg_net_write', 'avg_machine_load', 'avg_num_worker', 'avg_machine_cpu', 'avg_machine_gpu'])
+2026-05-29 14:30:57,195 - INFO -   algorithm: 14 features (['workload', 'avg_plan_cpu', 'std_plan_cpu', 'min_plan_cpu', 'max_plan_cpu', 'avg_plan_mem', 'std_plan_mem', 'min_plan_mem', 'max_plan_mem', 'avg_plan_gpu', 'std_plan_gpu', 'min_plan_gpu', 'max_plan_gpu', 'instance_count'])
+2026-05-29 14:30:57,197 - INFO -   data: 11 features (['avg_read', 'sum_read', 'max_read', 'avg_write', 'sum_write', 'max_write', 'avg_read_count', 'sum_read_count', 'avg_write_count', 'sum_write_count', 'instance_count'])
+2026-05-29 14:30:57,197 - INFO -   compute features shape: torch.Size([1897, 16])
+2026-05-29 14:30:57,197 - INFO -   algorithm features shape: torch.Size([102610, 14])
+2026-05-29 14:30:57,197 - INFO -   data features shape: torch.Size([20378, 11])
+2026-05-29 14:30:57,197 - INFO - Building temporal graph sequence (69 windows)...
+2026-05-29 14:30:57,204 - INFO -   τ=1: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:30:57,205 - INFO -   τ=2: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:30:57,206 - INFO -   τ=3: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:30:57,212 - INFO -   τ=10: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:30:57,221 - INFO -   τ=20: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:30:57,230 - INFO -   τ=30: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:30:57,239 - INFO -   τ=40: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:30:57,248 - INFO -   τ=50: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:30:57,257 - INFO -   τ=60: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:30:57,265 - INFO -   No empty snapshots found.
+2026-05-29 14:30:57,321 - INFO - Saved graph sequence to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_seq.bin
+2026-05-29 14:30:57,358 - INFO - Saved graph metadata to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_meta.pt
+2026-05-29 14:30:57,364 - INFO - Saved node features to /Volumes/code/xcad/xcad_code/outputs/dgl/node_features.pt
+2026-05-29 14:30:57,364 - INFO - ============================================================
+2026-05-29 14:30:57,364 - INFO - Graph construction complete
+2026-05-29 14:30:57,364 - INFO - ============================================================
+2026-05-29 14:55:44,386 - INFO - ============================================================
+2026-05-29 14:55:44,386 - INFO - Starting DGL graph construction
+2026-05-29 14:55:44,386 - INFO - ============================================================
+2026-05-29 14:55:44,386 - INFO - Loading algorithm and data nodes...
+2026-05-29 14:55:44,455 - INFO -   algorithm: 102610 nodes, 102610 unique IDs
+2026-05-29 14:55:44,470 - INFO -   data: 20378 nodes, 20378 unique IDs
+2026-05-29 14:55:44,470 - INFO - Creating compute nodes with gpu_type pool...
+2026-05-29 14:55:44,473 - INFO -   Individual machines: 1897, unique IDs: 1897
+2026-05-29 14:55:44,473 - INFO -   GPU type pool: 6 types, IDs: [('CPU', 1897), ('T4', 1898), ('MISC', 1899), ('P100', 1900), ('V100', 1901), ('V100M32', 1902)]
+2026-05-29 14:55:44,474 - INFO - Node counts: {'algorithm': 102610, 'compute': 1903, 'data': 20378}
+2026-05-29 14:55:44,474 - INFO - Loading and mapping edges...
+2026-05-29 14:55:45,115 - INFO -   placement: 696,186 edges (Algorithm → Machine)
+2026-05-29 14:55:45,149 - INFO -   r1_suits: 109,667 edges (Algorithm → GPU_Type)
+2026-05-29 14:55:45,167 - INFO -   r2_requires: 1,399 edges (Algorithm → GPU_Type)
+2026-05-29 14:55:45,207 - INFO -   r3_drives: 51,498 edges (Data → Algorithm)
+2026-05-29 14:55:45,207 - INFO -     NOTE: 51,112 edges dropped (group not in filtered data_nodes, MIN_GROUP_SIZE=5 filter). This is expected behavior.
+2026-05-29 14:55:45,208 - INFO -   r4_shifts: 5 edges (GPU_Type → GPU_Type)
+2026-05-29 14:55:45,208 - INFO - Preprocessing node features...
+2026-05-29 14:55:45,215 - INFO -   compute: 16 features (['machine_gpu_type', 'gpu_type_ordinal', 'machine_cap_cpu', 'machine_cap_mem', 'machine_cap_gpu', 'avg_gpu_util', 'max_gpu_mem', 'avg_host_mem', 'max_host_mem', 'avg_cpu_usage', 'avg_net_read', 'avg_net_write', 'avg_machine_load', 'avg_num_worker', 'avg_machine_cpu', 'avg_machine_gpu'])
+2026-05-29 14:55:45,231 - INFO -   algorithm: 14 features (['workload', 'avg_plan_cpu', 'std_plan_cpu', 'min_plan_cpu', 'max_plan_cpu', 'avg_plan_mem', 'std_plan_mem', 'min_plan_mem', 'max_plan_mem', 'avg_plan_gpu', 'std_plan_gpu', 'min_plan_gpu', 'max_plan_gpu', 'instance_count'])
+2026-05-29 14:55:45,233 - INFO -   data: 11 features (['avg_read', 'sum_read', 'max_read', 'avg_write', 'sum_write', 'max_write', 'avg_read_count', 'sum_read_count', 'avg_write_count', 'sum_write_count', 'instance_count'])
+2026-05-29 14:55:45,233 - INFO -   compute features shape: torch.Size([1897, 16])
+2026-05-29 14:55:45,233 - INFO -   algorithm features shape: torch.Size([102610, 14])
+2026-05-29 14:55:45,233 - INFO -   data features shape: torch.Size([20378, 11])
+2026-05-29 14:55:45,233 - INFO - Building temporal graph sequence (69 windows)...
+2026-05-29 14:55:45,241 - INFO -   τ=1: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 696186, 'r1_suits': 109667, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:55:45,243 - INFO -   τ=2: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 696186, 'r1_suits': 109667, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:55:45,246 - INFO -   τ=3: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 696186, 'r1_suits': 109667, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:55:45,262 - INFO -   τ=10: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 696186, 'r1_suits': 109667, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:55:45,285 - INFO -   τ=20: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 696186, 'r1_suits': 109667, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:55:45,310 - INFO -   τ=30: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 696186, 'r1_suits': 109667, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:55:45,335 - INFO -   τ=40: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 696186, 'r1_suits': 109667, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:55:45,364 - INFO -   τ=50: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 696186, 'r1_suits': 109667, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:55:45,392 - INFO -   τ=60: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 696186, 'r1_suits': 109667, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
+2026-05-29 14:55:45,420 - INFO -   No empty snapshots found.
+2026-05-29 14:55:45,725 - INFO - Saved graph sequence to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_seq.bin
+2026-05-29 14:55:45,766 - INFO - Saved graph metadata to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_meta.pt
+2026-05-29 14:55:45,771 - INFO - Saved node features to /Volumes/code/xcad/xcad_code/outputs/dgl/node_features.pt
+2026-05-29 14:55:45,771 - INFO - ============================================================
+2026-05-29 14:55:45,771 - INFO - Graph construction complete
+2026-05-29 14:55:45,771 - INFO - ============================================================

@@ -1,0 +1,13 @@
+group: 主键，数据源/汇分组
+avg_read: 网络读取均值 (字节)
+sum_read: 网络读取总和 (字节)
+max_read: 网络读取最大值 (字节)
+avg_write: 网络写入均值 (字节)
+sum_write: 网络写入总和 (字节)
+max_write: 网络写入最大值 (字节)
+avg_read_count: 读取次数均值
+sum_read_count: 读取次数总和
+avg_write_count: 写入次数均值
+sum_write_count: 写入次数总和
+instance_count: 实例数量
+is_outlier: 是否异常大 group (size > 1000)

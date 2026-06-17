@@ -1,0 +1,16 @@
+job_name: 主键，作业名称（仅包含有 workload 标签的 job）
+workload: 算法类型标签 (graphlearn/ctr/bert...)，约 9.74% 的 job 有此标签
+avg_plan_cpu: 计划 CPU 百分比均值
+std_plan_cpu: 计划 CPU 百分比标准差
+min_plan_cpu: 计划 CPU 百分比最小值
+max_plan_cpu: 计划 CPU 百分比最大值
+avg_plan_mem: 计划内存 GB 均值
+std_plan_mem: 计划内存 GB 标准差
+min_plan_mem: 计划内存 GB 最小值
+max_plan_mem: 计划内存 GB 最大值
+avg_plan_gpu: 计划 GPU 百分比均值
+std_plan_gpu: 计划 GPU 百分比标准差
+min_plan_gpu: 计划 GPU 百分比最小值
+max_plan_gpu: 计划 GPU 百分比最大值
+instance_count: 实例数量
+role_distribution: 角色分布字典 {ps/worker/evaluator: count}

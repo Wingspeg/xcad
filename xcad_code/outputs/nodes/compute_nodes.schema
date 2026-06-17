@@ -1,0 +1,19 @@
+machine: 主键，机器唯一标识
+machine_gpu_type: GPU 代次类型 (MISC/V100/T4/P100...)
+gpu_type_ordinal: GPU 代次序数 (老→新)
+machine_cap_cpu: CPU 核数
+machine_cap_mem: 内存 GB
+machine_cap_gpu: GPU 卡数 (0=纯CPU)
+avg_gpu_util: GPU 使用率均值 (%)
+max_gpu_util: GPU 使用率最大值 (%)
+avg_gpu_mem: GPU 显存均值 (GB)
+max_gpu_mem: GPU 显存最大值 (GB)
+avg_host_mem: 主机内存均值 (GB)
+max_host_mem: 主机内存最大值 (GB)
+avg_cpu_usage: CPU 使用率均值 (%)
+avg_net_read: 网络读取均值 (字节)
+avg_net_write: 网络写入均值 (字节)
+avg_machine_load: 机器负载均值
+avg_num_worker: 共置实例数均值
+avg_machine_cpu: 机器 CPU 使用率均值
+avg_machine_gpu: 机器 GPU 使用率均值
