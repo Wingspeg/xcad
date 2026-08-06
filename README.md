@@ -146,10 +146,6 @@ python diagnose_sklearn.py --split-by-algo
 
 ---
 
-## 致谢
-
-本工作的骨架与评测协议基于 RE-GCN（Li et al., SIGIR 2021）。数据集重构自 Alibaba Cluster-Trace-GPU-v2020。
-
 ## 许可
 
 代码以 MIT 许可发布。重构所依赖的原始 trace 数据请遵循 Alibaba clusterdata 的原始许可条款。
