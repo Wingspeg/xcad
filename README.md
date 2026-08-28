@@ -152,4 +152,6 @@ The backbone and evaluation protocol are based on RE-GCN (Li et al., SIGIR 2021)
 
 ## License
 
-The code is released under the MIT License. The original trace data that reconstruction depends on follows Alibaba clusterdata's original license terms.
+[MIT](./LICENSE) © 2026 Wingspeg.
+
+The original trace data that reconstruction depends on follows Alibaba clusterdata's original license terms.
