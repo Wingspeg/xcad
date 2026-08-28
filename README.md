@@ -1,67 +1,67 @@
 # xCAD
 
-**xCAD**：面向三要素调度的时序知识图谱表征——诊断、基准与方法。
+**xCAD: Temporal Knowledge Graph Representation for Tri-Element Scheduling — Diagnosis, Benchmark, and Method**
 
-本仓库提供论文 *xCAD: Temporal Knowledge Graph Representation for Tri-Element Scheduling* 的官方实现，包括：从 Alibaba GPU 集群 trace 重构三要素调度时序图谱的数据流水线、基于 RE-GCN 骨架的两个新机制（异质关系基消息传递、算法兼容性头），以及全部诊断与评测脚本。
+This repository provides the official implementation of the paper *xCAD: Temporal Knowledge Graph Representation for Tri-Element Scheduling*. It includes a data pipeline that reconstructs a tri-element scheduling temporal graph from the Alibaba GPU cluster trace, two new mechanisms built on the RE-GCN backbone (heterogeneous relation-basis message passing and an algorithm-compatibility head), and all diagnosis and evaluation scripts.
 
 ---
 
-## 简介
+## Overview
 
-时序知识图谱（TKG）外推推理的方法与基准几乎全部面向通用事件图谱（ICEWS、GDELT），其依赖历史重复模式的归纳偏置在其他结构的图谱上是否成立，缺乏检验。xCAD 从真实 GPU 集群生产 trace 重构出首个**三要素（算力 Compute、算法 Algorithm、数据 Data）调度时序图谱**，并发现：通用 TKG 方法在核心关系"算法→GPU 适配"上**退化为频率先验**（恒预测高频众数 GPU，per-GPU macro 仅 0.20）。本文提出两个针对性机制，将该关系的 per-GPU macro 提升至 0.52，逼近随机森林上界 0.59。
+Existing methods and benchmarks for temporal knowledge graph (TKG) extrapolation reasoning almost exclusively target general event graphs (ICEWS, GDELT). Their inductive bias — relying on the recurrence of historical patterns — has rarely been examined on graphs of other structures. xCAD reconstructs, from a real production GPU-cluster trace, the **first tri-element (Compute, Algorithm, Data) scheduling temporal graph**, and reveals that on the core relation "Algorithm → GPU suitability", general TKG methods **collapse to a frequency prior** (always predicting the most frequent GPU; per-GPU macro only 0.20). This paper proposes two targeted mechanisms that lift per-GPU macro on this relation to 0.51, approaching the random-forest upper bound of 0.59.
 
-**核心结果（r1\_suits, per-GPU macro Hits@1）**
+**Key results (r1_suits, per-GPU macro Hits@1)**
 
-| 方法 | per-GPU macro |
+| Method | per-GPU macro |
 |---|---|
-| RE-GCN / CEN / RETIA | 0.20（退化为频率先验）|
-| 随机森林上界（仅用算法画像）| 0.59 |
-| **xCAD（ours）** | **0.51** |
+| RE-GCN / CEN / RETIA | 0.20 (collapses to frequency prior) |
+| Random-forest upper bound (algorithm profile only) | 0.59 |
+| **xCAD (ours)** | **0.51** |
 
 ---
 
-## 数据集：来源与重构
+## Dataset: Source and Reconstruction
 
-xCAD 基准重构自公开数据集 **Alibaba Cluster-Trace-GPU-v2020**（来源：<https://github.com/alibaba/clusterdata>，路径 `cluster-trace-gpu-v2020`）。本仓库**不直接分发重构后的图数据**，而是提供完整的重构脚本，便于从原始 trace 复现，同时尊重原数据集的许可与分发条款。
+xCAD is reconstructed from the public dataset **Alibaba Cluster-Trace-GPU-v2020** (source: <https://github.com/alibaba/clusterdata>, path `cluster-trace-gpu-v2020`). This repository **does not directly redistribute the reconstructed graph data**; instead, it provides the complete reconstruction scripts so the graph can be reproduced from the raw trace, while respecting the original dataset's license and distribution terms.
 
-### 重构步骤
+### Reconstruction Steps
 
-1. 从 Alibaba clusterdata 仓库下载 `cluster-trace-gpu-v2020` 原始 trace，置于 `data/raw/`。
-2. 运行重构脚本，将 trace 映射为三要素时序异构图：
+1. Download the `cluster-trace-gpu-v2020` raw trace from the Alibaba clusterdata repository and place it under `data/raw/`.
+2. Run the reconstruction script to map the trace into the tri-element temporal heterogeneous graph:
 
    ```bash
    python tools/export_to_regcn_format.py --raw-dir data/raw --out-dir data/xcad
    ```
 
-### 图的构成（重构后）
+### Graph Composition (After Reconstruction)
 
-- **节点（124,891 实体）**：算力 Compute（GPU 代次 + 机器）、算法 Algorithm（job 级，每个含 13 维资源画像）、数据 Data（数据组）。
-- **关系（4 种，含逆关系共 8）**：placement、r1\_suits（算法→GPU 适配，核心关系）、r2\_requires、r3\_drives。
-- **时序切分**：train / valid / test = 585,335 / 87,553 / 90,785 条边，对应 49 / 6 / 6 个时间快照。
+- **Nodes (124,891 entities)**: Compute (GPU generation + machine), Algorithm (job-level, each with a 13-dim resource profile), Data (data group).
+- **Relations (4 types, 8 with inverses)**: placement, r1_suits (Algorithm → GPU suitability, the core relation), r2_requires, r3_drives.
+- **Temporal split**: train / valid / test = 585,335 / 87,553 / 90,785 edges, corresponding to 49 / 6 / 6 time snapshots.
 
-重构遵循一条纪律：所有关系边的存在与权重均来自真实共现/运行统计，不引入人造规则；唯一的作者先验是 schema 设计（字段到节点/关系类型的映射）。重构细节见论文 §3 与脚本注释。
+Reconstruction follows one discipline: the existence and weight of every relation edge come from real co-occurrence / runtime statistics; no hand-crafted rules are introduced. The only author-side prior is the schema design (the mapping from raw fields to node/relation types). See paper §3 and the script comments for full details.
 
 ---
 
-## 环境
+## Environment
 
 - Python 3.11
-- PyTorch 2.x + CUDA（在单块 RTX 3090, 24GB 上训练）
+- PyTorch 2.x + CUDA (trained on a single RTX 3090, 24 GB)
 - DGL
 
 ```bash
-# 推荐使用 uv 或 venv
+# uv or venv recommended
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
 ---
 
-## 复现实验
+## Reproducing Experiments
 
-所有实验默认历史长度 `h=6`，报告三随机种子（42 / 123 / 2024）。
+All experiments use the default history length `h=6` and report three random seeds (42 / 123 / 2024).
 
-### 基线（RE-GCN 骨架）
+### Baseline (RE-GCN backbone)
 
 ```bash
 python main.py -d xcad --gpu 0 \
@@ -72,23 +72,23 @@ python main.py -d xcad --gpu 0 \
   --n-epochs 30 --evaluate-every 5 --seed 42
 ```
 
-### 点1：异质关系基消息传递
+### Point 1: Heterogeneous Relation-Basis Message Passing
 
-在基线命令后追加：
+Append to the baseline command:
 
 ```bash
   --hetero --n-msg-basis 2
 ```
 
-### 点2：算法兼容性头
+### Point 2: Algorithm-Compatibility Head
 
-在基线命令后追加：
+Append to the baseline command:
 
 ```bash
   --compat --compat-lambda 5.0 --compat-aux-weight 0.5
 ```
 
-### xCAD 完整方法（点1 + 点2）
+### Full xCAD Method (Point 1 + Point 2)
 
 ```bash
 python main.py -d xcad --gpu 0 \
@@ -100,40 +100,40 @@ python main.py -d xcad --gpu 0 \
   --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5
 ```
 
-测试集评测会输出总体 filter MRR/Hits@k、按关系的 per-relation MRR，以及核心关系 r1\_suits 的 per-GPU Hits@1 与 macro。
+Test-set evaluation reports overall filter MRR / Hits@k, per-relation MRR, and per-GPU Hits@1 / macro on the core relation r1_suits.
 
-### 诊断与上界探测
+### Diagnosis and Upper-Bound Probing
 
 ```bash
-# 频率先验诊断（加载 checkpoint，输出预测熵 / 混淆 / per-GPU Hits@1）
+# Frequency-prior diagnosis (load a checkpoint; prints prediction entropy / confusion / per-GPU Hits@1)
 python diagnose_r1.py --checkpoint <path-to-checkpoint>
 
-# 随机森林上界探测（仅用算法画像；--split-by-algo 为按算法严格切分，预测新算法）
+# Random-forest upper-bound probe (algorithm profile only; --split-by-algo splits strictly by algorithm to predict unseen algorithms)
 python diagnose_sklearn.py
 python diagnose_sklearn.py --split-by-algo
 ```
 
 ---
 
-## 主要参数
+## Key Hyperparameters
 
-| 参数 | 说明 | 默认 |
+| Parameter | Description | Default |
 |---|---|---|
-| `--train-history-len` | 历史快照长度 | 6 |
-| `--hetero` | 启用异质关系基消息传递（点1）| 关闭 |
-| `--n-msg-basis` | 基矩阵数量 $B$ | 2 |
-| `--compat` | 启用算法兼容性头（点2）| 关闭 |
-| `--compat-lambda` | 兼容性偏置融合权重 $\lambda$ | 5.0 |
-| `--compat-aux-weight` | 可选 GPU 辅助分类损失权重 $\beta$ | 0.5 |
-| `--seed` | 随机种子 | 42 |
+| `--train-history-len` | Number of history snapshots | 6 |
+| `--hetero` | Enable heterogeneous relation-basis message passing (Point 1) | off |
+| `--n-msg-basis` | Number of basis matrices $B$ | 2 |
+| `--compat` | Enable algorithm-compatibility head (Point 2) | off |
+| `--compat-lambda` | Compatibility bias fusion weight $\lambda$ | 5.0 |
+| `--compat-aux-weight` | Optional GPU auxiliary classification loss weight $\beta$ | 0.5 |
+| `--seed` | Random seed | 42 |
 
-关闭 `--hetero` 与 `--compat` 时，模型与原始 RE-GCN 逐比特一致。
+When `--hetero` and `--compat` are both off, the model is bit-for-bit identical to vanilla RE-GCN.
 
 ---
 
-## 引用
+## Citation
 
-如果本工作对你有帮助，请引用（占位，正式发表后更新）：
+If this work is helpful, please cite (placeholder; will be updated after formal publication):
 
 ```bibtex
 @article{xcad,
@@ -146,6 +146,10 @@ python diagnose_sklearn.py --split-by-algo
 
 ---
 
-## 许可
+## Acknowledgements
 
-代码以 MIT 许可发布。重构所依赖的原始 trace 数据请遵循 Alibaba clusterdata 的原始许可条款。
+The backbone and evaluation protocol are based on RE-GCN (Li et al., SIGIR 2021). The dataset is reconstructed from Alibaba Cluster-Trace-GPU-v2020.
+
+## License
+
+The code is released under the MIT License. The original trace data that reconstruction depends on follows Alibaba clusterdata's original license terms.
