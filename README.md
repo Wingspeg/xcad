@@ -1,8 +1,8 @@
 # xCAD
 
-**xCAD: Temporal Knowledge Graph Representation for Tri-Element Scheduling — Diagnosis, Benchmark, and Method**
+**xCAD: A Unified Representation Method of Heterogeneous Computing Power, Algorithm and Data Resources for Computing Power Networks**
 
-This repository provides the official implementation of the paper *xCAD: Temporal Knowledge Graph Representation for Tri-Element Scheduling*. It includes a data pipeline that reconstructs a tri-element scheduling temporal graph from the Alibaba GPU cluster trace, two new mechanisms built on the RE-GCN backbone (heterogeneous relation-basis message passing and an algorithm-compatibility head), and all diagnosis and evaluation scripts.
+This repository provides the official implementation of the paper *xCAD: A Unified Representation Method of Heterogeneous Computing Power, Algorithm and Data Resources for Computing Power Networks*. It includes a data pipeline that reconstructs a tri-element scheduling temporal graph from the Alibaba GPU cluster trace, two new mechanisms built on the RE-GCN backbone (heterogeneous relation-basis message passing and an algorithm-compatibility head), and all diagnosis and evaluation scripts.
 
 ---
 
@@ -137,7 +137,7 @@ If this work is helpful, please cite (placeholder; will be updated after formal 
 
 ```bibtex
 @article{xcad,
-  title   = {xCAD: Temporal Knowledge Graph Representation for Tri-Element Scheduling},
+  title   = {xCAD: A Unified Representation Method of Heterogeneous Computing Power, Algorithm and Data Resources for Computing Power Networks},
   author  = {...},
   journal = {...},
   year    = {2026}
