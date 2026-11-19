@@ -58,7 +58,10 @@ def main():
         args.feat_dir = "../data/" + args.data
 
     device = torch.device(f"cuda:{args.gpu}") if torch.cuda.is_available() else torch.device("cpu")
-    print(f"[device] {device}")
+    # 与 main.py 同口径: RecurrentRGCN 用这两个参数决定 self.device, forward 里
+    # g = g.to(self.device)。不给的话图留在 cpu、节点表征在 cuda, 第一个快照就崩。
+    use_cuda = args.gpu >= 0 and torch.cuda.is_available()
+    print(f"[device] {device} use_cuda={use_cuda}")
     print(f"[checkpoint] {args.checkpoint}")
     print(f"[seed] {args.seed}")
     print(f"[compat] use_compat={args.compat}, compat_lambda={args.compat_lambda}, "
@@ -129,6 +132,9 @@ def main():
         compat_aux_weight=args.compat_aux_weight,
         use_hetero=args.hetero,
         n_msg_basis=args.n_msg_basis,
+        use_cuda=use_cuda,
+        gpu=args.gpu,
+        gpu_base=GPU_BASE,
         feat_dir=args.feat_dir,
     )
 
@@ -140,19 +146,23 @@ def main():
     model.to(device)
     model.eval()
     print(f"[model] Loaded epoch={checkpoint.get('epoch', '?')}")
-    if _missing or _unexpected:
-        print(f"[model][warn] state_dict 与本脚本搭出的模型不一致: "
-              f"缺失 {len(_missing)} 项 / 多余 {len(_unexpected)} 项")
+    if _missing:
+        print(f"[model][warn] 本脚本搭出的模型有 {len(_missing)} 项权重在 checkpoint 里找不到, "
+              f"它们保持随机初始化:")
         for _k in _missing[:5]:
             print(f"           missing    {_k}")
+        print("[model][warn] 检查 --hetero/--n-msg-basis/--compat/--data 是否与训练时一致;"
+              " 在此之前下面的读数不代表该 checkpoint。")
+    if _unexpected:
+        # forward() 里 self.decoder_ob.compat_head = self.compat_head 会把同一个头登记第二次,
+        # 于是训练好的 checkpoint 带着一份 decoder_ob.compat_head.* 别名; 本脚本在第一次
+        # forward 之前加载, 别名自然"多余", 真身(compat_head.*)已经载入了(missing=0)。
+        print(f"[model] checkpoint 里有 {len(_unexpected)} 项本模型未登记的键(未使用):")
         for _k in _unexpected[:5]:
             print(f"           unexpected {_k}")
-        print("[model][warn] 缺失项保持随机初始化 —— 检查 --hetero/--n-msg-basis/--compat/"
-              "--train-history-len 是否与训练时一致。")
 
     # ── all_ans for filter ──
     all_ans_list = utils.load_all_answers_for_time_filter(data.test, num_rels, num_nodes, False)
-    use_cuda = torch.cuda.is_available()
 
     # ── 评测循环 (同 main.py test()) ──
     history_list = train_list + valid_list
