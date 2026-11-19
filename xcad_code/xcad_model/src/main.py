@@ -590,6 +590,9 @@ def run_experiment(args, n_hidden=None, n_layers=None, dropout=None, n_bases=Non
                 het_flag, nf_flag, fusion_flag, scope_flag, alpha_flag, rd_flag, dfeat_flag, compat_flag, staticrel_flag, baseemb_flag, basefeat_flag,
                 baseprior_flag, headprior_flag, priorgate_flag, priorts_flag, args.seed)
     model_name = model_name + args.stat_suffix
+    # models/ 是运行时目录, git 不保存空目录 => 干净克隆里它不存在。不建的话, 训练会在
+    # 第一次保存最优 checkpoint 时才抛 FileNotFoundError, 白跑一轮。
+    os.makedirs('../models', exist_ok=True)
     model_state_file = '../models/' + model_name
     print("Sanity Check: stat name : {}".format(model_state_file))
     print("Sanity Check: Is cuda available ? {}".format(torch.cuda.is_available()))
