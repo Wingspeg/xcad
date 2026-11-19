@@ -15,7 +15,8 @@ import pandas as pd
 from pathlib import Path
 
 # ---------- 路径 ----------
-ROOT = Path("/Volumes/code/xcad")
+# 本文件: <xcad>/xcad_code/src/data/export_node_features.py -> parents[3] = <xcad>
+ROOT = Path(__file__).resolve().parents[3]
 ENTITY2ID_PATH = ROOT / "baselines/data/xcad/entity2id.txt"
 DATA_NODES_PATH = ROOT / "xcad_code/outputs/nodes/data_nodes.parquet"
 OUTPUT_PATH = ROOT / "baselines/data/xcad/node_features.npy"

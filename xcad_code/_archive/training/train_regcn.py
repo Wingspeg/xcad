@@ -16,7 +16,7 @@ xCAD RE-GCN Full Training (Stage 3.1)
   - r4_shifts:不参与本次训练(留待消融)
 
 运行:
-    cd /home/leosue/xcad/xcad_code
+    cd <your-checkout>/xcad_code
     source .venv/bin/activate
     python -m src.training.train_regcn_full
 """
