@@ -36,6 +36,15 @@ reconstructed graph in RE-GCN format (`xcad_code/xcad_model/data/xcad_v2`) and t
 artifacts named below are versioned in this repository; the raw traces are not —
 see the top-level README.
 
+Several drivers in this directory import or invoke modules that live outside it: the
+stratification and closed-form-ranking implementations in `xcad_model/src/`
+(`r1_strata.py`, `r1_strata_static.py`, `r1_conflict.py`, `generic_strata.py`) and the
+construct/clean/export stage scripts in `src/data/` (`clean_traces.py`,
+`export_maas_*.py`, `export_xcad_head_prior.py`, `screen_*.py`, `validate_clean.py`,
+`verify_maas_graph.py`, `ali_trace_slice.py`). Those are versioned too — `main.py`
+imports `src.r1_strata` and `src.generic_strata` at module level, so without them the
+released entry points do not start at all.
+
 The artifacts under `outputs/reports/` are committed, so a reading quoted in the
 manuscript or the response can be checked against the log that produced it. Most
 of them were written on the experiment machine, so their log lines carry that
