@@ -1,6 +1,6 @@
 # `xcad_code/scripts/`
 
-97 scripts (31 shell drivers, 66 Python tools) that produced the numbers in the
+98 scripts (32 shell drivers, 66 Python tools) that produced the numbers in the
 manuscript, its figures, and the additional measurements reported in the
 reviewer response. The reconstruction pipeline alone does not make the reported
 results checkable, so the arm drivers, gates and diagnostics are versioned here.
@@ -28,10 +28,18 @@ results checkable, so the arm drivers, gates and diagnostics are versioned here.
 
 Paths are fixed by a few constants near the top of each script (`ROOT`, `OUT`,
 `PY`, `D`, ...); edit them there, or symlink `~/xcad` to your checkout, if your
-tree lives elsewhere. Whether a script reports into `xcad_code/outputs/reports/`
-or the working-root `outputs/reports/` is visible in its own `OUT` constant.
-Neither the reconstructed graph nor the raw traces are redistributed here — see
-the top-level README.
+tree lives elsewhere. `PY` points at `~/xcad/xcad_code/.venv/bin/python` on the
+experiment machine — that is where the venv was created, not a requirement of the
+code. Whether a script reports into `xcad_code/outputs/reports/` or the
+working-root `outputs/reports/` is visible in its own `OUT` constant. The
+reconstructed graph in RE-GCN format (`xcad_code/xcad_model/data/xcad_v2`) and the
+artifacts named below are versioned in this repository; the raw traces are not —
+see the top-level README.
+
+The artifacts under `outputs/reports/` are committed, so a reading quoted in the
+manuscript or the response can be checked against the log that produced it. Most
+of them were written on the experiment machine, so their log lines carry that
+machine's path as `~/xcad`.
 
 ## Naming convention
 
@@ -43,10 +51,11 @@ the top-level README.
 | `screen_*`, `probe_mit_*`, `probe_philly_*`, `fetch_maas_shards.py`, `measure_maas_scale.py`, `screen_second_dataset.sh` | Screening of additional public traces (Alibaba `cluster-trace-v2026-maas`, MIT Supercloud, Microsoft Philly). Their readings appear in the reviewer response, not in the manuscript. |
 | `export_featdir_traincaliber.py` | Builds the train-only normalization variant directory used by the `--feat-dir` control. |
 | `hybrid_profile_graph.py`, `param_dump_r26.py` | Learnable graph/profile score mixer; per-tensor parameter and checkpoint-size accounting. |
+| `link_xcad_v2_to_baselines.sh` | Stages the seven graph files the external baselines read from `xcad_code/xcad_model/data/xcad_v2` into the three `baselines/*/data/xcad_v2/` directories, then checksums them and asserts the global four-segment id invariants. Idempotent. |
 
 ## Self-checks before a number is used
 
-20 scripts print an explicit gate block (search for `门禁` / `GATES`) instead of
+21 scripts print an explicit gate block (search for `门禁` / `GATES`) instead of
 trusting an unverified reading: the expected checkpoint or file name, the
 per-class test-edge counts implied by a log, or the flagship reading reproduced
 bit-for-bit in test-only mode before any variant is compared against it. On a
