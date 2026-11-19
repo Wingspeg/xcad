@@ -1,0 +1,6 @@
+t5_lam1_s123|123|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 1.0 --compat-aux-weight 0.5 --stat-suffix=-lam1
+t5_lam10_s123|123|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 10.0 --compat-aux-weight 0.5 --stat-suffix=-lam10
+t5_beta0_s123|123|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.0 --stat-suffix=-beta0
+t5_lam1_s2024|2024|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 1.0 --compat-aux-weight 0.5 --stat-suffix=-lam1
+t5_lam10_s2024|2024|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 10.0 --compat-aux-weight 0.5 --stat-suffix=-lam10
+t5_beta0_s2024|2024|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.0 --stat-suffix=-beta0

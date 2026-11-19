@@ -1,0 +1,4 @@
+none_s7|7|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight none --stat-suffix=-cwctrl
+inv_s7|7|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight inv --stat-suffix=-cw-inv
+none_s2025|2025|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight none --stat-suffix=-cwctrl
+inv_s2025|2025|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight inv --stat-suffix=-cw-inv

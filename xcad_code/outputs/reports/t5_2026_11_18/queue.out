@@ -1,0 +1,23 @@
+[02:08:50] ==== t5 队列启动（表 5 补三种子，6 臂串行）====
+PASS  night_2026_11_18/p0_regression.log  macro5=0.5085 (期望 0.5085)  lambda=5.0 (期望 5.0)  beta=0.5 (期望 0.5)
+PASS  baselines_idspace/v2_joint_s123.log  macro5=0.5069 (期望 0.5069)  lambda=5.0 (期望 5.0)  beta=0.5 (期望 0.5)
+PASS  baselines_idspace/v2_joint_s2024.log  macro5=0.5069 (期望 0.5069)  lambda=5.0 (期望 5.0)  beta=0.5 (期望 0.5)
+GATE ALL PASS -> 可以开 GPU
+[02:08:50] G1 旗舰 checkpoint 已备份 -> ~/xcad/outputs/reports/t5_2026_11_18/backup_models.tar (359M)
+[02:08:50] t5_lam1_s123 start  seed=123 args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 1.0 --compat-aux-weight 0.5 --stat-suffix=-lam1]
+[02:23:08] t5_lam1_s123 done   rc=0 用时=858s final-test块=6 macro5=0.5136
+[02:23:08] t5_lam10_s123 start  seed=123 args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 10.0 --compat-aux-weight 0.5 --stat-suffix=-lam10]
+[02:37:28] t5_lam10_s123 done   rc=0 用时=860s final-test块=6 macro5=0.5037
+[02:37:28] t5_beta0_s123 start  seed=123 args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.0 --stat-suffix=-beta0]
+[02:51:47] t5_beta0_s123 done   rc=0 用时=859s final-test块=6 macro5=0.4663
+[02:51:47] t5_lam1_s2024 start  seed=2024 args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 1.0 --compat-aux-weight 0.5 --stat-suffix=-lam1]
+[03:06:07] t5_lam1_s2024 done   rc=0 用时=860s final-test块=6 macro5=0.5136
+[03:06:07] t5_lam10_s2024 start  seed=2024 args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 10.0 --compat-aux-weight 0.5 --stat-suffix=-lam10]
+[03:20:28] t5_lam10_s2024 done   rc=0 用时=861s final-test块=6 macro5=0.5073
+[03:20:28] t5_beta0_s2024 start  seed=2024 args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.0 --stat-suffix=-beta0]
+[03:34:48] t5_beta0_s2024 done   rc=0 用时=860s final-test块=6 macro5=0.5082
+[03:34:48] ==== 6 臂跑完，出汇总 ====
+臂数 = 6  -> ~/xcad/outputs/reports/t5_2026_11_18/night_summary.{tsv,md}
+[03:34:48] seed42 的三格在昨晚目录: night_2026_11_18/{s3_joint_lam1,s3_joint_lam10,s3_joint_beta0}.log
+[03:34:48] λ=5/β=0.5（同一个主配置）三种子读数见 baselines_idspace/v2_joint_s{123,2024}.log 与昨晚 p0_regression
+[03:34:48] ==== t5 队列结束 ====

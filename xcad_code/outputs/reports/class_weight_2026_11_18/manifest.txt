@@ -1,0 +1,6 @@
+sqrt_s42|42|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight sqrt --stat-suffix=-cw-sqrt
+sqrt_s123|123|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight sqrt --stat-suffix=-cw-sqrt
+sqrt_s2024|2024|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight sqrt --stat-suffix=-cw-sqrt
+inv_s42|42|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight inv --stat-suffix=-cw-inv
+inv_s123|123|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight inv --stat-suffix=-cw-inv
+inv_s2024|2024|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight inv --stat-suffix=-cw-inv

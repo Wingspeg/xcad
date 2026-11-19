@@ -1,0 +1,8 @@
+==============================================================================
+xcad_v2: 测试 r1 边 11,836, 其中不同 head 算法 11,818
+  head 出现在 train r1 head       : 边  8.63%   不同 head  8.55%
+  head 出现在 train r0 head       : 边  9.45%   不同 head  9.36%
+  head 出现在 train r3 tail(task) : 边  3.69%   不同 head  3.66%
+  head 出现在 train 任意位置          : 边  9.45%   不同 head  9.37%
+  head 出现在 train+valid 任意位置    : 边  9.50%   不同 head  9.41%
+  (参考: train r1 head 去重 77,542 / train 任意 id 82,883)

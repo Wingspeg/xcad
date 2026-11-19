@@ -1,0 +1,320 @@
+~/xcad/baselines/.venv/lib/python3.10/site-packages/dgl/heterograph.py:92: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  dgl_warning(
+Namespace(gpu=0, batch_size=1, dataset='xcad_v2', test=-1, run_statistic=False, relation_evaluation=False, weight=1, task_weight=1, kl_weight=0.7, encoder='uvrgcn', dropout=0.4, skip_connect=False, n_hidden=200, opn='sub', n_bases=100, n_basis=100, n_layers=2, self_loop=True, layer_norm=True, relation_prediction=False, entity_prediction=True, n_epochs=30, lr=0.001, ft_epochs=30, ft_lr=0.001, norm_weight=0.1, grad_norm=1.0, evaluate_every=1, decoder='convtranse', input_dropout=0.4, hidden_dropout=0.4, feat_dropout=0.4, train_history_len=3, test_history_len=3, start_history_len=2, dilate_len=1, grid_search=False, tune='n_hidden,n_layers,dropout,n_bases', num_k=500)
+loading graph data
+../data/xcad_v2
+# Sanity Check:  entities: 124891
+# Sanity Check:  relations: 4
+# Sanity Check:  edges: 585335
+total data length  763673
+Sanity Check: stat name : ../models/xcad_v2/uvrgcn-convtranse-ly2-dilate1-his3-dp0.4-gpu0
+Sanity Check: Is cuda available ? True
+use layer :uvrgcn
+activate function: <function rrelu at 0x798b48737640>
+activate function: <function rrelu at 0x798b48737640>
+----------------------------------------start pre training model with history length 2----------------------------------------
+
+Sanity Check: stat name : ../models/xcad_v2/uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0
+Sanity Check: Is cuda available ? True
+His 0002, Epoch 0000 | Ave Loss: 0.0194 | Best MRR 0.0000 | Model uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0 
+MRR (filter_ent): 0.049324
+Hits (filter_ent) @ 1: 0.026475
+Hits (filter_ent) @ 3: 0.066097
+Hits (filter_ent) @ 10: 0.076805
+MRR (filter_rel): inf
+Hits (filter_rel) @ 1: 1.000000
+Hits (filter_rel) @ 3: 1.000000
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  r3_drives (attr, id=3+7):  MRR=0.003999  H@1=0.000484  H@3=0.001838  H@10=0.005610
+  placement                 MRR=0.007327  H@1=0.001377  H@3=0.003657  H@10=0.010597
+  r1_suits                  MRR=0.640153  H@1=0.359921  H@3=0.895159  H@10=1.000000
+  r2_requires               MRR=0.263121  H@1=0.000000  H@3=0.425532  H@10=1.000000
+======================================================================
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+          T4: Hits@1=1.0000  (n=4535)
+        MISC: Hits@1=0.0000  (n=5951)
+        P100: Hits@1=0.0000  (n=793)
+        V100: Hits@1=0.0000  (n=1061)
+     V100M32: Hits@1=0.0000  (n=260)
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+His 0002, Epoch 0001 | Ave Loss: 0.0183 | Best MRR 0.0493 | Model uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0 
+MRR (filter_ent): 0.048937
+Hits (filter_ent) @ 1: 0.026121
+Hits (filter_ent) @ 3: 0.065263
+Hits (filter_ent) @ 10: 0.075674
+MRR (filter_rel): inf
+Hits (filter_rel) @ 1: 1.000000
+Hits (filter_rel) @ 3: 1.000000
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  r3_drives (attr, id=3+7):  MRR=0.004082  H@1=0.000774  H@3=0.001451  H@10=0.005320
+  placement                 MRR=0.005990  H@1=0.000445  H@3=0.001835  H@10=0.007872
+  r1_suits                  MRR=0.642229  H@1=0.359921  H@3=0.895159  H@10=1.000000
+  r2_requires               MRR=0.240426  H@1=0.000000  H@3=0.127660  H@10=1.000000
+======================================================================
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+          T4: Hits@1=1.0000  (n=4535)
+        MISC: Hits@1=0.0000  (n=5951)
+        P100: Hits@1=0.0000  (n=793)
+        V100: Hits@1=0.0000  (n=1061)
+     V100M32: Hits@1=0.0000  (n=260)
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+His 0002, Epoch 0002 | Ave Loss: 0.0181 | Best MRR 0.0493 | Model uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0 
+MRR (filter_ent): 0.049175
+Hits (filter_ent) @ 1: 0.026373
+Hits (filter_ent) @ 3: 0.065543
+Hits (filter_ent) @ 10: 0.075503
+MRR (filter_rel): inf
+Hits (filter_rel) @ 1: 1.000000
+Hits (filter_rel) @ 3: 1.000000
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  r3_drives (attr, id=3+7):  MRR=0.004113  H@1=0.000580  H@3=0.001451  H@10=0.005127
+  placement                 MRR=0.006613  H@1=0.001104  H@3=0.002538  H@10=0.007471
+  r1_suits                  MRR=0.642229  H@1=0.359921  H@3=0.895159  H@10=1.000000
+  r2_requires               MRR=0.240426  H@1=0.000000  H@3=0.127660  H@10=1.000000
+======================================================================
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+          T4: Hits@1=1.0000  (n=4535)
+        MISC: Hits@1=0.0000  (n=5951)
+        P100: Hits@1=0.0000  (n=793)
+        V100: Hits@1=0.0000  (n=1061)
+     V100M32: Hits@1=0.0000  (n=260)
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+His 0002, Epoch 0003 | Ave Loss: 0.0181 | Best MRR 0.0493 | Model uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0 
+MRR (filter_ent): 0.049288
+Hits (filter_ent) @ 1: 0.026270
+Hits (filter_ent) @ 3: 0.065703
+Hits (filter_ent) @ 10: 0.076222
+MRR (filter_rel): inf
+Hits (filter_rel) @ 1: 1.000000
+Hits (filter_rel) @ 3: 1.000000
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  r3_drives (attr, id=3+7):  MRR=0.005171  H@1=0.001064  H@3=0.003386  H@10=0.007545
+  placement                 MRR=0.006742  H@1=0.000774  H@3=0.002653  H@10=0.008919
+  r1_suits                  MRR=0.642229  H@1=0.359921  H@3=0.895159  H@10=1.000000
+  r2_requires               MRR=0.240426  H@1=0.000000  H@3=0.127660  H@10=1.000000
+======================================================================
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+          T4: Hits@1=1.0000  (n=4535)
+        MISC: Hits@1=0.0000  (n=5951)
+        P100: Hits@1=0.0000  (n=793)
+        V100: Hits@1=0.0000  (n=1061)
+     V100M32: Hits@1=0.0000  (n=260)
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+His 0002, Epoch 0004 | Ave Loss: 0.0181 | Best MRR 0.0493 | Model uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0 
+MRR (filter_ent): 0.049224
+Hits (filter_ent) @ 1: 0.026150
+Hits (filter_ent) @ 3: 0.065343
+Hits (filter_ent) @ 10: 0.076371
+MRR (filter_rel): inf
+Hits (filter_rel) @ 1: 1.000000
+Hits (filter_rel) @ 3: 1.000000
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  r3_drives (attr, id=3+7):  MRR=0.005766  H@1=0.000580  H@3=0.002128  H@10=0.015090
+  placement                 MRR=0.006480  H@1=0.000545  H@3=0.001965  H@10=0.008174
+  r1_suits                  MRR=0.642216  H@1=0.359921  H@3=0.895000  H@10=1.000000
+  r2_requires               MRR=0.261702  H@1=0.000000  H@3=0.127660  H@10=1.000000
+======================================================================
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+          T4: Hits@1=1.0000  (n=4535)
+        MISC: Hits@1=0.0000  (n=5951)
+        P100: Hits@1=0.0000  (n=793)
+        V100: Hits@1=0.0000  (n=1061)
+     V100M32: Hits@1=0.0000  (n=260)
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+His 0002, Epoch 0005 | Ave Loss: 0.0179 | Best MRR 0.0493 | Model uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0 
+MRR (filter_ent): 0.054104
+Hits (filter_ent) @ 1: 0.034682
+Hits (filter_ent) @ 3: 0.066628
+Hits (filter_ent) @ 10: 0.077239
+MRR (filter_rel): inf
+Hits (filter_rel) @ 1: 1.000000
+Hits (filter_rel) @ 3: 1.000000
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  r3_drives (attr, id=3+7):  MRR=0.013869  H@1=0.007061  H@3=0.015090  H@10=0.018862
+  placement                 MRR=0.007368  H@1=0.000703  H@3=0.003011  H@10=0.009765
+  r1_suits                  MRR=0.698419  H@1=0.472302  H@3=0.895159  H@10=1.000000
+  r2_requires               MRR=0.268794  H@1=0.000000  H@3=0.468085  H@10=1.000000
+======================================================================
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+          T4: Hits@1=0.0000  (n=4535)
+        MISC: Hits@1=1.0000  (n=5951)
+        P100: Hits@1=0.0000  (n=793)
+        V100: Hits@1=0.0000  (n=1061)
+     V100M32: Hits@1=0.0000  (n=260)
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+His 0002, Epoch 0006 | Ave Loss: 0.0180 | Best MRR 0.0541 | Model uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0 
+MRR (filter_ent): 0.050945
+Hits (filter_ent) @ 1: 0.027184
+Hits (filter_ent) @ 3: 0.068501
+Hits (filter_ent) @ 10: 0.078507
+MRR (filter_rel): inf
+Hits (filter_rel) @ 1: 1.000000
+Hits (filter_rel) @ 3: 1.000000
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  r3_drives (attr, id=3+7):  MRR=0.016097  H@1=0.011511  H@3=0.014993  H@10=0.019056
+  placement                 MRR=0.008965  H@1=0.001520  H@3=0.004115  H@10=0.012949
+  r1_suits                  MRR=0.644001  H@1=0.359921  H@3=0.916429  H@10=1.000000
+  r2_requires               MRR=0.240426  H@1=0.000000  H@3=0.127660  H@10=1.000000
+======================================================================
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+          T4: Hits@1=1.0000  (n=4535)
+        MISC: Hits@1=0.0000  (n=5951)
+        P100: Hits@1=0.0000  (n=793)
+        V100: Hits@1=0.0000  (n=1061)
+     V100M32: Hits@1=0.0000  (n=260)
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+His 0002, Epoch 0007 | Ave Loss: 0.0179 | Best MRR 0.0541 | Model uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0 
+MRR (filter_ent): 0.050085
+Hits (filter_ent) @ 1: 0.026435
+Hits (filter_ent) @ 3: 0.067799
+Hits (filter_ent) @ 10: 0.077622
+MRR (filter_rel): inf
+Hits (filter_rel) @ 1: 1.000000
+Hits (filter_rel) @ 3: 1.000000
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  r3_drives (attr, id=3+7):  MRR=0.007893  H@1=0.000387  H@3=0.008802  H@10=0.018476
+  placement                 MRR=0.008024  H@1=0.001291  H@3=0.003269  H@10=0.010812
+  r1_suits                  MRR=0.644001  H@1=0.359921  H@3=0.916429  H@10=1.000000
+  r2_requires               MRR=0.240426  H@1=0.000000  H@3=0.127660  H@10=1.000000
+======================================================================
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+          T4: Hits@1=1.0000  (n=4535)
+        MISC: Hits@1=0.0000  (n=5951)
+        P100: Hits@1=0.0000  (n=793)
+        V100: Hits@1=0.0000  (n=1061)
+     V100M32: Hits@1=0.0000  (n=260)
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+His 0002, Epoch 0008 | Ave Loss: 0.0180 | Best MRR 0.0541 | Model uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0 
+MRR (filter_ent): 0.053915
+Hits (filter_ent) @ 1: 0.034482
+Hits (filter_ent) @ 3: 0.066074
+Hits (filter_ent) @ 10: 0.077365
+MRR (filter_rel): inf
+Hits (filter_rel) @ 1: 1.000000
+Hits (filter_rel) @ 3: 1.000000
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  r3_drives (attr, id=3+7):  MRR=0.004189  H@1=0.000193  H@3=0.001161  H@10=0.005514
+  placement                 MRR=0.008339  H@1=0.001219  H@3=0.003685  H@10=0.012088
+  r1_suits                  MRR=0.698419  H@1=0.472302  H@3=0.895159  H@10=1.000000
+  r2_requires               MRR=0.268794  H@1=0.000000  H@3=0.468085  H@10=1.000000
+======================================================================
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+          T4: Hits@1=0.0000  (n=4535)
+        MISC: Hits@1=1.0000  (n=5951)
+        P100: Hits@1=0.0000  (n=793)
+        V100: Hits@1=0.0000  (n=1061)
+     V100M32: Hits@1=0.0000  (n=260)
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+His 0002, Epoch 0009 | Ave Loss: 0.0179 | Best MRR 0.0541 | Model uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0 
+MRR (filter_ent): 0.050166
+Hits (filter_ent) @ 1: 0.026624
+Hits (filter_ent) @ 3: 0.066468
+Hits (filter_ent) @ 10: 0.077810
+MRR (filter_rel): inf
+Hits (filter_rel) @ 1: 1.000000
+Hits (filter_rel) @ 3: 1.000000
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  r3_drives (attr, id=3+7):  MRR=0.006068  H@1=0.000387  H@3=0.002322  H@10=0.018766
+  placement                 MRR=0.008803  H@1=0.001764  H@3=0.004503  H@10=0.011242
+  r1_suits                  MRR=0.642229  H@1=0.359921  H@3=0.895159  H@10=1.000000
+  r2_requires               MRR=0.268794  H@1=0.000000  H@3=0.468085  H@10=1.000000
+======================================================================
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+          T4: Hits@1=1.0000  (n=4535)
+        MISC: Hits@1=0.0000  (n=5951)
+        P100: Hits@1=0.0000  (n=793)
+        V100: Hits@1=0.0000  (n=1061)
+     V100M32: Hits@1=0.0000  (n=260)
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+His 0002, Epoch 0010 | Ave Loss: 0.0182 | Best MRR 0.0541 | Model uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0 
+MRR (filter_ent): 0.049579
+Hits (filter_ent) @ 1: 0.026070
+Hits (filter_ent) @ 3: 0.065766
+Hits (filter_ent) @ 10: 0.076702
+MRR (filter_rel): inf
+Hits (filter_rel) @ 1: 1.000000
+Hits (filter_rel) @ 3: 1.000000
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  r3_drives (attr, id=3+7):  MRR=0.004135  H@1=0.000677  H@3=0.001644  H@10=0.005610
+  placement                 MRR=0.007610  H@1=0.000330  H@3=0.002839  H@10=0.010411
+  r1_suits                  MRR=0.642229  H@1=0.359921  H@3=0.895159  H@10=1.000000
+  r2_requires               MRR=0.268794  H@1=0.000000  H@3=0.468085  H@10=1.000000
+======================================================================
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+          T4: Hits@1=1.0000  (n=4535)
+        MISC: Hits@1=0.0000  (n=5951)
+        P100: Hits@1=0.0000  (n=793)
+        V100: Hits@1=0.0000  (n=1061)
+     V100M32: Hits@1=0.0000  (n=260)
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+His 0002, Epoch 0011 | Ave Loss: 0.0179 | Best MRR 0.0541 | Model uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0 
+MRR (filter_ent): 0.050226
+Hits (filter_ent) @ 1: 0.026418
+Hits (filter_ent) @ 3: 0.065669
+Hits (filter_ent) @ 10: 0.078461
+MRR (filter_rel): inf
+Hits (filter_rel) @ 1: 1.000000
+Hits (filter_rel) @ 3: 1.000000
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  r3_drives (attr, id=3+7):  MRR=0.004235  H@1=0.000387  H@3=0.001548  H@10=0.005030
+  placement                 MRR=0.009340  H@1=0.001248  H@3=0.004001  H@10=0.014913
+  r1_suits                  MRR=0.641693  H@1=0.359921  H@3=0.888730  H@10=1.000000
+  r2_requires               MRR=0.240426  H@1=0.000000  H@3=0.127660  H@10=1.000000
+======================================================================
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+          T4: Hits@1=1.0000  (n=4535)
+        MISC: Hits@1=0.0000  (n=5951)
+        P100: Hits@1=0.0000  (n=793)
+        V100: Hits@1=0.0000  (n=1061)
+     V100M32: Hits@1=0.0000  (n=260)
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+Load Model name: ../models/xcad_v2/uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0. Using best epoch : 5
+
+----------start testing----------
+
+MRR (filter_ent): 0.048841
+Hits (filter_ent) @ 1: 0.029630
+Hits (filter_ent) @ 3: 0.061833
+Hits (filter_ent) @ 10: 0.070584
+MRR (filter_rel): inf
+Hits (filter_rel) @ 1: 1.000000
+Hits (filter_rel) @ 3: 1.000000
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  r3_drives (attr, id=3+7):  MRR=0.011177  H@1=0.003936  H@3=0.013419  H@10=0.016729
+  placement                 MRR=0.007081  H@1=0.001229  H@3=0.003114  H@10=0.008756
+  r1_suits                  MRR=0.691788  H@1=0.443224  H@3=0.915259  H@10=1.000000
+  r2_requires               MRR=0.216556  H@1=0.000000  H@3=0.099338  H@10=1.000000
+======================================================================
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+          T4: Hits@1=0.0000  (n=5032)
+        MISC: Hits@1=1.0000  (n=5246)
+        P100: Hits@1=0.0000  (n=552)
+        V100: Hits@1=0.0000  (n=811)
+     V100M32: Hits@1=0.0000  (n=195)
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000

@@ -1,0 +1,282 @@
+{
+ "rows": [
+  {
+   "log": "tau_balanced_s123.log",
+   "ok": true,
+   "why": "",
+   "class_weight": "balanced",
+   "n_train": 97246,
+   "n_test": 11836,
+   "macro": 68.62,
+   "acc": 76.28,
+   "per": {
+    "T4": {
+     "recall": 97.04,
+     "precision": 92.2,
+     "n": 5032
+    },
+    "MISC": {
+     "recall": 62.26,
+     "precision": 88.92,
+     "n": 5246
+    },
+    "P100": {
+     "recall": 36.96,
+     "precision": 20.9,
+     "n": 552
+    },
+    "V100": {
+     "recall": 63.26,
+     "precision": 97.53,
+     "n": 811
+    },
+    "V100M32": {
+     "recall": 83.59,
+     "precision": 11.94,
+     "n": 195
+    }
+   },
+   "marginal": {
+    "T4": 5296,
+    "MISC": 3673,
+    "P100": 976,
+    "V100": 526,
+    "V100M32": 1365
+   }
+  },
+  {
+   "log": "tau_balanced_s2024.log",
+   "ok": true,
+   "why": "",
+   "class_weight": "balanced",
+   "n_train": 97246,
+   "n_test": 11836,
+   "macro": 68.05,
+   "acc": 76.41,
+   "per": {
+    "T4": {
+     "recall": 97.04,
+     "precision": 92.2,
+     "n": 5032
+    },
+    "MISC": {
+     "recall": 62.75,
+     "precision": 88.83,
+     "n": 5246
+    },
+    "P100": {
+     "recall": 35.69,
+     "precision": 20.98,
+     "n": 552
+    },
+    "V100": {
+     "recall": 63.26,
+     "precision": 96.98,
+     "n": 811
+    },
+    "V100M32": {
+     "recall": 81.54,
+     "precision": 11.64,
+     "n": 195
+    }
+   },
+   "marginal": {
+    "T4": 5296,
+    "MISC": 3706,
+    "P100": 939,
+    "V100": 529,
+    "V100M32": 1366
+   }
+  },
+  {
+   "log": "tau_balanced_s42.log",
+   "ok": true,
+   "why": "",
+   "class_weight": "balanced",
+   "n_train": 97246,
+   "n_test": 11836,
+   "macro": 68.16,
+   "acc": 76.22,
+   "per": {
+    "T4": {
+     "recall": 97.04,
+     "precision": 92.2,
+     "n": 5032
+    },
+    "MISC": {
+     "recall": 62.2,
+     "precision": 89.91,
+     "n": 5246
+    },
+    "P100": {
+     "recall": 36.78,
+     "precision": 20.99,
+     "n": 552
+    },
+    "V100": {
+     "recall": 63.26,
+     "precision": 89.69,
+     "n": 811
+    },
+    "V100M32": {
+     "recall": 81.54,
+     "precision": 11.59,
+     "n": 195
+    }
+   },
+   "marginal": {
+    "T4": 5296,
+    "MISC": 3629,
+    "P100": 967,
+    "V100": 572,
+    "V100M32": 1372
+   }
+  },
+  {
+   "log": "tau_none_s123.log",
+   "ok": true,
+   "why": "",
+   "class_weight": "none",
+   "n_train": 97246,
+   "n_test": 11836,
+   "macro": 58.18,
+   "acc": 88.97,
+   "per": {
+    "T4": {
+     "recall": 97.1,
+     "precision": 92.17,
+     "n": 5032
+    },
+    "MISC": {
+     "recall": 95.75,
+     "precision": 88.08,
+     "n": 5246
+    },
+    "P100": {
+     "recall": 11.96,
+     "precision": 30.0,
+     "n": 552
+    },
+    "V100": {
+     "recall": 63.01,
+     "precision": 91.41,
+     "n": 811
+    },
+    "V100M32": {
+     "recall": 23.08,
+     "precision": 84.91,
+     "n": 195
+    }
+   },
+   "marginal": {
+    "T4": 5301,
+    "MISC": 5703,
+    "P100": 220,
+    "V100": 559,
+    "V100M32": 53
+   }
+  },
+  {
+   "log": "tau_none_s2024.log",
+   "ok": true,
+   "why": "",
+   "class_weight": "none",
+   "n_train": 97246,
+   "n_test": 11836,
+   "macro": 58.25,
+   "acc": 89.0,
+   "per": {
+    "T4": {
+     "recall": 97.1,
+     "precision": 92.17,
+     "n": 5032
+    },
+    "MISC": {
+     "recall": 95.77,
+     "precision": 88.11,
+     "n": 5246
+    },
+    "P100": {
+     "recall": 12.32,
+     "precision": 30.77,
+     "n": 552
+    },
+    "V100": {
+     "recall": 63.01,
+     "precision": 91.41,
+     "n": 811
+    },
+    "V100M32": {
+     "recall": 23.08,
+     "precision": 84.91,
+     "n": 195
+    }
+   },
+   "marginal": {
+    "T4": 5301,
+    "MISC": 5702,
+    "P100": 221,
+    "V100": 559,
+    "V100M32": 53
+   }
+  },
+  {
+   "log": "tau_none_s42.log",
+   "ok": true,
+   "why": "",
+   "class_weight": "none",
+   "n_train": 97246,
+   "n_test": 11836,
+   "macro": 58.21,
+   "acc": 88.97,
+   "per": {
+    "T4": {
+     "recall": 97.1,
+     "precision": 92.17,
+     "n": 5032
+    },
+    "MISC": {
+     "recall": 95.71,
+     "precision": 88.09,
+     "n": 5246
+    },
+    "P100": {
+     "recall": 12.14,
+     "precision": 30.04,
+     "n": 552
+    },
+    "V100": {
+     "recall": 63.01,
+     "precision": 91.41,
+     "n": 811
+    },
+    "V100M32": {
+     "recall": 23.08,
+     "precision": 84.91,
+     "n": 195
+    }
+   },
+   "marginal": {
+    "T4": 5301,
+    "MISC": 5700,
+    "P100": 223,
+    "V100": 559,
+    "V100M32": 53
+   }
+  }
+ ],
+ "gate_repro": true,
+ "prec_problems": [],
+ "none_by_seed": {
+  "123": 58.18,
+  "2024": 58.25,
+  "42": 58.21
+ },
+ "balanced_by_seed": {
+  "123": 68.62,
+  "2024": 68.05,
+  "42": 68.16
+ },
+ "B_balanced": 68.27666666666667,
+ "line": "R-L1 口径确证：B>=60.0 ⇒ 『超过上界』是口径错配；inv_s42=60.23 落在 B 之内 ⇒ 泄漏疑虑排除"
+}

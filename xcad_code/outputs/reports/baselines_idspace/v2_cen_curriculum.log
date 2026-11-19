@@ -1,0 +1,59 @@
+~/xcad/baselines/.venv/lib/python3.10/site-packages/dgl/heterograph.py:92: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  dgl_warning(
+Namespace(gpu=0, batch_size=1, dataset='xcad_v2', test=0, run_statistic=False, relation_evaluation=False, weight=1, task_weight=1, kl_weight=0.7, encoder='uvrgcn', dropout=0.4, skip_connect=False, n_hidden=200, opn='sub', n_bases=100, n_basis=100, n_layers=2, self_loop=True, layer_norm=True, relation_prediction=False, entity_prediction=True, n_epochs=30, lr=0.001, ft_epochs=30, ft_lr=0.001, norm_weight=0.1, grad_norm=1.0, evaluate_every=1, decoder='convtranse', input_dropout=0.4, hidden_dropout=0.4, feat_dropout=0.4, train_history_len=3, test_history_len=3, start_history_len=2, dilate_len=1, grid_search=False, tune='n_hidden,n_layers,dropout,n_bases', num_k=500)
+loading graph data
+../data/xcad_v2
+# Sanity Check:  entities: 124891
+# Sanity Check:  relations: 4
+# Sanity Check:  edges: 585335
+total data length  763673
+Sanity Check: stat name : ../models/xcad_v2/uvrgcn-convtranse-ly2-dilate1-his3-dp0.4-gpu0
+Sanity Check: Is cuda available ? True
+use layer :uvrgcn
+activate function: <function rrelu at 0x7c9def33b640>
+activate function: <function rrelu at 0x7c9def33b640>
+Load Previous Model name: ../models/xcad_v2/uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0. Using best epoch : 5
+
+----------Load model with history length 2----------
+
+Load Model name: ../models/xcad_v2/uvrgcn-convtranse-ly2-dilate1-his2-dp0.4-gpu0. Using best epoch : 5
+
+----------start testing----------
+
+MRR (filter_ent): 0.048841
+Hits (filter_ent) @ 1: 0.029630
+Hits (filter_ent) @ 3: 0.061833
+Hits (filter_ent) @ 10: 0.070584
+MRR (filter_rel): inf
+Hits (filter_rel) @ 1: 1.000000
+Hits (filter_rel) @ 3: 1.000000
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  r3_drives (attr, id=3+7):  MRR=0.011177  H@1=0.003936  H@3=0.013419  H@10=0.016729
+  placement                 MRR=0.007081  H@1=0.001229  H@3=0.003114  H@10=0.008756
+  r1_suits                  MRR=0.691788  H@1=0.443224  H@3=0.915259  H@10=1.000000
+  r2_requires               MRR=0.216556  H@1=0.000000  H@3=0.099338  H@10=1.000000
+======================================================================
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+          T4: Hits@1=0.0000  (n=5032)
+        MISC: Hits@1=1.0000  (n=5246)
+        P100: Hits@1=0.0000  (n=552)
+        V100: Hits@1=0.0000  (n=811)
+     V100M32: Hits@1=0.0000  (n=195)
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+best mrr list : [0.04884111136198044]
+Sanity Check: stat name : ../models/xcad_v2/uvrgcn-convtranse-ly2-dilate1-his3-dp0.4-gpu0
+
+----------start knowledge distillation for history length at 3----------
+
+Traceback (most recent call last):
+  File "~/xcad/baselines/CEN/src/main.py", line 906, in <module>
+    run_experiment(args)
+  File "~/xcad/baselines/CEN/src/main.py", line 695, in run_experiment
+    loss.backward()
+  File "~/xcad/baselines/.venv/lib/python3.10/site-packages/torch/_tensor.py", line 492, in backward
+    torch.autograd.backward(
+  File "~/xcad/baselines/.venv/lib/python3.10/site-packages/torch/autograd/__init__.py", line 251, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+RuntimeError: cuDNN error: CUDNN_STATUS_NOT_INITIALIZED

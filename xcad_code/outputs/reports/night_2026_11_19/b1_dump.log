@@ -1,0 +1,166 @@
+Namespace(gpu=0, batch_size=1, dataset='xcad_v2', test=True, run_analysis=False, run_statistic=False, multi_step=False, topk=10, add_static_graph=False, add_rel_word=False, relation_evaluation=False, weight=1.0, task_weight=0.7, discount=1.0, angle=10, encoder='uvrgcn', aggregation='none', dropout=0.4, skip_connect=False, n_hidden=200, opn='sub', n_bases=100, n_basis=100, n_layers=2, self_loop=True, layer_norm=False, relation_prediction=False, entity_prediction=True, split_by_relation=False, n_epochs=30, lr=0.001, grad_norm=1.0, weight_decay=1e-05, evaluate_every=5, decoder='convtranse', input_dropout=0.4, hidden_dropout=0.4, feat_dropout=0.4, train_history_len=6, test_history_len=20, dilate_len=1, hetero=True, n_msg_basis=2, node_feat=False, feat_dir='../data/xcad', feat_fusion='residual', feat_scope='all', feat_alpha_fixed=None, decoder_feat=False, decoder_feat_lambda=None, rel_decay=False, no_rel_evolution=False, compat=True, compat_lambda=5.0, compat_aux_weight=0.5, compat_class_weight='none', compat_class_weight_cap=5.0, dump_preds='~/xcad/outputs/reports/night_2026_11_19/b1_preds.pkl', probe_rel=1, seed=42, ent_segment=None, base_emb=False, base_map=None, base_feat=False, base_feat_path=None, base_alpha_init=1.0, base_prior=False, base_prior_path=None, base_prior_alpha_init=1.0, head_prior=False, head_prior_path=None, head_prior_alpha_init=1.0, prior_gate=False, prior_ts=False, base_prior_ts_path=None, head_prior_ts_path=None, stat_suffix='', grid_search=False, tune='n_hidden,n_layers,dropout,n_bases', num_k=500)
+[seed] 42
+loading graph data
+../data/xcad_v2
+# Sanity Check:  entities: 124891
+# Sanity Check:  relations: 4
+# Sanity Check:  edges: 585335
+# Sanity Check:  ave node num : 4672.897959, ave rel num : 7.795918, snapshots num: 0049, max edges num: 133527, min edges num: 1020, max union rate: 1.0000, min union rate: 1.0000
+# Sanity Check:  ave node num : 6029.166667, ave rel num : 8.000000, snapshots num: 0006, max edges num: 18796, min edges num: 9877, max union rate: 1.0000, min union rate: 1.0000
+# Sanity Check:  ave node num : 6304.666667, ave rel num : 8.000000, snapshots num: 0006, max edges num: 19990, min edges num: 11413, max union rate: 1.0000, min union rate: 1.0000
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 (GLOBAL 四段编号)
+# Sanity Check:  ave node num : 6304.666667, ave rel num : 8.000000, snapshots num: 0006, max edges num: 19990, min edges num: 11413, max union rate: 1.0000, min union rate: 1.0000
+# Sanity Check:  ave node num : 6304.666667, ave rel num : 8.000000, snapshots num: 0006, max edges num: 19990, min edges num: 11413, max union rate: 1.0000, min union rate: 1.0000
+# Sanity Check:  ave node num : 6029.166667, ave rel num : 8.000000, snapshots num: 0006, max edges num: 18796, min edges num: 9877, max union rate: 1.0000, min union rate: 1.0000
+# Sanity Check:  ave node num : 6029.166667, ave rel num : 8.000000, snapshots num: 0006, max edges num: 18796, min edges num: 9877, max union rate: 1.0000, min union rate: 1.0000
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42
+Sanity Check: Is cuda available ? True
+use layer :uvrgcn
+activate function: <function rrelu at 0x7fa95a3d68e0>
+activate function: <function rrelu at 0x7fa95a3d68e0>
+Load Model name: ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42. Using best epoch : 10
+
+----------start testing----------
+
+  0%|          | 0/6 [00:00<?, ?it/s]~/xcad/xcad_code/.venv/lib/python3.11/site-packages/dgl/heterograph.py:92: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  dgl_warning(
+ 17%|█▋        | 1/6 [00:05<00:27,  5.57s/it] 33%|███▎      | 2/6 [00:09<00:18,  4.65s/it] 50%|█████     | 3/6 [00:14<00:14,  4.81s/it] 67%|██████▋   | 4/6 [00:18<00:09,  4.56s/it] 83%|████████▎ | 5/6 [00:22<00:04,  4.14s/it]100%|██████████| 6/6 [00:25<00:00,  3.91s/it]100%|██████████| 6/6 [00:25<00:00,  4.27s/it]
+MRR (raw_ent): 0.065387
+Hits (raw_ent) @ 1: 0.058952
+Hits (raw_ent) @ 3: 0.066327
+Hits (raw_ent) @ 10: 0.072000
+MRR (filter_ent): 0.065962
+Hits (filter_ent) @ 1: 0.059156
+Hits (filter_ent) @ 3: 0.066856
+Hits (filter_ent) @ 10: 0.073074
+MRR (raw_rel): 0.645350
+Hits (raw_rel) @ 1: 0.403200
+Hits (raw_rel) @ 3: 0.837181
+Hits (raw_rel) @ 10: 1.000000
+MRR (filter_rel): 0.645382
+Hits (filter_rel) @ 1: 0.403200
+Hits (filter_rel) @ 3: 0.837181
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  r3_drives (attr, id=3+7):  MRR=0.003382  H@1=0.000179  H@3=0.000895  H@10=0.003578
+  placement                 MRR=0.011168  H@1=0.001912  H@3=0.005723  H@10=0.017279
+  r1_suits                  MRR=0.927251  H@1=0.884843  H@3=0.976597  H@10=0.996114
+  r2_requires               MRR=0.858116  H@1=0.834437  H@3=0.841060  H@10=0.960265
+======================================================================
+          T4: Hits@1=0.9684  (n=5032)
+        MISC: Hits@1=0.9748  (n=5246)
+        P100: Hits@1=0.0000  (n=552)
+        V100: Hits@1=0.5993  (n=811)
+     V100M32: Hits@1=0.0000  (n=195)
+  Per-GPU Hits@1 Macro (unweighted) = 0.5085
+
+============================== r1 分层 [test] ==============================
+  r1 边数=11836  gpu_base=124885  先验类=124886  (history r1 tail 众数)
+    全部 test 边 n= 11836 (100.0%)  MRR=0.927251  H@1=0.884843  H@3=0.976597  H@10=0.996114
+              macro5=0.5085  macro_occ=0.5085(c=5)  prior-H@1=0.4251   T4=0.968/5032  MISC=0.975/5246  P100=0.000/552  V100=0.599/811  V100M32=0.000/195
+
+  ── 分层器 FULL & r1: 复发 1023/11836 = 8.64%
+    复发 head   n=  1023 (  8.6%)  MRR=0.811410  H@1=0.697947  H@3=0.975562  H@10=0.994135
+              macro5=0.3730  macro_occ=0.3730(c=5)  prior-H@1=0.3871   T4=0.990/396  MISC=0.875/368  P100=0.000/86  V100=0.000/150  V100M32=0.000/23
+    全新 head   n= 10813 ( 91.4%)  MRR=0.938210  H@1=0.902525  H@3=0.976695  H@10=0.996301
+              macro5=0.5368  macro_occ=0.5368(c=5)  prior-H@1=0.4287   T4=0.967/4636  MISC=0.982/4878  P100=0.000/466  V100=0.735/661  V100M32=0.000/172
+
+  ── 分层器 WIN & r1: 复发 2/11836 = 0.02%
+    复发 head   n=     2 (  0.0%)  MRR=1.000000  H@1=1.000000  H@3=1.000000  H@10=1.000000
+              macro5=0.2000  macro_occ=1.0000(c=1)  prior-H@1=1.0000   T4=1.000/2  MISC=0.000/0  P100=0.000/0  V100=0.000/0  V100M32=0.000/0
+    全新 head   n= 11834 (100.0%)  MRR=0.927238  H@1=0.884823  H@3=0.976593  H@10=0.996113
+              macro5=0.5085  macro_occ=0.5085(c=5)  prior-H@1=0.4250   T4=0.968/5030  MISC=0.975/5246  P100=0.000/552  V100=0.599/811  V100M32=0.000/195
+
+  ── 分层器 FULL & any: 复发 1123/11836 = 9.49%
+    复发 head   n=  1123 (  9.5%)  MRR=0.817814  H@1=0.706144  H@3=0.977738  H@10=0.994657
+              macro5=0.3733  macro_occ=0.3733(c=5)  prior-H@1=0.3615   T4=0.985/406  MISC=0.881/446  P100=0.000/94  V100=0.000/150  V100M32=0.000/27
+    全新 head   n= 10713 ( 90.5%)  MRR=0.938722  H@1=0.903575  H@3=0.976477  H@10=0.996266
+              macro5=0.5371  macro_occ=0.5371(c=5)  prior-H@1=0.4318   T4=0.967/4626  MISC=0.984/4800  P100=0.000/458  V100=0.735/661  V100M32=0.000/168
+
+  ── 分层器 WIN & any: 复发 6/11836 = 0.05%
+    复发 head   n=     6 (  0.1%)  MRR=0.555556  H@1=0.333333  H@3=1.000000  H@10=1.000000
+              macro5=0.2000  macro_occ=0.5000(c=2)  prior-H@1=0.3333   T4=1.000/2  MISC=0.000/0  P100=0.000/0  V100=0.000/0  V100M32=0.000/4
+    全新 head   n= 11830 ( 99.9%)  MRR=0.927439  H@1=0.885123  H@3=0.976585  H@10=0.996112
+              macro5=0.5085  macro_occ=0.5085(c=5)  prior-H@1=0.4252   T4=0.968/5030  MISC=0.975/5246  P100=0.000/552  V100=0.599/811  V100M32=0.000/191
+============================================================================
+
+============================ 同口径对照 [test] ============================
+  r1 正向边 n=11836  无约束 top-1 落在 GPU 段的比例 = 1.000000
+  GPU 段内(filtered) H@1 = 0.884843   —— 与 5 类分类 accuracy 同口径
+          T4: 段内 H@1=0.9684 (n=5032)
+        MISC: 段内 H@1=0.9748 (n=5246)
+        P100: 段内 H@1=0.0000 (n=552)
+        V100: 段内 H@1=0.5993 (n=811)
+     V100M32: 段内 H@1=0.0000 (n=195)
+    段内 per-GPU macro5 = 0.5085
+
+  compat 头直读(6 类 argmax, 与 sklearn 同口径): n=11836 acc=0.884843 预测成 CPU 的比例=0.000000
+          T4: H@1=0.9684 (n=5032)
+        MISC: H@1=0.9748 (n=5246)
+        P100: H@1=0.0000 (n=552)
+        V100: H@1=0.5993 (n=811)
+     V100M32: H@1=0.0000 (n=195)
+    compat 头 per-GPU macro5 = 0.5085
+    [FULL&r1 复发] n=  1023  compat头 acc=0.697947
+    [FULL&r1 全新] n= 10813  compat头 acc=0.902525
+    [WIN&r1 复发] n=     2  compat头 acc=1.000000
+    [WIN&r1 全新] n= 11834  compat头 acc=0.884823
+    [FULL&any 复发] n=  1123  compat头 acc=0.706144
+    [FULL&any 全新] n= 10713  compat头 acc=0.903575
+
+  [一致性自检] 两条探针的 gold 序列对齐率 = 1.000000   (<0.999 则下面的同点率不可用)
+  compat argmax 与 模型段内 top-1 是同一个 GPU 的边 = 0.999747 (11833/11836)
+    其中无约束 top-1 落在段内的 11836 条上: 0.999747
+    两者"对不对"一致率 = 1.000000   都对=10473  只 compat 对=0  只模型对=0  都错=1363
+    [FULL&r1 复发] n=  1023  同点率=0.999022  对错一致率=1.000000
+    [FULL&r1 全新] n= 10813  同点率=0.999815  对错一致率=1.000000
+    [WIN&r1 复发] n=     2  同点率=1.000000  对错一致率=1.000000
+    [WIN&r1 全新] n= 11834  同点率=0.999747  对错一致率=1.000000
+
+  compat 属性头直读   (行=真值类, 列=预测类, 数字=边数)
+               CPU      T4    MISC    P100    V100 V100M32
+        T4       0    4873     159       0       0       0   | n=5032
+      MISC       0     110    5114       0      22       0   | n=5246
+      P100       0      14     537       0       1       0   | n=552
+      V100       0     258      67       0     486       0   | n=811
+    V100M32       0       0     189       0       6       0   | n=195
+
+  compat 属性头直读 [FULL&r1 复发]   (行=真值类, 列=预测类, 数字=边数)
+               CPU      T4    MISC    P100    V100 V100M32
+        T4       0     392       4       0       0       0   | n=396
+      MISC       0      43     322       0       3       0   | n=368
+      P100       0       3      83       0       0       0   | n=86
+      V100       0     143       7       0       0       0   | n=150
+    V100M32       0       0      23       0       0       0   | n=23
+
+  compat 属性头直读 [FULL&r1 全新]   (行=真值类, 列=预测类, 数字=边数)
+               CPU      T4    MISC    P100    V100 V100M32
+        T4       0    4481     155       0       0       0   | n=4636
+      MISC       0      67    4792       0      19       0   | n=4878
+      P100       0      11     454       0       1       0   | n=466
+      V100       0     115      60       0     486       0   | n=661
+    V100M32       0       0     166       0       6       0   | n=172
+
+  compat 属性头直读 [WIN&r1 全新]   (行=真值类, 列=预测类, 数字=边数)
+               CPU      T4    MISC    P100    V100 V100M32
+        T4       0    4871     159       0       0       0   | n=5030
+      MISC       0     110    5114       0      22       0   | n=5246
+      P100       0      14     537       0       1       0   | n=552
+      V100       0     258      67       0     486       0   | n=811
+    V100M32       0       0     189       0       6       0   | n=195
+
+  模型无约束 top-1 的 GPU 类分布(段外计 0 条):
+               CPU      T4    MISC    P100    V100 V100M32
+        预测       0    5252    6069       0     515       0
+
+  模型无约束 top-1 当作 6 类预测   (行=真值类, 列=预测类, 数字=边数)
+               CPU      T4    MISC    P100    V100 V100M32
+        T4       0    4873     159       0       0       0   | n=5032
+      MISC       0     110    5114       0      22       0   | n=5246
+      P100       0      14     537       0       1       0   | n=552
+      V100       0     255      70       0     486       0   | n=811
+    V100M32       0       0     189       0       6       0   | n=195
+
+  [dump-preds] ~/xcad/outputs/reports/night_2026_11_19/b1_preds.pkl  n=11836  keys=['compat_gold', 'compat_head', 'compat_pred', 'filt_rank', 'gpu_base', 'heads', 'model_top1', 'seg_gold', 'seg_rank', 'tails']
+============================================================================

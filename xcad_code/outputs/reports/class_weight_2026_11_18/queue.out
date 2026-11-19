@@ -1,0 +1,86 @@
+[06:32:01] ==== 类别加权队列启动（{sqrt,inv} × 三种子，6 臂串行，预计 87 分钟）====
+==== gate_cw_2026_11_18 (0 GPU) ====
+
+── G-a 控制组（旗舰 = class-weight none）──────────────────────────
+PASS  seed42    macro5=0.5085 (期望 0.5085)  P100=0.0  V100M32=0.0  ← 稀有类恒 0，本臂要修的对象
+        r1 H@1=0.884843  段内 macro5=0.5085  compat macro5=0.5085  agree=0.999747  best_epoch=10
+PASS  seed123   macro5=0.5069 (期望 0.5069)  P100=0.0  V100M32=0.0  ← 稀有类恒 0，本臂要修的对象
+        r1 H@1=0.882308  段内 macro5=0.5069  compat macro5=0.5071  agree=0.999324  best_epoch=5
+PASS  seed2024  macro5=0.5069 (期望 0.5069)  P100=0.0  V100M32=0.0  ← 稀有类恒 0，本臂要修的对象
+        r1 H@1=0.881801  段内 macro5=0.5069  compat macro5=0.5066  agree=0.999493  best_epoch=20
+
+── G-b 类别计数（独立从 txt 重算）─────────────────────────────────
+  train total=  84646  CPU=0  T4=38861  MISC=30929  P100=6984  V100=5999  V100M32=1873
+  valid total=  12600  CPU=0  T4=4535  MISC=5951  P100=793  V100=1061  V100M32=260
+  test  total=  11836  CPU=0  T4=5032  MISC=5246  P100=552  V100=811  V100M32=195
+PASS  test 逐类 = 5032/5246/552/811/195 且 total=11836
+PASS  CPU 段(class 0) 在 train/valid/test 均为 0 条
+
+── G-c 期望权重向量（预注册；臂日志的 [class-weight] 必须逐位复现）────
+  [sqrt] cap=5.0  K_present=5  n_train_r1=84646
+         raw(present) = [0.6600 0.7398 1.5569 1.6799 3.0064]
+         w(all 6)     = [0.0000 0.7438 0.8337 1.7545 1.8931 3.3879]
+         loss share   = [0.0000 0.3415 0.3046 0.1448 0.1342 0.0750]   (均匀档 = 0.2000/类)
+  [inv] cap=5.0  K_present=5  n_train_r1=84646
+         raw(present) = [0.4356 0.5474 2.4240 2.8220 9.0385]
+         w(all 6)     = [0.0000 0.4784 0.6011 2.6619 3.0989 5.4907]
+         loss share   = [0.0000 0.2196 0.2196 0.2196 0.2196 0.1215]   (均匀档 = 0.2000/类)
+
+  已存 -> ~/xcad/outputs/reports/class_weight_2026_11_18/expected_weights.json
+
+GATE ALL PASS -> 可以开 GPU
+[06:32:01] G1 旗舰 checkpoint+stat 已备份 -> ~/xcad/outputs/reports/class_weight_2026_11_18/backup_models.tar (359M)
+[06:32:01] G2 start  test-only 旗舰 seed42 + --compat-class-weight none
+[06:32:31] G2 done    rc=0 macro5=0.5085（期望 0.5085 逐位）
+[06:32:31] G3 start  sqrt 冒烟 n-epochs=2 suffix=-cwsmoke
+[06:34:12] G3 done    rc=0 final-test块=2 macro5=0.5000
+[06:34:12] G3 冒烟 checkpoint 已清理
+[06:34:12] sqrt_s42 start  seed=42 args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight sqrt --stat-suffix=-cw-sqrt]
+[06:48:31] sqrt_s42 done   rc=0 用时=859s final-test块=6 macro5=0.5086 class-weight行=3
+[06:48:31] sqrt_s123 start  seed=123 args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight sqrt --stat-suffix=-cw-sqrt]
+[07:02:52] sqrt_s123 done   rc=0 用时=861s final-test块=6 macro5=0.5064 class-weight行=3
+[07:02:52] sqrt_s2024 start  seed=2024 args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight sqrt --stat-suffix=-cw-sqrt]
+[07:17:14] sqrt_s2024 done   rc=0 用时=862s final-test块=6 macro5=0.5102 class-weight行=3
+[07:17:14] inv_s42 start  seed=42 args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight inv --stat-suffix=-cw-inv]
+[07:31:38] inv_s42 done   rc=0 用时=864s final-test块=6 macro5=0.6023 class-weight行=3
+[07:31:38] inv_s123 start  seed=123 args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight inv --stat-suffix=-cw-inv]
+[07:45:58] inv_s123 done   rc=0 用时=860s final-test块=6 macro5=0.5156 class-weight行=3
+[07:45:58] inv_s2024 start  seed=2024 args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --compat-class-weight inv --stat-suffix=-cw-inv]
+[08:00:23] inv_s2024 done   rc=0 用时=865s final-test块=6 macro5=0.5495 class-weight行=3
+[08:00:23] ==== 6 臂跑完，出判线汇总 ====
+==== 类别加权臂汇总（final-test 块，尺子 = 主表 11,836 条）====
+控制组 class-weight=none 三种子 macro5 = [0.5085, 0.5069, 0.5069]  均值 C = 0.507433
+
+── 控制组 ─────────────────────────────────────────────────────────────────────────────────────────────────
+mode   seed   macro5       T4     MISC     P100     V100  V100M32   r1H@1   r1MRR    段内H@1   agree  best
+none   42     0.5085   0.9684   0.9748   0.0000   0.5993   0.0000  0.8848  0.9273   0.8848  0.9997    10
+none   123    0.5069   0.9603   0.9773   0.0000   0.5968   0.0000  0.8823  0.9234   0.8823  0.9993     5
+none   2024   0.5069   0.9605   0.9758   0.0000   0.5980   0.0000  0.8818  0.9247   0.8818  0.9995    20
+── 加权臂 ─────────────────────────────────────────────────────────────────────────────────────────────────
+mode   seed   macro5       T4     MISC     P100     V100  V100M32   r1H@1   r1MRR    段内H@1   agree  best
+sqrt   42     0.5086   0.9767   0.9644   0.0000   0.6017   0.0000  0.8839  0.9274   0.8839  0.9997     5
+sqrt   123    0.5064   0.9601   0.9726   0.0000   0.5993   0.0000  0.8803  0.9241   0.8803  0.9997     5
+sqrt   2024   0.5102   0.9605   0.9584   0.0326   0.5993   0.0000  0.8757  0.9218   0.8757  0.9973    10
+inv    42     0.6023   0.9674   0.7598   0.4493   0.5993   0.2359  0.8140  0.8916   0.8140  0.9861    10
+inv    123    0.5156   0.9601   0.9605   0.0580   0.5993   0.0000  0.8777  0.9237   0.8777  0.9984     5
+inv    2024   0.5495   0.9626   0.7583   0.4275   0.5993   0.0000  0.8064  0.8895   0.8064  0.9796    10
+
+── 每档三种子均值 / 跨度 ──────────────────────────────────────────
+mode     macro5 均值      跨度       T4均值     MISC均值     P100均值     V100均值  V100M32均值    r1H@1
+sqrt        0.5084  0.0038     0.9658     0.9651     0.0109     0.6001     0.0000   0.8800
+inv         0.5558  0.0867     0.9634     0.8262     0.3116     0.5993     0.0786   0.8327
+
+── 预注册判线套用 ────────────────────────────────────────────────
+  [sqrt] L1 不回退(>= 0.4874) : PASS 读数 0.5084（Δ=+0.0010）
+           L2 稀有类起效(>=2 seed 达 0.05) : FAIL P100 0/3 均值 0.0109 | V100M32 0/3 均值 0.0000
+           L3 有效线(>= 0.5274)        : FAIL
+           L4 逼近 RF 上界 0.582        : 否；稀有类是否达画像可分度(0.1214/0.2308) : 否
+  [inv] L1 不回退(>= 0.4874) : PASS 读数 0.5558（Δ=+0.0484）
+           L2 稀有类起效(>=2 seed 达 0.05) : PASS P100 3/3 均值 0.3116 | V100M32 1/3 均值 0.0786
+           L3 有效线(>= 0.5274)        : PASS
+           L4 逼近 RF 上界 0.582        : 是；稀有类是否达画像可分度(0.1214/0.2308) : 是
+
+  停止线（两档 L2 全不过 => 类加权救不了稀有类，本轴不再开臂）: 未触发
+
+已存 -> ~/xcad/outputs/reports/class_weight_2026_11_18/readings.{json,csv}
+[08:00:23] ==== 类别加权队列结束 ====

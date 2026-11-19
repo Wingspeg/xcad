@@ -1,0 +1,49 @@
+[12:02:19] ==== night_2026_11_19 队列启动 | ARM_TIMEOUT=1800 硬线=06:30 UTC ====
+[12:02:20] P0 旗舰 checkpoint 已备份 -> ~/xcad/outputs/reports/night_2026_11_19/backup_models.tar (359M)
+[12:02:49] P0 回归: MRR=0.065962 r1_H@1=0.884843 macro=0.5085 (期望 0.065962 / 0.884843 / 0.5085)
+[12:02:49] P0 通过, 开跑 B1–B4
+[12:02:49] ---- B1 dump-preds for stratification ----
+[12:03:18] B1 done, preds -> ~/xcad/outputs/reports/night_2026_11_19/b1_preds.pkl
+[12:03:18] ---- B2 train-caliber variant (3 seeds) ----
+[12:03:18] b2_tc_s42 start  seed=42 timeout=1800s args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --feat-dir ../data/xcad_v2_tc --stat-suffix=-tc]
+[12:17:38] b2_tc_s42 done   rc=0 用时=860s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42-tc
+[12:17:38] b2_tc_s123 start  seed=123 timeout=1800s args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --feat-dir ../data/xcad_v2_tc --stat-suffix=-tc]
+[12:32:00] b2_tc_s123 done   rc=0 用时=862s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed123-tc
+[12:32:00] b2_tc_s2024 start  seed=2024 timeout=1800s args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --feat-dir ../data/xcad_v2_tc --stat-suffix=-tc]
+[12:46:22] b2_tc_s2024 done   rc=0 用时=862s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed2024-tc
+[12:46:22] ---- B3 external baselines ×2 more runs ----
+[12:46:22] b3_regcn_r2 start  proj=RE-GCN args=[--gpu 0 --encoder uvrgcn --decoder convtranse --n-hidden 200 --n-layers 2 --n-bases 100 --train-history-len 3 --test-history-len 3 --dropout 0.4 --input-dropout 0.4 --hidden-dropout 0.4 --feat-dropout 0.4 --weight 0.5 --task-weight 0.7 --angle 10 --discount 1.0 --self-loop --layer-norm --weight-decay 1e-4 --lr 0.001 --entity-prediction -d xcad_v2 --n-epochs 150 --evaluate-every 5]
+[13:30:05] b3_regcn_r2 done   rc=0 用时=2623s
+[13:30:05] b3_regcn_r3 start  proj=RE-GCN args=[--gpu 0 --encoder uvrgcn --decoder convtranse --n-hidden 200 --n-layers 2 --n-bases 100 --train-history-len 3 --test-history-len 3 --dropout 0.4 --input-dropout 0.4 --hidden-dropout 0.4 --feat-dropout 0.4 --weight 0.5 --task-weight 0.7 --angle 10 --discount 1.0 --self-loop --layer-norm --weight-decay 1e-4 --lr 0.001 --entity-prediction -d xcad_v2 --n-epochs 150 --evaluate-every 5]
+[14:13:51] b3_regcn_r3 done   rc=0 用时=2626s
+[14:13:51] b3_cen_r2_pretrain start  proj=CEN args=[--gpu 0 --encoder uvrgcn --decoder convtranse --n-hidden 200 --n-layers 2 --n-bases 100 --start-history-len 2 --train-history-len 3 --test-history-len 3 --dilate-len 1 --dropout 0.4 --input-dropout 0.4 --hidden-dropout 0.4 --feat-dropout 0.4 --self-loop --layer-norm --entity-prediction --lr 0.001 --ft_lr 0.001 --norm_weight 0.1 -d xcad_v2 --test -1 --n-epochs 30 --evaluate-every 1]
+[14:22:13] b3_cen_r2_pretrain done   rc=0 用时=502s
+[14:22:18] b3_cen_r2_pretrain checkpoint archived -> ~/xcad/outputs/reports/night_2026_11_19/b3_cen_r2_pretrain_checkpoint.tar.gz
+[14:22:18] b3_cen_r2_curriculum start  proj=CEN args=[--gpu 0 --encoder uvrgcn --decoder convtranse --n-hidden 200 --n-layers 2 --n-bases 100 --start-history-len 2 --train-history-len 3 --test-history-len 3 --dilate-len 1 --dropout 0.4 --input-dropout 0.4 --hidden-dropout 0.4 --feat-dropout 0.4 --self-loop --layer-norm --entity-prediction --lr 0.001 --ft_lr 0.001 --norm_weight 0.1 -d xcad_v2 --test 0 --n-epochs 30 --evaluate-every 1]
+[14:32:16] b3_cen_r2_curriculum done   rc=0 用时=598s
+[14:32:21] b3_cen_r2_curriculum checkpoint archived -> ~/xcad/outputs/reports/night_2026_11_19/b3_cen_r2_curriculum_checkpoint.tar.gz
+[14:32:21] b3_cen_r2_test start  proj=CEN args=[--gpu 0 --encoder uvrgcn --decoder convtranse --n-hidden 200 --n-layers 2 --n-bases 100 --start-history-len 2 --train-history-len 3 --test-history-len 3 --dilate-len 1 --dropout 0.4 --input-dropout 0.4 --hidden-dropout 0.4 --feat-dropout 0.4 --self-loop --layer-norm --entity-prediction --lr 0.001 --ft_lr 0.001 --norm_weight 0.1 -d xcad_v2 --test 2]
+[14:32:51] b3_cen_r2_test done   rc=0 用时=30s
+[14:32:56] b3_cen_r2_test checkpoint archived -> ~/xcad/outputs/reports/night_2026_11_19/b3_cen_r2_test_checkpoint.tar.gz
+[14:32:56] b3_cen_r3_pretrain start  proj=CEN args=[--gpu 0 --encoder uvrgcn --decoder convtranse --n-hidden 200 --n-layers 2 --n-bases 100 --start-history-len 2 --train-history-len 3 --test-history-len 3 --dilate-len 1 --dropout 0.4 --input-dropout 0.4 --hidden-dropout 0.4 --feat-dropout 0.4 --self-loop --layer-norm --entity-prediction --lr 0.001 --ft_lr 0.001 --norm_weight 0.1 -d xcad_v2 --test -1 --n-epochs 30 --evaluate-every 1]
+[14:42:20] b3_cen_r3_pretrain done   rc=0 用时=564s
+[14:42:25] b3_cen_r3_pretrain checkpoint archived -> ~/xcad/outputs/reports/night_2026_11_19/b3_cen_r3_pretrain_checkpoint.tar.gz
+[14:42:25] b3_cen_r3_curriculum start  proj=CEN args=[--gpu 0 --encoder uvrgcn --decoder convtranse --n-hidden 200 --n-layers 2 --n-bases 100 --start-history-len 2 --train-history-len 3 --test-history-len 3 --dilate-len 1 --dropout 0.4 --input-dropout 0.4 --hidden-dropout 0.4 --feat-dropout 0.4 --self-loop --layer-norm --entity-prediction --lr 0.001 --ft_lr 0.001 --norm_weight 0.1 -d xcad_v2 --test 0 --n-epochs 30 --evaluate-every 1]
+[14:50:09] b3_cen_r3_curriculum done   rc=0 用时=464s
+[14:50:14] b3_cen_r3_curriculum checkpoint archived -> ~/xcad/outputs/reports/night_2026_11_19/b3_cen_r3_curriculum_checkpoint.tar.gz
+[14:50:14] b3_cen_r3_test start  proj=CEN args=[--gpu 0 --encoder uvrgcn --decoder convtranse --n-hidden 200 --n-layers 2 --n-bases 100 --start-history-len 2 --train-history-len 3 --test-history-len 3 --dilate-len 1 --dropout 0.4 --input-dropout 0.4 --hidden-dropout 0.4 --feat-dropout 0.4 --self-loop --layer-norm --entity-prediction --lr 0.001 --ft_lr 0.001 --norm_weight 0.1 -d xcad_v2 --test 2]
+[14:50:44] b3_cen_r3_test done   rc=0 用时=30s
+[14:50:49] b3_cen_r3_test checkpoint archived -> ~/xcad/outputs/reports/night_2026_11_19/b3_cen_r3_test_checkpoint.tar.gz
+[14:50:49] b3_retia_r2 start  proj=RETIA args=[--gpu 0 --encoder uvrgcn --decoder convtranse --n-hidden 200 --n-layers 2 --n-bases 100 --train-history-len 2 --test-history-len 2 --dropout 0.4 --input-dropout 0.4 --hidden-dropout 0.4 --feat-dropout 0.4 --self-loop --layer-norm --task-weight 0.7 --norm_weight 1.0 --weight 1 --discount 1 --angle 10 --lr 0.001 -d xcad_v2 --cur-train --n-epochs 30 --evaluate-every 5]
+[15:16:30] b3_retia_r2 done   rc=0 用时=1541s
+[15:16:32] b3_retia_r2 checkpoint archived -> ~/xcad/outputs/reports/night_2026_11_19/b3_retia_r2_checkpoint.tar.gz
+[15:16:32] b3_retia_r3 start  proj=RETIA args=[--gpu 0 --encoder uvrgcn --decoder convtranse --n-hidden 200 --n-layers 2 --n-bases 100 --train-history-len 2 --test-history-len 2 --dropout 0.4 --input-dropout 0.4 --hidden-dropout 0.4 --feat-dropout 0.4 --self-loop --layer-norm --task-weight 0.7 --norm_weight 1.0 --weight 1 --discount 1 --angle 10 --lr 0.001 -d xcad_v2 --cur-train --n-epochs 30 --evaluate-every 5]
+[15:42:26] b3_retia_r3 done   rc=0 用时=1554s
+[15:42:29] b3_retia_r3 checkpoint archived -> ~/xcad/outputs/reports/night_2026_11_19/b3_retia_r3_checkpoint.tar.gz
+[15:42:29] ---- B4 cost sampling (piggybacks on B2/B3) ----
+[15:42:29] ==== GPU 队列结束 15:42:29 ====
+[15:42:29] 问题臂: 0 个 | 跳过臂: 0 个
+[15:42:29] 读数在 ~/xcad/outputs/reports/night_2026_11_19/manifest.txt, 问题在 ~/xcad/outputs/reports/night_2026_11_19/problems.txt
