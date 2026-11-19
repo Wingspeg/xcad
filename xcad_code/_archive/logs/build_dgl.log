@@ -34,8 +34,8 @@
 2026-05-29 11:19:45,944 - INFO -   τ=50: nodes={'algorithm': 102610, 'compute': 0, 'data': 20373}, edges={'placement': 0, 'r1_suits': 0, 'r2_requires': 0, 'r3_drives': 51498, 'r4_shifts': 0}
 2026-05-29 11:19:45,951 - INFO -   τ=60: nodes={'algorithm': 102610, 'compute': 0, 'data': 20373}, edges={'placement': 0, 'r1_suits': 0, 'r2_requires': 0, 'r3_drives': 51498, 'r4_shifts': 0}
 2026-05-29 11:19:45,957 - INFO -   No empty snapshots found.
-2026-05-29 11:19:45,978 - INFO - Saved graph sequence to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_seq.bin
-2026-05-29 11:19:46,024 - INFO - Saved graph metadata to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_meta.pt
+2026-05-29 11:19:45,978 - INFO - Saved graph sequence to ~/xcad/xcad_code/outputs/dgl/graph_seq.bin
+2026-05-29 11:19:46,024 - INFO - Saved graph metadata to ~/xcad/xcad_code/outputs/dgl/graph_meta.pt
 2026-05-29 11:19:46,024 - INFO - ============================================================
 2026-05-29 11:19:46,025 - INFO - Graph construction complete
 2026-05-29 11:19:46,025 - INFO - ============================================================
@@ -73,8 +73,8 @@
 2026-05-29 11:21:06,899 - INFO -   τ=50: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
 2026-05-29 11:21:06,910 - INFO -   τ=60: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
 2026-05-29 11:21:06,919 - INFO -   No empty snapshots found.
-2026-05-29 11:21:06,990 - INFO - Saved graph sequence to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_seq.bin
-2026-05-29 11:21:07,038 - INFO - Saved graph metadata to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_meta.pt
+2026-05-29 11:21:06,990 - INFO - Saved graph sequence to ~/xcad/xcad_code/outputs/dgl/graph_seq.bin
+2026-05-29 11:21:07,038 - INFO - Saved graph metadata to ~/xcad/xcad_code/outputs/dgl/graph_meta.pt
 2026-05-29 11:21:07,038 - INFO - ============================================================
 2026-05-29 11:21:07,038 - INFO - Graph construction complete
 2026-05-29 11:21:07,038 - INFO - ============================================================
@@ -113,9 +113,9 @@
 2026-05-29 11:26:48,368 - INFO -   τ=50: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
 2026-05-29 11:26:48,378 - INFO -   τ=60: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
 2026-05-29 11:26:48,387 - INFO -   No empty snapshots found.
-2026-05-29 11:26:48,447 - INFO - Saved graph sequence to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_seq.bin
-2026-05-29 11:26:48,492 - INFO - Saved graph metadata to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_meta.pt
-2026-05-29 11:26:48,502 - INFO - Saved node features to /Volumes/code/xcad/xcad_code/outputs/dgl/node_features.pt
+2026-05-29 11:26:48,447 - INFO - Saved graph sequence to ~/xcad/xcad_code/outputs/dgl/graph_seq.bin
+2026-05-29 11:26:48,492 - INFO - Saved graph metadata to ~/xcad/xcad_code/outputs/dgl/graph_meta.pt
+2026-05-29 11:26:48,502 - INFO - Saved node features to ~/xcad/xcad_code/outputs/dgl/node_features.pt
 2026-05-29 11:26:48,502 - INFO - ============================================================
 2026-05-29 11:26:48,503 - INFO - Graph construction complete
 2026-05-29 11:26:48,503 - INFO - ============================================================
@@ -154,9 +154,9 @@
 2026-05-29 14:28:31,993 - INFO -   τ=50: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
 2026-05-29 14:28:32,002 - INFO -   τ=60: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
 2026-05-29 14:28:32,011 - INFO -   No empty snapshots found.
-2026-05-29 14:28:32,066 - INFO - Saved graph sequence to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_seq.bin
-2026-05-29 14:28:32,106 - INFO - Saved graph metadata to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_meta.pt
-2026-05-29 14:28:32,112 - INFO - Saved node features to /Volumes/code/xcad/xcad_code/outputs/dgl/node_features.pt
+2026-05-29 14:28:32,066 - INFO - Saved graph sequence to ~/xcad/xcad_code/outputs/dgl/graph_seq.bin
+2026-05-29 14:28:32,106 - INFO - Saved graph metadata to ~/xcad/xcad_code/outputs/dgl/graph_meta.pt
+2026-05-29 14:28:32,112 - INFO - Saved node features to ~/xcad/xcad_code/outputs/dgl/node_features.pt
 2026-05-29 14:28:32,112 - INFO - ============================================================
 2026-05-29 14:28:32,112 - INFO - Graph construction complete
 2026-05-29 14:28:32,112 - INFO - ============================================================
@@ -196,9 +196,9 @@
 2026-05-29 14:29:30,341 - INFO -   τ=50: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
 2026-05-29 14:29:30,351 - INFO -   τ=60: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
 2026-05-29 14:29:30,360 - INFO -   No empty snapshots found.
-2026-05-29 14:29:30,415 - INFO - Saved graph sequence to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_seq.bin
-2026-05-29 14:29:30,455 - INFO - Saved graph metadata to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_meta.pt
-2026-05-29 14:29:30,460 - INFO - Saved node features to /Volumes/code/xcad/xcad_code/outputs/dgl/node_features.pt
+2026-05-29 14:29:30,415 - INFO - Saved graph sequence to ~/xcad/xcad_code/outputs/dgl/graph_seq.bin
+2026-05-29 14:29:30,455 - INFO - Saved graph metadata to ~/xcad/xcad_code/outputs/dgl/graph_meta.pt
+2026-05-29 14:29:30,460 - INFO - Saved node features to ~/xcad/xcad_code/outputs/dgl/node_features.pt
 2026-05-29 14:29:30,460 - INFO - ============================================================
 2026-05-29 14:29:30,460 - INFO - Graph construction complete
 2026-05-29 14:29:30,460 - INFO - ============================================================
@@ -238,9 +238,9 @@
 2026-05-29 14:30:57,248 - INFO -   τ=50: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
 2026-05-29 14:30:57,257 - INFO -   τ=60: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 0, 'r1_suits': 100446, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
 2026-05-29 14:30:57,265 - INFO -   No empty snapshots found.
-2026-05-29 14:30:57,321 - INFO - Saved graph sequence to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_seq.bin
-2026-05-29 14:30:57,358 - INFO - Saved graph metadata to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_meta.pt
-2026-05-29 14:30:57,364 - INFO - Saved node features to /Volumes/code/xcad/xcad_code/outputs/dgl/node_features.pt
+2026-05-29 14:30:57,321 - INFO - Saved graph sequence to ~/xcad/xcad_code/outputs/dgl/graph_seq.bin
+2026-05-29 14:30:57,358 - INFO - Saved graph metadata to ~/xcad/xcad_code/outputs/dgl/graph_meta.pt
+2026-05-29 14:30:57,364 - INFO - Saved node features to ~/xcad/xcad_code/outputs/dgl/node_features.pt
 2026-05-29 14:30:57,364 - INFO - ============================================================
 2026-05-29 14:30:57,364 - INFO - Graph construction complete
 2026-05-29 14:30:57,364 - INFO - ============================================================
@@ -279,9 +279,9 @@
 2026-05-29 14:55:45,364 - INFO -   τ=50: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 696186, 'r1_suits': 109667, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
 2026-05-29 14:55:45,392 - INFO -   τ=60: nodes={'algorithm': 102610, 'compute': 1903, 'data': 20373}, edges={'placement': 696186, 'r1_suits': 109667, 'r2_requires': 1399, 'r3_drives': 51498, 'r4_shifts': 5}
 2026-05-29 14:55:45,420 - INFO -   No empty snapshots found.
-2026-05-29 14:55:45,725 - INFO - Saved graph sequence to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_seq.bin
-2026-05-29 14:55:45,766 - INFO - Saved graph metadata to /Volumes/code/xcad/xcad_code/outputs/dgl/graph_meta.pt
-2026-05-29 14:55:45,771 - INFO - Saved node features to /Volumes/code/xcad/xcad_code/outputs/dgl/node_features.pt
+2026-05-29 14:55:45,725 - INFO - Saved graph sequence to ~/xcad/xcad_code/outputs/dgl/graph_seq.bin
+2026-05-29 14:55:45,766 - INFO - Saved graph metadata to ~/xcad/xcad_code/outputs/dgl/graph_meta.pt
+2026-05-29 14:55:45,771 - INFO - Saved node features to ~/xcad/xcad_code/outputs/dgl/node_features.pt
 2026-05-29 14:55:45,771 - INFO - ============================================================
 2026-05-29 14:55:45,771 - INFO - Graph construction complete
 2026-05-29 14:55:45,771 - INFO - ============================================================

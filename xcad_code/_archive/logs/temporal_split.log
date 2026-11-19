@@ -29,7 +29,7 @@
 2026-05-29 11:24:12,549 - WARNING -   Val set is empty, no file saved
 2026-05-29 11:24:12,549 - WARNING -   Test set is empty, no file saved
 2026-05-29 11:24:12,549 - INFO - Generating split report...
-2026-05-29 11:24:12,549 - INFO -   Saved report to /Volumes/code/xcad/xcad_code/outputs/reports/temporal_split.md
+2026-05-29 11:24:12,549 - INFO -   Saved report to ~/xcad/xcad_code/outputs/reports/temporal_split.md
 2026-05-29 11:24:12,549 - INFO - ============================================================
 2026-05-29 11:24:12,549 - INFO - Temporal split complete
 2026-05-29 11:24:12,549 - INFO - ============================================================
@@ -57,11 +57,11 @@ Split Summary:
 2026-05-29 11:24:47,416 - INFO -   Val edges: 0
 2026-05-29 11:24:47,416 - INFO -   Test edges: 0
 2026-05-29 11:24:47,416 - INFO - Saving split parquet files...
-2026-05-29 11:24:48,820 - INFO -   Saved train: 7,368,819 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/train_edges.parquet
+2026-05-29 11:24:48,820 - INFO -   Saved train: 7,368,819 edges to ~/xcad/xcad_code/outputs/dgl/splits/train_edges.parquet
 2026-05-29 11:24:48,820 - WARNING -   Val set is empty, no file saved
 2026-05-29 11:24:48,820 - WARNING -   Test set is empty, no file saved
 2026-05-29 11:24:48,820 - INFO - Generating split report...
-2026-05-29 11:24:50,040 - INFO -   Saved report to /Volumes/code/xcad/xcad_code/outputs/reports/temporal_split.md
+2026-05-29 11:24:50,040 - INFO -   Saved report to ~/xcad/xcad_code/outputs/reports/temporal_split.md
 2026-05-29 11:24:50,040 - INFO - ============================================================
 2026-05-29 11:24:50,040 - INFO - Temporal split complete
 2026-05-29 11:24:50,040 - INFO - ============================================================
@@ -89,11 +89,11 @@ Split Summary:
 2026-05-29 14:29:53,005 - INFO -   Val edges: 574,751
 2026-05-29 14:29:53,005 - INFO -   Test edges: 290,483
 2026-05-29 14:29:53,005 - INFO - Saving split parquet files...
-2026-05-29 14:29:54,172 - INFO -   Saved train: 6,503,994 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/train_edges.parquet
-2026-05-29 14:29:54,272 - INFO -   Saved val: 574,751 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/val_edges.parquet
-2026-05-29 14:29:54,322 - INFO -   Saved test: 290,483 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/test_edges.parquet
+2026-05-29 14:29:54,172 - INFO -   Saved train: 6,503,994 edges to ~/xcad/xcad_code/outputs/dgl/splits/train_edges.parquet
+2026-05-29 14:29:54,272 - INFO -   Saved val: 574,751 edges to ~/xcad/xcad_code/outputs/dgl/splits/val_edges.parquet
+2026-05-29 14:29:54,322 - INFO -   Saved test: 290,483 edges to ~/xcad/xcad_code/outputs/dgl/splits/test_edges.parquet
 2026-05-29 14:29:54,322 - INFO - Generating split report...
-2026-05-29 14:29:54,881 - INFO -   Saved report to /Volumes/code/xcad/xcad_code/outputs/reports/temporal_split.md
+2026-05-29 14:29:54,881 - INFO -   Saved report to ~/xcad/xcad_code/outputs/reports/temporal_split.md
 2026-05-29 14:29:54,881 - INFO - ============================================================
 2026-05-29 14:29:54,881 - INFO - Temporal split complete
 2026-05-29 14:29:54,881 - INFO - ============================================================
@@ -121,11 +121,11 @@ Split Summary:
 2026-05-29 14:56:01,860 - INFO -   Val edges: 420,688
 2026-05-29 14:56:01,860 - INFO -   Test edges: 207,312
 2026-05-29 14:56:01,860 - INFO - Saving split parquet files...
-2026-05-29 14:56:02,239 - INFO -   Saved train: 4,778,016 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/train_edges.parquet
-2026-05-29 14:56:02,273 - INFO -   Saved val: 420,688 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/val_edges.parquet
-2026-05-29 14:56:02,291 - INFO -   Saved test: 207,312 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/test_edges.parquet
+2026-05-29 14:56:02,239 - INFO -   Saved train: 4,778,016 edges to ~/xcad/xcad_code/outputs/dgl/splits/train_edges.parquet
+2026-05-29 14:56:02,273 - INFO -   Saved val: 420,688 edges to ~/xcad/xcad_code/outputs/dgl/splits/val_edges.parquet
+2026-05-29 14:56:02,291 - INFO -   Saved test: 207,312 edges to ~/xcad/xcad_code/outputs/dgl/splits/test_edges.parquet
 2026-05-29 14:56:02,291 - INFO - Generating split report...
-2026-05-29 14:56:02,560 - INFO -   Saved report to /Volumes/code/xcad/xcad_code/outputs/reports/temporal_split.md
+2026-05-29 14:56:02,560 - INFO -   Saved report to ~/xcad/xcad_code/outputs/reports/temporal_split.md
 2026-05-29 14:56:02,560 - INFO - ============================================================
 2026-05-29 14:56:02,560 - INFO - Temporal split complete
 2026-05-29 14:56:02,560 - INFO - ============================================================
@@ -153,11 +153,11 @@ Split Summary:
 2026-06-01 14:45:41,440 - INFO -   Val edges: 437,063
 2026-06-01 14:45:41,440 - INFO -   Test edges: 231,809
 2026-06-01 14:45:41,440 - INFO - Saving split parquet files...
-2026-06-01 14:45:41,883 - INFO -   Saved train: 4,737,144 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/train_edges.parquet
-2026-06-01 14:45:41,926 - INFO -   Saved val: 437,063 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/val_edges.parquet
-2026-06-01 14:45:41,953 - INFO -   Saved test: 231,809 edges to /Volumes/code/xcad/xcad_code/outputs/dgl/splits/test_edges.parquet
+2026-06-01 14:45:41,883 - INFO -   Saved train: 4,737,144 edges to ~/xcad/xcad_code/outputs/dgl/splits/train_edges.parquet
+2026-06-01 14:45:41,926 - INFO -   Saved val: 437,063 edges to ~/xcad/xcad_code/outputs/dgl/splits/val_edges.parquet
+2026-06-01 14:45:41,953 - INFO -   Saved test: 231,809 edges to ~/xcad/xcad_code/outputs/dgl/splits/test_edges.parquet
 2026-06-01 14:45:41,953 - INFO - Generating split report...
-2026-06-01 14:45:42,253 - INFO -   Saved report to /Volumes/code/xcad/xcad_code/outputs/reports/temporal_split.md
+2026-06-01 14:45:42,253 - INFO -   Saved report to ~/xcad/xcad_code/outputs/reports/temporal_split.md
 2026-06-01 14:45:42,523 - INFO - ============================================================
 2026-06-01 14:45:42,523 - INFO - Temporal split complete
 2026-06-01 14:45:42,523 - INFO - ============================================================

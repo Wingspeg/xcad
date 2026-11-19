@@ -17,3 +17,19 @@ baselines/_archive/GETER/data/ICEWS14/ICEWS14_train.json
 baselines/_archive/GETER/data/ICEWS14/regcn/train_graph_emb.pt
 baselines/_archive/TCompoundE/src_data/GDELT/train
 baselines/_archive/TCompoundE/src_data/xcad/train
+
+# Build artefacts and editor junk are not part of the release.
+# These rules must stay after the !xcad_code/** / !baselines/** allowlist:
+# in .gitignore the last matching pattern wins.
+**/__pycache__/
+**/*.pyc
+.DS_Store
+
+# RE-GCN's upstream data archive. It is the official public benchmark payload
+# (GDELT / ICEWS / WIKI), not the xCAD graph this release ships; it is fetched
+# from the RE-GCN repository instead of being duplicated here.
+**/data-release.tar.gz
+
+# Staged copies of the released graph, written by
+# xcad_code/scripts/link_xcad_v2_to_baselines.sh from xcad_code/xcad_model/data/xcad_v2.
+baselines/*/data/xcad_v2/
