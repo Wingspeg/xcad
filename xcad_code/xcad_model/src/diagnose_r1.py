@@ -3,6 +3,9 @@
 diagnose_r1.py: 分析 checkpoint 对 r1_suits (relation=1) 的预测行为。
 
 用法: python diagnose_r1.py --checkpoint ../models/<checkpoint_name> [--data xcad_v2] [--seed 42]
+      模型侧 flag (--hetero / --compat / --compat-lambda / --train-history-len) 必须与训练
+      该 checkpoint 时一致; 对不上时下面的 [model][warn] 会报出缺失的权重名。
+      旗舰臂 ④: --data xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0
 
 输出: 混淆矩阵, Per-GPU Hits@1, 排名分布, 算法特征差异, 预测分布/熵, score spot-check
 """
@@ -42,6 +45,10 @@ def main():
                         help="compat 偏置权重 (None=可学习, 数值=固定)")
     parser.add_argument("--compat-aux-weight", type=float, default=0.5,
                         help="compat 辅助分类 loss 权重")
+    parser.add_argument("--hetero", action="store_true", default=False,
+                        help="异质关系基消息传递, 需与 checkpoint 一致 (旗舰臂开启)")
+    parser.add_argument("--n-msg-basis", type=int, default=2,
+                        help="异质消息基数量, 需与 checkpoint 一致")
     parser.add_argument("--data", type=str, default="xcad_v2",
                         help="图目录名 (../data/<data>); 必须与 checkpoint 的编号空间一致")
     parser.add_argument("--feat-dir", type=str, default=None,
@@ -56,6 +63,8 @@ def main():
     print(f"[seed] {args.seed}")
     print(f"[compat] use_compat={args.compat}, compat_lambda={args.compat_lambda}, "
           f"compat_aux_weight={args.compat_aux_weight}")
+    print(f"[model] use_hetero={args.hetero}, n_msg_basis={args.n_msg_basis} "
+          f"(必须与训练该 checkpoint 时的 flag 一致, 否则权重对不上)")
     print(f"[compat] feat_dir={args.feat_dir}")
     print(f"[data] ../data/{args.data} —— 编号空间必须与 checkpoint 配套 "
           f"(main.py 的 [id-space] 行给出训练时用的那份)")
@@ -118,15 +127,28 @@ def main():
         use_compat=args.compat,
         compat_lambda=args.compat_lambda,
         compat_aux_weight=args.compat_aux_weight,
+        use_hetero=args.hetero,
+        n_msg_basis=args.n_msg_basis,
         feat_dir=args.feat_dir,
     )
 
     # ── 加载 checkpoint ──
+    # strict=False 会把对不上的权重静默丢掉, 那样这份诊断读的是随机初始化的头而不是
+    # checkpoint 的头, 所以把差异显式打出来。
     checkpoint = torch.load(args.checkpoint, map_location=device)
-    model.load_state_dict(checkpoint['state_dict'], strict=False)
+    _missing, _unexpected = model.load_state_dict(checkpoint['state_dict'], strict=False)
     model.to(device)
     model.eval()
     print(f"[model] Loaded epoch={checkpoint.get('epoch', '?')}")
+    if _missing or _unexpected:
+        print(f"[model][warn] state_dict 与本脚本搭出的模型不一致: "
+              f"缺失 {len(_missing)} 项 / 多余 {len(_unexpected)} 项")
+        for _k in _missing[:5]:
+            print(f"           missing    {_k}")
+        for _k in _unexpected[:5]:
+            print(f"           unexpected {_k}")
+        print("[model][warn] 缺失项保持随机初始化 —— 检查 --hetero/--n-msg-basis/--compat/"
+              "--train-history-len 是否与训练时一致。")
 
     # ── all_ans for filter ──
     all_ans_list = utils.load_all_answers_for_time_filter(data.test, num_rels, num_nodes, False)

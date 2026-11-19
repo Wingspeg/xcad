@@ -165,8 +165,12 @@ That stages the seven files the baselines read into `baselines/{CEN,RE-GCN,RETIA
 ```bash
 # still in xcad_code/xcad_model/src
 
-# Frequency-prior diagnosis (load a checkpoint; prints prediction entropy / confusion / per-GPU Hits@1)
-python diagnose_r1.py --checkpoint <path-to-checkpoint> --data xcad_v2
+# Frequency-prior diagnosis (load a checkpoint; prints prediction entropy / confusion / per-GPU Hits@1).
+# Checkpoints store weights and an epoch only, so the model-side flags have to match the arm that
+# produced them -- shown here for the flagship. Any weight this script cannot load is named on
+# [model][warn] rather than left silently at random initialisation.
+python diagnose_r1.py --checkpoint <path-to-checkpoint> \
+  --data xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0
 
 # Static-profile learnability reference (algorithm profile only; LR + RF + MLP on the same
 # 13-dim profile and the same test edges). --split-by-algo holds out whole algorithms, so it
