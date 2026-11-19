@@ -9,11 +9,15 @@ without modification as long as the directory structure is preserved.
 from pathlib import Path
 
 # === 路径推算(基于本文件位置)===
-# 本文件:        <xcad>/xcad_code/src/config.py
-# xcad_code 根:  <xcad>/xcad_code/
-# xcad 项目根:   <xcad>/
-_HERE = Path(__file__).resolve().parent              # src/
-_CODE_ROOT = _HERE.parent                            # xcad_code/
+# 本文件实际位置:  <xcad>/xcad_code/src/utils/config.py
+#   _HERE        = <xcad>/xcad_code/src/utils
+#   _CODE_ROOT   = <xcad>/xcad_code
+#   _XCAD_ROOT   = <xcad>
+# 注: 顶部注释与旧推算假设本文件在 src/config.py(少算一层), 导致
+#     OUTPUT_ROOT 解析成 <xcad>/xcad_code/src/outputs 而 FileNotFoundError
+#     (2026-11-12 跑 src/analysis/relation_drift.py 时暴露)。
+_HERE = Path(__file__).resolve().parent              # src/utils/
+_CODE_ROOT = _HERE.parent.parent                     # xcad_code/
 _XCAD_ROOT = _CODE_ROOT.parent                       # xcad/
 
 # === 主要路径 ===
