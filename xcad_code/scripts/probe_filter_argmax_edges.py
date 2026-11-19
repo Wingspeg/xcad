@@ -10,16 +10,22 @@
 编号口径与 hybrid_profile_graph.py 一致，全部用"段内偏移"：0 = CPU 列，1..5 = 五个 GPU 类。
 gold = tail - gpu_base ∈ 1..5；pre = raw_seg.argmax(1) ∈ 0..5；post = model_top1 - gpu_base。
 
-用法（服务器）：
-  PY=~/xcad/xcad_code/.venv/bin/python
-  $PY probe_filter_argmax_edges.py \
-      --scores-dir ~/xcad/outputs/reports/b7_mlp_hybrid_2026_11_19/scores
+用法（仓库内，任意 CWD）：
+  python probe_filter_argmax_edges.py
+  # 分数件随仓库发布在 xcad_code/outputs/reports/b7_mlp_hybrid_2026_11_19/scores/，
+  # 默认路径由本脚本位置推导；换放置位置时用 --scores-dir 指过去即可。
 """
 import argparse
 import os
 
 import numpy as np
 import torch
+
+# 默认跟着仓库走，不写死某台机器的主目录：scripts/ 的上一级就是 xcad_code/。
+_SCORES = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "outputs", "reports", "b7_mlp_hybrid_2026_11_19", "scores",
+)
 
 CLS = {0: "CPU", 1: "T4", 2: "MISC", 3: "P100", 4: "V100", 5: "V100M32"}
 
@@ -28,9 +34,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument(
         "--scores-dir",
-        default=os.path.expanduser(
-            "~/xcad/outputs/reports/b7_mlp_hybrid_2026_11_19/scores"
-        ),
+        default=_SCORES,
+        help="preds_s<seed>.pkl 所在目录 (默认随仓库发布的那份)",
     )
     ap.add_argument("--seeds", default="42,123,2024")
     args = ap.parse_args()
