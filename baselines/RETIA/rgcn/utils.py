@@ -308,7 +308,7 @@ def load_data(dataset, bfs_level=3, relabel=False):
     elif dataset in ['FB15k', 'wn18', 'FB15k-237']:
         return knwlgrh.load_link(dataset)
     elif dataset in ['ICEWS18', 'ICEWS14', "GDELT", "SMALL", "ICEWS14s", "ICEWS05-15","YAGO",
-                     "WIKI", "xcad"]:
+                     "WIKI", "xcad", "xcad_v2"]:
         return knwlgrh.load_from_local("../data", dataset)
     else:
         raise ValueError('Unknown dataset: {}'.format(dataset))

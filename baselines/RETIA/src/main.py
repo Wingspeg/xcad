@@ -287,6 +287,8 @@ def test(model, history_list, test_list, num_rels, num_nodes, use_cuda, all_ans_
     # 按关系类型分组收集 filter rank
     r3_ranks_filter = []       # r3_drives: id=3(正) 和 id=7(逆=3+4)
     relX_ranks = {0: [], 1: [], 2: []}  # placement, r1_suits, r2_requires 正向
+    r1_gpu_tails = []      # r1_suits 正向边的 GPU 真值 id —— per-GPU macro 用
+    r1_gpu_ranks = []     # 对应的 1-based filtered rank（全实体候选，同 ours 一把尺子）
 
     idx = 0
     if mode == "test":
@@ -339,6 +341,13 @@ def test(model, history_list, test_list, num_rels, num_nodes, use_cuda, all_ans_
         for rel in [0, 1, 2]:
             relX_ranks[rel].append(rank_filter[rel_ids == rel].cpu())
 
+        # ----- r1_suits: 收集 (GPU 真值, filtered rank)，用于 per-GPU macro -----
+        # mask 按被索引张量各自的设备取，避免 CPU mask 索引 CUDA 张量。
+        _r1_mask = test_triples[:, 1] == 1
+        if bool(_r1_mask.any()):
+            r1_gpu_tails.append(test_triples[_r1_mask, 2].detach().cpu().view(-1))
+            r1_gpu_ranks.append(rank_filter[_r1_mask.to(rank_filter.device)].detach().cpu().view(-1))
+
         # entity rank 直接 append（无需 get_total_rank）
         ranks_raw.append(rank_raw)
         ranks_filter.append(rank_filter)
@@ -389,6 +398,32 @@ def test(model, history_list, test_list, num_rels, num_nodes, use_cuda, all_ans_
         else:
             print(f"  {rel_names[rel]}: no data")
     print("=" * 70)
+
+    # ----- per-GPU macro Hits@1 -----
+    # 与 xcad_code/xcad_model/src/main.py 完全同一条尺子：全实体 filtered 排名，
+    # 按 r1_suits 正向边的真值 GPU 分组，5 类等权平均。GPU 段起点按数据实际取值判定，
+    # 因此同一份代码可在旧编号(data/xcad)与全局四段编号(data/xcad_v2)上对照。
+    if r1_gpu_ranks:
+        _tails = torch.cat(r1_gpu_tails)
+        _ranks = torch.cat(r1_gpu_ranks)
+        _tmax = int(_tails.max().item())
+        _gb = num_nodes - 6 if _tmax >= num_nodes - 6 else 0
+        _idsp = "GLOBAL 四段编号" if _gb else "LEGACY 局部编号"
+        print(f"[id-space] num_nodes={num_nodes} r1_tail_max={_tmax} -> gpu_base={_gb} -> {_idsp}")
+        _L = ["CPU", "T4", "MISC", "P100", "V100", "V100M32"]
+        _h1, _n = [], []
+        for _k in range(1, 6):
+            _m = (_tails == _gb + _k)
+            _c = int(_m.sum())
+            _h1.append(float((_ranks[_m] == 1).float().mean()) if _c else 0.0)
+            _n.append(_c)
+            print(f"    {_L[_k]:>8}: Hits@1={_h1[-1]:.4f}  (n={_c})")
+        print(f"  Per-GPU Hits@1 Macro (unweighted) = {sum(_h1) / 5:.4f}")
+        if sum(_n) != len(_tails):
+            print(f"  !! GPU 段覆盖不全: 落入 5 类 {sum(_n)}/{len(_tails)}"
+                  f" -> gpu_base={_gb} 判定可能有误, 本行 macro 不可用")
+    else:
+        print("  [r1_suits per-GPU] no data")
 
     return mrr_raw, mrr_filter, mrr_raw_r, mrr_filter_r
 
