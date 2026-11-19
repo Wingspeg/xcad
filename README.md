@@ -61,6 +61,8 @@ pip install -r requirements.txt
 
 All experiments use the default history length `h=6` and report three random seeds (42 / 123 / 2024).
 
+The arm queues, reproducibility gates and diagnostic probes that produced the reported readings are indexed in [`xcad_code/scripts/README.md`](xcad_code/scripts/README.md); they assume the working-tree layout described there.
+
 ### Baseline (RE-GCN backbone)
 
 ```bash
