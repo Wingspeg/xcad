@@ -928,8 +928,9 @@ if __name__ == '__main__':
     # === node-feat: 类型感知异质表征 ===
     parser.add_argument("--node-feat", action="store_true", default=False,
                         help="开启类型感知异质表征: 加载 node_feat_algo/data/compute.npy, 用投影层替代/融合 dynamic_emb")
-    parser.add_argument("--feat-dir", type=str, default="../data/xcad",
-                        help="node_feat_algo.npy / node_feat_data.npy / node_feat_compute.npy 所在目录 (相对 cwd)")
+    parser.add_argument("--feat-dir", type=str, default=None,
+                        help="node_feat_algo.npy / node_feat_data.npy / node_feat_compute.npy 所在目录 "
+                             "(相对 cwd); 不给时取 ../data/<dataset>, 与 -d 指向同一份编号")
     parser.add_argument("--feat-fusion", type=str, default="residual", choices=["residual", "replace"],
                         help="特征注入方式: 'residual' = dynamic_emb + alpha*feat_proj (默认); 'replace' = 直接用 feat_proj")
     parser.add_argument("--feat-scope", type=str, default="all", choices=["all", "algo"],
@@ -1069,6 +1070,10 @@ if __name__ == '__main__':
 
 
     args = parser.parse_args()
+    # --feat-dir 不给时跟着 -d 走: 特征矩阵和边表必须来自同一个编号空间,
+    # 否则换 -d 的臂会静默读到另一份目录里的画像 (发布时的默认值写死了 ../data/xcad)。
+    if args.feat_dir is None:
+        args.feat_dir = "../data/" + args.dataset
     print(args)
     if args.grid_search:
         out_log = '{}.{}.gs'.format(args.dataset, args.encoder+"-"+args.decoder)

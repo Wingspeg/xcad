@@ -210,10 +210,10 @@ def evaluate(X_train, y_train, X_test, y_test, args, split_label):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--feat-path", default="../data/xcad/node_feat_algo.npy",
-                        help="node_feat_algo.npy 路径")
-    parser.add_argument("--data-dir", default="../data/xcad",
-                        help="train/valid/test.txt 所在目录")
+    parser.add_argument("--data-dir", default="../data/xcad_v2",
+                        help="train/valid/test.txt 所在目录 (默认全局四段编号那份)")
+    parser.add_argument("--feat-path", default=None,
+                        help="node_feat_algo.npy 路径 (默认 <data-dir>/node_feat_algo.npy)")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--class-weight", choices=["none", "balanced"], default="none",
                         help="sklearn 拟合时的类别加权。none=不传 class_weight，与加该参数之前的日志逐位等价；"
@@ -227,6 +227,8 @@ def main():
     args = parser.parse_args()
 
     data_dir = os.path.join(os.path.dirname(__file__), args.data_dir)
+    if args.feat_path is None:
+        args.feat_path = os.path.join(args.data_dir, "node_feat_algo.npy")
     feat_path = os.path.join(os.path.dirname(__file__), args.feat_path)
 
     # ── 加载特征 ──

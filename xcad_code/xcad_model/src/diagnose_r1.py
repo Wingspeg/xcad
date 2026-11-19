@@ -2,7 +2,7 @@
 """
 diagnose_r1.py: 分析 checkpoint 对 r1_suits (relation=1) 的预测行为。
 
-用法: python diagnose_r1.py --checkpoint ../models/<checkpoint_name> [--seed 42]
+用法: python diagnose_r1.py --checkpoint ../models/<checkpoint_name> [--data xcad_v2] [--seed 42]
 
 输出: 混淆矩阵, Per-GPU Hits@1, 排名分布, 算法特征差异, 预测分布/熵, score spot-check
 """
@@ -21,8 +21,8 @@ from rgcn.utils import sort_and_rank, filter_score, build_sub_graph
 
 # GPU type 映射: 从 export_to_regcn_format.py 的 gpu_type_pool_ids 得知,
 # 顺序 = ["CPU", "T4", "MISC", "P100", "V100", "V100M32"].
-# 反映在 graph 中 entity ID = local idx (0-based).
-# r1_suits tail 实体 ID 范围: 1-5 (local idx, CPU 无 r1 边)
+# 实体 ID = GPU 段起点 + 这里的 local idx; 段起点按 --data 实际取值判定(见 main),
+# 旧 xcad 是 0, 全局四段编号的 xcad_v2 是 num_nodes-6=124885。CPU(idx 0) 没有 r1 边。
 GPU_TYPE_LABELS = {0: "CPU", 1: "T4", 2: "MISC", 3: "P100", 4: "V100", 5: "V100M32"}
 
 
@@ -42,9 +42,13 @@ def main():
                         help="compat 偏置权重 (None=可学习, 数值=固定)")
     parser.add_argument("--compat-aux-weight", type=float, default=0.5,
                         help="compat 辅助分类 loss 权重")
-    parser.add_argument("--feat-dir", type=str, default="../data/xcad",
-                        help="节点特征矩阵所在目录")
+    parser.add_argument("--data", type=str, default="xcad_v2",
+                        help="图目录名 (../data/<data>); 必须与 checkpoint 的编号空间一致")
+    parser.add_argument("--feat-dir", type=str, default=None,
+                        help="节点特征矩阵所在目录 (默认 ../data/<data>)")
     args = parser.parse_args()
+    if args.feat_dir is None:
+        args.feat_dir = "../data/" + args.data
 
     device = torch.device(f"cuda:{args.gpu}") if torch.cuda.is_available() else torch.device("cpu")
     print(f"[device] {device}")
@@ -53,23 +57,33 @@ def main():
     print(f"[compat] use_compat={args.compat}, compat_lambda={args.compat_lambda}, "
           f"compat_aux_weight={args.compat_aux_weight}")
     print(f"[compat] feat_dir={args.feat_dir}")
+    print(f"[data] ../data/{args.data} —— 编号空间必须与 checkpoint 配套 "
+          f"(main.py 的 [id-space] 行给出训练时用的那份)")
 
     torch.manual_seed(args.seed)
     np.random.seed(args.seed)
 
-    # ── 常量 ──
-    GPU_START = 1  # GPU type entity ID start (r1_suits tail is entities 1-5)
-
     # ── 加载数据 ──
-    data = utils.load_data("xcad")
+    data = utils.load_data(args.data)
     train_list = utils.split_by_time(data.train)
     valid_list = utils.split_by_time(data.valid)
     test_list = utils.split_by_time(data.test)
     num_nodes = data.num_nodes
     num_rels = data.num_rels
 
+    # ── GPU 段起点: 与 main.py 同一套自动识别, 不写死编号 ──
+    # 旧 ../data/xcad 把 GPU 段放在 local id 0..5 (GPU_BASE=0), 新 ../data/xcad_v2
+    # 放在全局四段编号的最后六项 (GPU_BASE=num_nodes-6)。两边的 local idx 都对得上
+    # GPU_TYPE_LABELS, 所以写死任何一份都会让另一份的混淆矩阵和落点统计错位。
+    _r1_tails = [t[2] for _split in (data.train, data.valid, data.test) for t in _split if t[1] == 1]
+    _r1_tail_max = max(_r1_tails) if _r1_tails else None
+    GPU_BASE = num_nodes - 6 if (_r1_tail_max is not None and _r1_tail_max >= num_nodes - 6) else 0
+    GPU_ENT_IDS = [GPU_BASE + i for i in (1, 2, 3, 4, 5)]  # local 0 = CPU, 本图里没有 r1 边
+    print(f"[data] r1_tail_max={_r1_tail_max} -> GPU_BASE={GPU_BASE} "
+          f"({'GLOBAL 四段编号' if GPU_BASE else 'LEGACY 局部编号'}), GPU 实体 ID={GPU_ENT_IDS}")
+
     # ── 加载 entity2id.txt 确认映射 ──
-    e2i_path = os.path.join(os.path.dirname(__file__), "..", "data", "xcad", "entity2id.txt")
+    e2i_path = os.path.join(os.path.dirname(__file__), "..", "data", args.data, "entity2id.txt")
     entity_id2name = {}
     try:
         with open(e2i_path) as f:
@@ -176,9 +190,8 @@ def main():
     num_r1 = len(records)
     print(f"\n{'='*60}")
     print(f"  r1_suits 测试边总数: {num_r1}")
-    print(f"  其中 tail=1(T4)={(records[:,1]==1).sum()}, tail=2(MISC)={(records[:,1]==2).sum()}, "
-          f"tail=3(P100)={(records[:,1]==3).sum()}, tail=4(V100)={(records[:,1]==4).sum()}, "
-          f"tail=5(V100M32)={(records[:,1]==5).sum()}")
+    print(f"  其中 " + ", ".join(
+        f"tail={e}({GPU_TYPE_LABELS[e - GPU_BASE]})={(records[:, 1] == e).sum()}" for e in GPU_ENT_IDS))
     print(f"{'='*60}")
 
     heads      = records[:, 0].astype(int)      # head 算法 id
@@ -186,23 +199,19 @@ def main():
     pred_ent   = records[:, 2].astype(int)      # 预测 top1 实体 id
     rank       = records[:, 3].astype(int)      # filter rank (1-based)
 
-    # ── 0. 确认 entity 2 的 label ──
+    # ── 0. 确认 r1_suits tail 段的实体 label ──
     print(f"\n{'─'*50}")
-    print("0. entity 2 (模型始终预测的实体) 是什么?")
+    print("0. r1_suits 的 tail 段是哪几个实体?")
     print(f"{'─'*50}")
-    ent2_name = entity_id2name.get(2, "?(load failed)")
-    print(f"  全局实体 ID 2: entity2id.txt name = {ent2_name}")
+    print(f"  GPU 段起点 = local id {GPU_BASE}; r1_suits 的 tail 只用其后五个 {GPU_ENT_IDS}")
     print(f"  GPU 类型映射 (local idx)→(GPU type):")
     for eid in sorted(GPU_TYPE_LABELS):
-        n = entity_id2name.get(124885 + eid, "")
-        print(f"    entity {eid} (global {124885+eid}) = {GPU_TYPE_LABELS[eid]:>8}  (name in e2i: {n})")
-    print(f"\n  注意: test.txt 中 r1_suits 的 tail 实体 ID = local idx (0-5),")
-    print(f"        不是全局 GPU entity ID (124885-124890).")
-    print(f"        模型预测的 entity 2 = local idx 2 = {GPU_TYPE_LABELS[2]}")
+        n = entity_id2name.get(GPU_BASE + eid, "")
+        print(f"    idx {eid} (entity {GPU_BASE + eid}) = {GPU_TYPE_LABELS[eid]:>8}  (name in e2i: {n})")
 
     # ── 0b. top1 预测的分布和熵 ──
     top1_counts = Counter(pred_ent.tolist())
-    top5_ents = sum(v for k, v in top1_counts.items() if k in (1,2,3,4,5))
+    top5_ents = sum(v for k, v in top1_counts.items() if k in GPU_ENT_IDS)
     other_ents = num_r1 - top5_ents
     print(f"\n{'─'*50}")
     print("0b. Top1 预测分布 (所有实体):")
@@ -212,8 +221,9 @@ def main():
     for ent_id in sorted(top1_counts.keys()):
         cnt = top1_counts[ent_id]
         p   = cnt / total_f
-        if ent_id in GPU_TYPE_LABELS:
-            label = f"GPU_{ent_id}({GPU_TYPE_LABELS[ent_id]})"
+        _gpu_idx = ent_id - GPU_BASE
+        if _gpu_idx in GPU_TYPE_LABELS:
+            label = f"GPU_{_gpu_idx}({GPU_TYPE_LABELS[_gpu_idx]})"
         else:
             label = f"非GPU实体{ent_id}"
         H += -p * log2(p) if p > 0 else 0
@@ -228,14 +238,14 @@ def main():
     print(f"  H={H:.4f}  (max possible={H_max:.2f}, normalized={H_norm:.4f})")
 
     # GPU 实体 ID 范围
-    gpu_offset = GPU_START
-    real_gpu_local = real_gpu - gpu_offset      # 0-based local GPU id
+    gpu_offset = GPU_BASE
+    real_gpu_local = real_gpu - gpu_offset      # local GPU idx, 与 GPU_TYPE_LABELS 对齐
     pred_local = pred_ent - gpu_offset           # FIX: 必须减 offset!
-    pred_on_gpu = ((pred_ent >= 1) & (pred_ent <= 5)) | ((pred_ent >= 124885) & (pred_ent <= 124890))
+    pred_on_gpu = (pred_ent >= GPU_ENT_IDS[0]) & (pred_ent <= GPU_ENT_IDS[-1])
 
     unique_real_gpus = sorted(set(real_gpu_local))
     n_gpu = len(unique_real_gpus)
-    print(f"\n真实 GPU types: {unique_real_gpus}  (0-based local idx, 原始实体 ID {GPU_START}+local)")
+    print(f"\n真实 GPU types: {unique_real_gpus}  (local idx, 实体 ID = {GPU_BASE}+idx)")
     print(f"  对应 GPU 类型: {', '.join([f'idx{g}={GPU_TYPE_LABELS.get(g,chr(63))}' for g in unique_real_gpus])}")
     print(f"共 {n_gpu} 种 GPU")
 
@@ -256,7 +266,8 @@ def main():
     print(f"\n{'─'*50}")
     print("2. 混淆矩阵 (真实 GPU × 预测 top1 GPU)")
     print(f"   注: 只统计预测 top1 落在 GPU 内的样本. top1 落在 GPU 外: {(~pred_on_gpu).sum()} 条")
-    print(f"   行列标签: 0=CPU, 1=T4, 2=MISC, 3=P100, 4=V100, 5=V100M32")
+    print(f"   行列标签: {', '.join(f'{g}={GPU_TYPE_LABELS[g]}' for g in sorted(GPU_TYPE_LABELS))}"
+          f"  (local idx = 实体 ID - {GPU_BASE}; CPU 无 r1 边, 所以不出现在矩阵里)")
     print(f"{'─'*50}")
 
     gpu_labels_list = [GPU_TYPE_LABELS.get(g, f"g{g}") for g in unique_real_gpus]
@@ -301,7 +312,7 @@ def main():
     print(f"\n{'─'*50}")
     print("5. 算法特征差异 (预测对 vs 预测错)")
     print(f"{'─'*50}")
-    feat_path = os.path.join(os.path.dirname(__file__), "..", "data", "xcad", "node_feat_algo.npy")
+    feat_path = os.path.join(os.path.dirname(__file__), "..", "data", args.data, "node_feat_algo.npy")
     if os.path.exists(feat_path):
         feat_algo = np.load(feat_path)  # [N_ALGO, 13]
         correct_mask = (rank == 1)
@@ -379,7 +390,7 @@ def main():
             sample_ts = torch.LongTensor([[h,r,t] for h,r,t in sample_trips]).to(device)
             batch_score = model.decoder_ob.forward(embedding, r_emb, sample_ts, mode="test")
 
-        gpu_entity_ids = [1, 2, 3, 4, 5]  # GPU type local entity IDs
+        gpu_entity_ids = GPU_ENT_IDS  # 与 --data 的编号空间一致
 
         print(f"   (从 {total_r1} 条 r1 中随机抽取 5 条, 无 filter, score 来自最后一个 test snapshot 的 embedding)")
         for i in range(len(sample_trips)):
@@ -388,9 +399,9 @@ def main():
             scores = batch_score[i].cpu().numpy()
             gpu_scores = {eid: scores[eid] for eid in gpu_entity_ids}
             top1 = scores.argmax()
-            top1_label = GPU_TYPE_LABELS.get(top1, f"实体{top1}")
+            top1_label = GPU_TYPE_LABELS.get(top1 - GPU_BASE, f"实体{top1}")
             rank_this = 1 + (scores > scores[real_tail]).sum()
-            real_label = GPU_TYPE_LABELS.get(real_tail, f"entity_{real_tail}")
+            real_label = GPU_TYPE_LABELS.get(real_tail - GPU_BASE, f"entity_{real_tail}")
 
             print(f"\n   样本 {i+1}: head={head}, real_tail={real_tail}({real_label})")
             print(f"   score 向量 (in 5 GPU entities):")
@@ -401,7 +412,7 @@ def main():
                 if eid == top1:
                     markers.append("← TOP1")
                 marker_str = "  " + ", ".join(markers) if markers else ""
-                print(f"     {GPU_TYPE_LABELS.get(eid,'?'):>8}(eid={eid}): {gpu_scores[eid]:.4f}{marker_str}")
+                print(f"     {GPU_TYPE_LABELS.get(eid - GPU_BASE, '?'):>8}(eid={eid}): {gpu_scores[eid]:.4f}{marker_str}")
             print(f"   top1={top1}({top1_label}), correct rank={rank_this}")
     else:
         print(f"   (r1 边不足 5 条, 跳过)")

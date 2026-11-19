@@ -166,7 +166,7 @@ That stages the seven files the baselines read into `baselines/{CEN,RE-GCN,RETIA
 # still in xcad_code/xcad_model/src
 
 # Frequency-prior diagnosis (load a checkpoint; prints prediction entropy / confusion / per-GPU Hits@1)
-python diagnose_r1.py --checkpoint <path-to-checkpoint>
+python diagnose_r1.py --checkpoint <path-to-checkpoint> --data xcad_v2
 
 # Static-profile learnability reference (algorithm profile only; LR + RF + MLP on the same
 # 13-dim profile and the same test edges). --split-by-algo holds out whole algorithms, so it
@@ -175,7 +175,12 @@ python diagnose_sklearn.py
 python diagnose_sklearn.py --split-by-algo
 ```
 
-Both diagnose scripts default their `--data-dir` / `--feat-dir` to `../data/xcad`; pass the v2 paths explicitly to stay on the same id space as the reported readings.
+Everything above reads the released `xcad_v2` id space by default: `main.py --feat-dir` and both
+diagnose scripts derive their feature path from the dataset flag (`-d xcad_v2` / `--data xcad_v2` /
+`--data-dir ../data/xcad_v2`), so no command needs an extra path argument. Pass the flag explicitly
+to diagnose an arm trained on the legacy `data/xcad` dictionaries — the checkpoint and the graph must
+come from the same numbering, and the arm's own `[id-space]` line says which one it used. The two
+directories hold byte-identical feature matrices, so switching only renumbers entities.
 
 ---
 
