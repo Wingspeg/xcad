@@ -206,7 +206,8 @@ class UnionRGCNLayer(nn.Module):
 
         if self.self_loop:
             masked_index = torch.masked_select(
-                torch.arange(0, g.number_of_nodes(), dtype=torch.long).cuda(),
+                torch.arange(0, g.number_of_nodes(), dtype=torch.long,
+                             device=g.ndata['h'].device),
                 (g.in_degrees(range(g.number_of_nodes())) > 0))
             loop_message = torch.mm(g.ndata['h'], self.evolve_loop_weight)
             loop_message[masked_index, :] = torch.mm(g.ndata['h'], self.loop_weight)[masked_index, :]
