@@ -982,7 +982,7 @@ if __name__ == '__main__':
     # === base 共享表征开关(screening §20 的修法; 只改 head 表征的构成, 输出层/训练目标/超参都不动) ===
     parser.add_argument("--base-emb", action='store_true', default=False,
                         help="head 表征 = dynamic_emb[id] + base_emb[base_of[id]]。"
-                             "用于 head id 大多从未在历史出现的数据集(maas 84.8% 的测试边): "
+                             "用于 head id 大多从未在历史出现的数据集(maas 84.8%% 的测试边): "
                              "没学过的 id 向量至少继承父节点(base 模型)的可训练表征。"
                              "tail 段与无父实体走 pad 索引并被 mask 置 0 => 可打分实体表征逐位不变。")
     parser.add_argument("--base-map", type=str, default=None, metavar="PATH",

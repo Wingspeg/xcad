@@ -220,7 +220,7 @@ def main():
                              "balanced=按 n/(K*c) 加权（无 cap，比模型侧 inv 档 cap5 更强），"
                              "用于核对加权口径与未加权参照读数的差是否只来自类别权重")
     parser.add_argument("--split-by-algo", action="store_true", default=False,
-                        help="按算法 ID 严格切分 (80% 算法→train, 20%→test), "
+                        help="按算法 ID 严格切分 (80%% 算法→train, 20%%→test), "
                              "而非按 tau 切分")
     parser.add_argument("--skip-mlp", action="store_true", default=False,
                         help="只跑 LR+RF（复现两分类器时期的既有日志时用；默认不跳过）")
