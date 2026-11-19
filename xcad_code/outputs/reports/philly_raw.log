@@ -1,0 +1,19 @@
+machine list entries: 552  count vocab=[2, 8]  mem vocab=['12GB', '24GB']
+job records parsed=117,325
+parsed (ip,gpus) pairings=179,828  distinct ips=415  attempts with >1 detail entry=8,027
+ips in log not in machine list: 0
+
+observed distinct indices vs declared GPU count:
+n_obs    2   4    8
+decl               
+2        0   0  238
+8      148  24    5
+
+machines with MORE indices than declared: 238 of 415 (57.35%)
+machines whose max index >= declared count: 238 (57.35%)
+
+by declared count:
+      machines  over  mean_obs
+decl                          
+2          238   238  8.000000
+8          177     0  2.440678

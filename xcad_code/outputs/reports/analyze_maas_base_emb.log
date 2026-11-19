@@ -1,0 +1,16 @@
+~/xcad/xcad_code/.venv/lib/python3.11/site-packages/sklearn/model_selection/_split.py:813: UserWarning: The least populated class in y has only 1 members, which is less than n_splits=5.
+  warnings.warn(
+~/xcad/xcad_code/.venv/lib/python3.11/site-packages/sklearn/model_selection/_split.py:813: UserWarning: The least populated class in y has only 1 members, which is less than n_splits=5.
+  warnings.warn(
+[id-space] n_ents=80287 gpu_base=80257 n_bases=918 pad=918
+[labels] 有历史边的 base=825/918  众数卡型类分布 top5={14: 172, 0: 133, 4: 118, 21: 83, 26: 73}
+[ckpt] maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseemb-seed42  epoch=20
+[Q2] base_emb 真实行 std=0.5458 范数中位=7.5444  |  pad 行 std=0.4723 范数=6.6787  |  dynamic_emb std=0.4750
+[Q1] base 众数类基线=14.0000(0.2085)  trained base_emb 5折 acc=0.1224±0.0241  随机同形状对照 acc=0.1152±0.0184
+
+[Q3] 同一把尺子、同一批行：
+  全部 test 边              n= 121371  base H@1=0.1263  baseemb H@1=0.1483  Δ=+0.0220  只有baseemb对=13597  只有base对=10922  中位排名 5.0->4.0
+  全新 head                n= 102867  base H@1=0.1233  baseemb H@1=0.1510  Δ=+0.0277  只有baseemb对=11806  只有base对= 8957  中位排名 5.0->4.0
+  边在 history(复发层)        n=  17525  base H@1=0.1472  baseemb H@1=0.1364  Δ=-0.0108  只有baseemb对= 1729  只有base对= 1918  中位排名 4.0->5.0
+[占比] 全新 head: |base 项| 中位=12.203  |id 项| 中位=6.656  base 占比=0.637
+[占比] 复发 head: |base 项| 中位=11.398  |id 项| 中位=7.428  base 占比=0.578

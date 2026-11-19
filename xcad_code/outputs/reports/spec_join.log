@@ -1,0 +1,119 @@
+dictionary attributes: ['n_gpus_per_node', 'mem_gib', 'mem_bw_gbs', 'fp32_tflops', 'fp64_tflops', 'fp16_tflops', 'tensor_tflops', 'cuda_cores', 'compute_capability', 'has_tensor_core', 'has_nvlink', 'tdp_w']
+sources:
+   V100-PDF    https://images.nvidia.com/content/technologies/volta/pdf/volta-v100-datasheet.pdf  (retr 2026-11-16)
+   T4-PDF      https://web.archive.org/web/20190905153638/https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/tesla-product-overview/nvidia-tesla-t4-product-brief.pdf (retr 2026-11-16)
+   P100-PAGE   https://web.archive.org/web/20190701194257/https://www.nvidia.com/en-us/about-nvidia/kepler-architecture/  -> Tesla P100 SXM2/PCIe comparison table (retr 2026-11-16)
+   K80-PAGE    https://web.archive.org/web/20180817004716/https://www.nvidia.com/en-us/data-center/tesla-k80/ (retr 2026-11-16)
+   M60-PDF     https://web.archive.org/web/20170329025817/https://www.nvidia.com/content/PDF/maxwell-architecture/NVIDIA-Tesla-M60-Product-Brief.pdf (retr 2026-11-16)
+   K40-PDF     https://web.archive.org/web/20160304045934/http://www.nvidia.com/content/PDF/kepler/nvidia-gpu-boost-tesla-k40-06767-001-v02.pdf (retr 2026-11-16)
+   CC-LIST     https://web.archive.org/web/20200102225936/https://developer.nvidia.com/cuda-gpus (retr 2026-11-16)
+   GRID-VPAGE  https://docs.nvidia.com/grid/latest/grid-vgpu-user-guide/index.html (retr 2026-11-16)
+====================================================================================================
+S1  ali_v2020: per-attribute coverage after the join
+====================================================================================================
+devices=6,829  placement_devices=3,033,232
+label vocabulary (6): ['NVIDIA-LEGACY-MISC', 'NVIDIA-P100', 'NVIDIA-T4', 'NVIDIA-V100', 'NVIDIA-V100-32G', 'UNRESOLVED']
+                    devices  matched  attrs_filled  devices_pct  placements  placements_pct
+gpu_label                                                                                  
+NVIDIA-LEGACY-MISC     2240        0         1.000       32.801     1893444          62.423
+NVIDIA-P100            1674     1674         9.000       24.513      467327          15.407
+NVIDIA-T4               994      994        10.000       14.556      564056          18.596
+NVIDIA-V100             832      832        11.000       12.183       64843           2.138
+NVIDIA-V100-32G        1080     1080        11.000       15.815       43553           1.436
+UNRESOLVED                9        0         1.000        0.132           9           0.000
+
+dictionary reach : devices 67.07%   placements 37.58%
+
+per-attribute coverage over GPU placements (%):
+   n_gpus_per_node       100.00
+   mem_gib                37.58
+   mem_bw_gbs             37.58
+   fp32_tflops            37.58
+   fp64_tflops            18.98
+   fp16_tflops            34.00
+   tensor_tflops           3.57
+   cuda_cores             22.17
+   compute_capability     37.58
+   has_tensor_core        37.58
+   has_nvlink             37.58
+   tdp_w                  22.17
+
+attributes filled per device (mean of 12): 7.07  hist={1: 2249, 9: 1674, 10: 994, 11: 1912}
+====================================================================================================
+S1  philly: per-attribute coverage after the join
+====================================================================================================
+devices=3,918  placement_devices=343,082
+label vocabulary (2): ['PHILLY-TIER-2x12', 'PHILLY-TIER-8x24']
+                  devices  matched  attrs_filled  devices_pct  placements  placements_pct
+gpu_label                                                                                
+PHILLY-TIER-2x12     2070        0         2.000       52.833      267591          77.996
+PHILLY-TIER-8x24     1848        0         2.000       47.167       75491          22.004
+
+dictionary reach : devices 0.00%   placements 0.00%
+
+per-attribute coverage over GPU placements (%):
+   n_gpus_per_node       100.00
+   mem_gib               100.00
+   mem_bw_gbs              0.00
+   fp32_tflops             0.00
+   fp64_tflops             0.00
+   fp16_tflops             0.00
+   tensor_tflops           0.00
+   cuda_cores              0.00
+   compute_capability      0.00
+   has_tensor_core         0.00
+   has_nvlink              0.00
+   tdp_w                   0.00
+
+attributes filled per device (mean of 12): 2.00  hist={2: 3918}
+====================================================================================================
+S2  discriminative power: pairwise distinctness of the vectors
+====================================================================================================
+                    n_gpus_per_node  mem_gib  mem_bw_gbs  fp32_tflops  fp64_tflops  fp16_tflops  tensor_tflops  cuda_cores  compute_capability  has_tensor_core  has_nvlink    tdp_w  attrs_filled
+gpu_label                                                                                                                                                                                         
+NVIDIA-LEGACY-MISC            8.000      NaN         NaN          NaN          NaN          NaN            NaN         NaN                 NaN              NaN         NaN      NaN         1.000
+NVIDIA-P100                   2.000   16.000     732.000        9.300        4.700       18.700            NaN         NaN               6.000            0.000       1.000      NaN         9.000
+NVIDIA-T4                     2.000   16.000     300.000        8.100          NaN       65.000            NaN    2560.000               7.500            1.000       0.000   70.000        10.000
+NVIDIA-V100                   8.000   16.000     900.000       15.700        7.000          NaN        112.000    5120.000               7.000            1.000       1.000  250.000        11.000
+NVIDIA-V100-32G               8.000   32.000     900.000       15.700        7.000          NaN        112.000    5120.000               7.000            1.000       1.000  250.000        11.000
+UNRESOLVED                    2.000      NaN         NaN          NaN          NaN          NaN            NaN         NaN                 NaN              NaN         NaN      NaN         1.000
+
+pairs that are NOT separated by any attribute both labels actually fill:
+   NVIDIA-LEGACY-MISC     vs NVIDIA-V100            shared=1 separating=0
+   NVIDIA-LEGACY-MISC     vs NVIDIA-V100-32G        shared=1 separating=0
+   NVIDIA-P100            vs UNRESOLVED             shared=1 separating=0
+   NVIDIA-T4              vs UNRESOLVED             shared=1 separating=0
+
+4 indistinguishable pairs out of 15
+====================================================================================================
+S2  discriminative power: pairwise distinctness of the vectors
+====================================================================================================
+                  n_gpus_per_node  mem_gib  mem_bw_gbs  fp32_tflops  fp64_tflops  fp16_tflops  tensor_tflops  cuda_cores  compute_capability  has_tensor_core  has_nvlink  tdp_w  attrs_filled
+gpu_label                                                                                                                                                                                     
+PHILLY-TIER-2x12            8.000   12.000         NaN          NaN          NaN          NaN            NaN         NaN                 NaN              NaN         NaN    NaN         2.000
+PHILLY-TIER-8x24            8.000   24.000         NaN          NaN          NaN          NaN            NaN         NaN                 NaN              NaN         NaN    NaN         2.000
+
+pairs that are NOT separated by any attribute both labels actually fill:
+   (none -- every resolvable pair is separated)
+
+0 indistinguishable pairs out of 1
+====================================================================================================
+S3  cross-trace intersection of the attribute space
+====================================================================================================
+attribute                ali%  philly%   ali values / philly values
+n_gpus_per_node        100.00   100.00   [2.0, 8.0] / [8.0]   <- SHARED
+mem_gib                 37.58   100.00   [16.0, 32.0] / [12.0, 24.0]   <- SHARED
+mem_bw_gbs              37.58     0.00   [300.0, 732.0, 900.0] / []
+fp32_tflops             37.58     0.00   [8.1, 9.3, 15.7] / []
+fp64_tflops             18.98     0.00   [4.7, 7.0] / []
+fp16_tflops             34.00     0.00   [18.7, 65.0] / []
+tensor_tflops            3.57     0.00   [112.0] / []
+cuda_cores              22.17     0.00   [2560.0, 5120.0] / []
+compute_capability      37.58     0.00   [6.0, 7.0, 7.5] / []
+has_tensor_core         37.58     0.00   [0.0, 1.0] / []
+has_nvlink              37.58     0.00   [0.0, 1.0] / []
+tdp_w                   22.17     0.00   [70.0, 250.0] / []
+
+shared subspace (2/12 attributes): ['n_gpus_per_node', 'mem_gib']
+   n_gpus_per_node    value overlap = [8.0]   (ali [2.0, 8.0] vs philly [8.0])
+   mem_gib            value overlap = []   (ali [16.0, 32.0] vs philly [12.0, 24.0])

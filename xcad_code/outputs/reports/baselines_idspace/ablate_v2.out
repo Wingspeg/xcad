@@ -1,0 +1,13 @@
+[a1_base] start=15:55:36
+[a1_base] exit=0 done=15:56:04
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-seed42
+[a2_compat] start=15:56:04
+[a2_compat] exit=0 done=15:56:33
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-compat-seed42
+[a3_het] start=15:56:33
+[a3_het] exit=0 done=15:57:02
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-seed42
+[a4_joint] start=15:57:02
+[a4_joint] exit=0 done=15:57:31
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42
+ALL_DONE 15:57:31

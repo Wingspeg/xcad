@@ -1,0 +1,65 @@
+[analyze_xcad_head_prior.py] xcad_v2 rel=1: test 边=11836 复发=1023 (8.64%) 全新=10813 卡型段=[124886, 124887, 124888, 124889, 124890]
+[自检] 闭式查表复现 §28.1 = 0.478033/0.999022/0.428743  OK
+[dump] joint_recheck        n=11836  keys=['compat_gold', 'compat_head', 'compat_pred', 'filt_rank', 'gpu_base', 'heads', 'model_top1', 'seg_gold', 'seg_rank', 'tails']
+[dump] headprior_ts         n=11836  keys=['compat_gold', 'compat_head', 'compat_pred', 'filt_rank', 'gpu_base', 'heads', 'model_top1', 'seg_gold', 'seg_rank', 'tails']
+[dump] headprior_ts_s43     n=11836  keys=['compat_gold', 'compat_head', 'compat_pred', 'filt_rank', 'gpu_base', 'heads', 'model_top1', 'seg_gold', 'seg_rank', 'tails']
+[dump] headprior_static     n=11836  keys=['compat_gold', 'compat_head', 'compat_pred', 'filt_rank', 'gpu_base', 'heads', 'model_top1', 'seg_gold', 'seg_rank', 'tails']
+[dump] headprior_ts_smoke   n=11836  keys=['compat_gold', 'compat_head', 'compat_pred', 'filt_rank', 'gpu_base', 'heads', 'model_top1', 'seg_gold', 'seg_rank', 'tails']
+
+=== Q0 各臂三档 H@1/H@3/H@10/MRR（同一批边、同一把尺子）===
+  arm                  档           n        H@1       H@3      H@10       MRR
+  joint_recheck        all     11836  0.884843 0.976597 0.996114 0.927251
+  joint_recheck        rec      1023  0.697947 0.975562 0.994135 0.811410
+  joint_recheck        novel   10813  0.902525 0.976695 0.996301 0.938210
+  headprior_ts         all     11836  0.885603 0.975498 0.998902 0.928270
+  headprior_ts         rec      1023  0.707722 0.985337 0.997067 0.821870
+  headprior_ts         novel   10813  0.902432 0.974568 0.999075 0.938336
+  headprior_ts_s43     all     11836  0.868452 0.965360 0.999916 0.919077
+  headprior_ts_s43     rec      1023  0.716520 0.958944 1.000000 0.822255
+  headprior_ts_s43     novel   10813  0.882826 0.965967 0.999908 0.928238
+  headprior_static     all     11836  0.871494 0.976343 0.999662 0.922231
+  headprior_static     rec      1023  0.718475 0.977517 0.999022 0.828860
+  headprior_static     novel   10813  0.885971 0.976232 0.999723 0.931065
+  headprior_ts_smoke   all     11836  0.886195 0.965106 0.996789 0.926383
+  headprior_ts_smoke   rec      1023  0.710655 0.982405 0.997067 0.820370
+  headprior_ts_smoke   novel   10813  0.902802 0.963470 0.996763 0.936413
+[回归自检] joint_recheck 三档与已发表逐位相同 0.884843/0.697947/0.902525  OK
+
+=== Q1 §29.2 判线核对（正式臂 = headprior_ts；缺它就用第一个可用臂并标明）===
+  [1 修复线 复发>=0.90] FAIL  headprior_ts 复发层 H@1=0.707722（模型 0.697947 / 查表 0.999022 / RF 0.804496）
+  [2 追平线 复发>=0.997] FAIL  headprior_ts 复发层 H@1=0.707722 —— 过了就等于『基本是那张表』，必须与⑥同报
+  [3 属性线 全体>=0.889659] FAIL  headprior_ts 全体 H@1=0.885603 vs 离线属性 RF 0.889659
+  [4a 不回退(全体)] PASS  0.885603 vs 0.884843-0.01=0.874843
+  [4b 不回退(全新层)] PASS  0.902432 vs 0.902525-0.01=0.892525（该层表恒 0，是接线自检）
+  [5 天花板 全体>=0.901] FAIL  本臂全体 0.885603 vs 现场拼装(复发查表+全新模型) 0.910781（判线 = 拼装-0.01 = 0.900865；ORACLE 查表∪RF = 0.918214，单通道注入到不了，不拿它当线）
+  [7 噪声带(只报数)] PASS  |42-43| 全体=0.017151(线 0.01) 复发=0.008798(线 0.03) 全新=0.019606(线 0.01) —— 差小于线时任何强弱陈述都不许写
+  [8 停止线未触发(复发>=0.804496)] FAIL  headprior_ts 复发层 H@1=0.707722 vs 停止线 0.804496
+
+=== Q2 成色：这一臂是不是『只是把那张表搬过来』（判线⑥）===
+  joint_recheck        top-1 同率 全体=0.454968 复发=0.696970 全新=0.432073  段外 top-1=0 行
+                       复发层 只模型对=1 只查表对=309  表答错的复发边 n=1 上模型 H@1=1.000000  表为 0 的全新边 H@1=0.902525
+                        (模型 ∪ 查表) 命中 = 全体 0.924045 / 复发 1.000000
+  headprior_ts         top-1 同率 全体=0.455813 复发=0.706745 全新=0.432073  段外 top-1=0 行
+                       复发层 只模型对=1 只查表对=299  表答错的复发边 n=1 上模型 H@1=1.000000  表为 0 的全新边 H@1=0.902432
+                        (模型 ∪ 查表) 命中 = 全体 0.923961 / 复发 1.000000
+  headprior_ts_s43     top-1 同率 全体=0.469246 复发=0.715543 全新=0.445945  段外 top-1=0 行
+                       复发层 只模型对=1 只查表对=290  表答错的复发边 n=1 上模型 H@1=1.000000  表为 0 的全新边 H@1=0.882826
+                        (模型 ∪ 查表) 命中 = 全体 0.908162 / 复发 1.000000
+  headprior_static     top-1 同率 全体=0.472372 复发=0.717498 全新=0.449182  段外 top-1=0 行
+                       复发层 只模型对=1 只查表对=288  表答错的复发边 n=1 上模型 H@1=1.000000  表为 0 的全新边 H@1=0.885971
+                        (模型 ∪ 查表) 命中 = 全体 0.908415 / 复发 1.000000
+  headprior_ts_smoke   top-1 同率 全体=0.462065 复发=0.709677 全新=0.438639  段外 top-1=0 行
+                       复发层 只模型对=1 只查表对=296  表答错的复发边 n=1 上模型 H@1=1.000000  表为 0 的全新边 H@1=0.902802
+                        (模型 ∪ 查表) 命中 = 全体 0.920750 / 复发 1.000000
+  [6 成色 同率>=0.95] FAIL  headprior_ts 复发层与闭式查表 top-1 同率=0.706745；同率高=分数由先验主导（要写进正文），同率低但 H@1 高=encoder 有独立贡献
+
+=== Q3 学到的 head_alpha（各臂 checkpoint 里的标量）===
+  注：stat 名里 flag 后缀在 seed 之前（...-compat-headprior-priorts-seed42），按文件名 glob 撞过 3 个同名臂 ⇒ 改成从各臂日志的 'Load Model name' 拿确切路径。
+  joint_recheck        best_epoch=10  （没有先验标量）   <- |0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42
+  headprior_ts         best_epoch=10  head_alpha=1.5510   <- het2-nonf-nodf-compat-headprior-priorts-seed42
+  headprior_ts_s43     best_epoch=20  head_alpha=1.9074   <- het2-nonf-nodf-compat-headprior-priorts-seed43
+  headprior_static     best_epoch=15  head_alpha=1.7864   <- .4-gpu0-het2-nonf-nodf-compat-headprior-seed42
+  headprior_ts_smoke   !! 与 headprior_ts 共用同一个 checkpoint（stat 名只含 flag+seed，不含 n-epochs）⇒ 这一行的 alpha 是后跑那臂的，不作数
+
+[written] ~/xcad/xcad_code/outputs/reports/analyze_xcad_head_prior.json
+[done] 判线阈值全部取 §29.2 预注册值，本脚本不修改任何阈值。

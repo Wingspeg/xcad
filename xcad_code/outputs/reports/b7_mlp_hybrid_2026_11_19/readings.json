@@ -1,0 +1,1052 @@
+{
+ "gates": {
+  "scale": "PASS",
+  "repro": "PASS"
+ },
+ "logs": [
+  {
+   "file": "balanced_s123.log",
+   "path": "~/xcad/outputs/reports/b7_mlp_hybrid_2026_11_19/tau/balanced_s123.log",
+   "clf": {
+    "LogisticRegression": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 64.86,
+       "precision": 91.3,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 71.67,
+       "precision": 63.91,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 29.89,
+       "precision": 16.42,
+       "n": 552
+      },
+      "V100": {
+       "recall": 62.52,
+       "precision": 71.51,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 23.59,
+       "precision": 6.93,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 3575,
+      "MISC": 5883,
+      "P100": 1005,
+      "V100": 709,
+      "V100M32": 664
+     },
+     "acc": 65.41,
+     "macro": 50.51
+    },
+    "RandomForest": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 97.04,
+       "precision": 92.2,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 62.26,
+       "precision": 88.92,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 36.96,
+       "precision": 20.9,
+       "n": 552
+      },
+      "V100": {
+       "recall": 63.26,
+       "precision": 97.53,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 83.59,
+       "precision": 11.94,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 5296,
+      "MISC": 3673,
+      "P100": 976,
+      "V100": 526,
+      "V100M32": 1365
+     },
+     "acc": 76.28,
+     "macro": 68.62
+    },
+    "MLP": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 97.1,
+       "precision": 92.03,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 24.53,
+       "precision": 86.43,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 32.07,
+       "precision": 17.17,
+       "n": 552
+      },
+      "V100": {
+       "recall": 62.15,
+       "precision": 93.68,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 44.1,
+       "precision": 2.48,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 5309,
+      "MISC": 1489,
+      "P100": 1031,
+      "V100": 538,
+      "V100M32": 3469
+     },
+     "acc": 58.63,
+     "macro": 51.99
+    }
+   },
+   "fit": {
+    "class_weight": "balanced",
+    "n_train": 97246,
+    "n_test": 11836
+   },
+   "traces": 0,
+   "split": "tau",
+   "seed": 123
+  },
+  {
+   "file": "balanced_s2024.log",
+   "path": "~/xcad/outputs/reports/b7_mlp_hybrid_2026_11_19/tau/balanced_s2024.log",
+   "clf": {
+    "LogisticRegression": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 64.86,
+       "precision": 91.3,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 71.67,
+       "precision": 63.91,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 29.89,
+       "precision": 16.42,
+       "n": 552
+      },
+      "V100": {
+       "recall": 62.52,
+       "precision": 71.51,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 23.59,
+       "precision": 6.93,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 3575,
+      "MISC": 5883,
+      "P100": 1005,
+      "V100": 709,
+      "V100M32": 664
+     },
+     "acc": 65.41,
+     "macro": 50.51
+    },
+    "RandomForest": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 97.04,
+       "precision": 92.2,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 62.75,
+       "precision": 88.83,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 35.69,
+       "precision": 20.98,
+       "n": 552
+      },
+      "V100": {
+       "recall": 63.26,
+       "precision": 96.98,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 81.54,
+       "precision": 11.64,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 5296,
+      "MISC": 3706,
+      "P100": 939,
+      "V100": 529,
+      "V100M32": 1366
+     },
+     "acc": 76.41,
+     "macro": 68.05
+    },
+    "MLP": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 97.06,
+       "precision": 92.01,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 63.08,
+       "precision": 88.74,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 32.61,
+       "precision": 17.49,
+       "n": 552
+      },
+      "V100": {
+       "recall": 62.02,
+       "precision": 97.48,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 31.79,
+       "precision": 4.94,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 5308,
+      "MISC": 3729,
+      "P100": 1029,
+      "V100": 516,
+      "V100M32": 1254
+     },
+     "acc": 75.52,
+     "macro": 57.31
+    }
+   },
+   "fit": {
+    "class_weight": "balanced",
+    "n_train": 97246,
+    "n_test": 11836
+   },
+   "traces": 0,
+   "split": "tau",
+   "seed": 2024
+  },
+  {
+   "file": "balanced_s42.log",
+   "path": "~/xcad/outputs/reports/b7_mlp_hybrid_2026_11_19/tau/balanced_s42.log",
+   "clf": {
+    "LogisticRegression": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 64.86,
+       "precision": 91.3,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 71.67,
+       "precision": 63.91,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 29.89,
+       "precision": 16.42,
+       "n": 552
+      },
+      "V100": {
+       "recall": 62.52,
+       "precision": 71.51,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 23.59,
+       "precision": 6.93,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 3575,
+      "MISC": 5883,
+      "P100": 1005,
+      "V100": 709,
+      "V100M32": 664
+     },
+     "acc": 65.41,
+     "macro": 50.51
+    },
+    "RandomForest": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 97.04,
+       "precision": 92.2,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 62.2,
+       "precision": 89.91,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 36.78,
+       "precision": 20.99,
+       "n": 552
+      },
+      "V100": {
+       "recall": 63.26,
+       "precision": 89.69,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 81.54,
+       "precision": 11.59,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 5296,
+      "MISC": 3629,
+      "P100": 967,
+      "V100": 572,
+      "V100M32": 1372
+     },
+     "acc": 76.22,
+     "macro": 68.16
+    },
+    "MLP": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 97.06,
+       "precision": 91.94,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 59.15,
+       "precision": 88.35,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 34.42,
+       "precision": 16.2,
+       "n": 552
+      },
+      "V100": {
+       "recall": 62.02,
+       "precision": 97.1,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 32.31,
+       "precision": 4.77,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 5312,
+      "MISC": 3512,
+      "P100": 1173,
+      "V100": 518,
+      "V100M32": 1321
+     },
+     "acc": 73.87,
+     "macro": 56.99
+    }
+   },
+   "fit": {
+    "class_weight": "balanced",
+    "n_train": 97246,
+    "n_test": 11836
+   },
+   "traces": 0,
+   "split": "tau",
+   "seed": 42
+  },
+  {
+   "file": "none_s123.log",
+   "path": "~/xcad/outputs/reports/b7_mlp_hybrid_2026_11_19/tau/none_s123.log",
+   "clf": {
+    "LogisticRegression": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 66.36,
+       "precision": 83.45,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 89.27,
+       "precision": 64.97,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 3.62,
+       "precision": 27.4,
+       "n": 552
+      },
+      "V100": {
+       "recall": 59.93,
+       "precision": 87.73,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 0.0,
+       "precision": null,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 4001,
+      "MISC": 7208,
+      "P100": 73,
+      "V100": 554
+     },
+     "acc": 72.05,
+     "macro": 43.83
+    },
+    "RandomForest": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 97.1,
+       "precision": 92.17,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 95.75,
+       "precision": 88.08,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 11.96,
+       "precision": 30.0,
+       "n": 552
+      },
+      "V100": {
+       "recall": 63.01,
+       "precision": 91.41,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 23.08,
+       "precision": 84.91,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 5301,
+      "MISC": 5703,
+      "P100": 220,
+      "V100": 559,
+      "V100M32": 53
+     },
+     "acc": 88.97,
+     "macro": 58.18
+    },
+    "MLP": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 97.12,
+       "precision": 91.93,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 95.9,
+       "precision": 87.18,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 6.52,
+       "precision": 22.93,
+       "n": 552
+      },
+      "V100": {
+       "recall": 62.02,
+       "precision": 98.05,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 23.59,
+       "precision": 58.23,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 5316,
+      "MISC": 5771,
+      "P100": 157,
+      "V100": 513,
+      "V100M32": 79
+     },
+     "acc": 88.74,
+     "macro": 57.03
+    }
+   },
+   "fit": {
+    "class_weight": "none",
+    "n_train": 97246,
+    "n_test": 11836
+   },
+   "traces": 0,
+   "split": "tau",
+   "seed": 123
+  },
+  {
+   "file": "none_s2024.log",
+   "path": "~/xcad/outputs/reports/b7_mlp_hybrid_2026_11_19/tau/none_s2024.log",
+   "clf": {
+    "LogisticRegression": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 66.36,
+       "precision": 83.45,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 89.27,
+       "precision": 64.97,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 3.62,
+       "precision": 27.4,
+       "n": 552
+      },
+      "V100": {
+       "recall": 59.93,
+       "precision": 87.73,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 0.0,
+       "precision": null,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 4001,
+      "MISC": 7208,
+      "P100": 73,
+      "V100": 554
+     },
+     "acc": 72.05,
+     "macro": 43.83
+    },
+    "RandomForest": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 97.1,
+       "precision": 92.17,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 95.77,
+       "precision": 88.11,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 12.32,
+       "precision": 30.77,
+       "n": 552
+      },
+      "V100": {
+       "recall": 63.01,
+       "precision": 91.41,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 23.08,
+       "precision": 84.91,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 5301,
+      "MISC": 5702,
+      "P100": 221,
+      "V100": 559,
+      "V100M32": 53
+     },
+     "acc": 89.0,
+     "macro": 58.25
+    },
+    "MLP": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 97.12,
+       "precision": 92.03,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 95.92,
+       "precision": 87.09,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 4.53,
+       "precision": 17.86,
+       "n": 552
+      },
+      "V100": {
+       "recall": 62.15,
+       "precision": 96.92,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 26.15,
+       "precision": 57.95,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 5310,
+      "MISC": 5778,
+      "P100": 140,
+      "V100": 520,
+      "V100M32": 88
+     },
+     "acc": 88.7,
+     "macro": 57.17
+    }
+   },
+   "fit": {
+    "class_weight": "none",
+    "n_train": 97246,
+    "n_test": 11836
+   },
+   "traces": 0,
+   "split": "tau",
+   "seed": 2024
+  },
+  {
+   "file": "none_s42.log",
+   "path": "~/xcad/outputs/reports/b7_mlp_hybrid_2026_11_19/tau/none_s42.log",
+   "clf": {
+    "LogisticRegression": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 66.36,
+       "precision": 83.45,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 89.27,
+       "precision": 64.97,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 3.62,
+       "precision": 27.4,
+       "n": 552
+      },
+      "V100": {
+       "recall": 59.93,
+       "precision": 87.73,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 0.0,
+       "precision": null,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 4001,
+      "MISC": 7208,
+      "P100": 73,
+      "V100": 554
+     },
+     "acc": 72.05,
+     "macro": 43.83
+    },
+    "RandomForest": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 97.1,
+       "precision": 92.17,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 95.71,
+       "precision": 88.09,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 12.14,
+       "precision": 30.04,
+       "n": 552
+      },
+      "V100": {
+       "recall": 63.01,
+       "precision": 91.41,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 23.08,
+       "precision": 84.91,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 5301,
+      "MISC": 5700,
+      "P100": 223,
+      "V100": 559,
+      "V100M32": 53
+     },
+     "acc": 88.97,
+     "macro": 58.21
+    },
+    "MLP": {
+     "split": "tau-split",
+     "per": {
+      "T4": {
+       "recall": 97.08,
+       "precision": 91.96,
+       "n": 5032
+      },
+      "MISC": {
+       "recall": 95.04,
+       "precision": 87.61,
+       "n": 5246
+      },
+      "P100": {
+       "recall": 11.96,
+       "precision": 28.95,
+       "n": 552
+      },
+      "V100": {
+       "recall": 62.15,
+       "precision": 95.27,
+       "n": 811
+      },
+      "V100M32": {
+       "recall": 22.56,
+       "precision": 57.89,
+       "n": 195
+      }
+     },
+     "marginal": {
+      "T4": 5312,
+      "MISC": 5691,
+      "P100": 228,
+      "V100": 529,
+      "V100M32": 76
+     },
+     "acc": 88.59,
+     "macro": 57.76
+    }
+   },
+   "fit": {
+    "class_weight": "none",
+    "n_train": 97246,
+    "n_test": 11836
+   },
+   "traces": 0,
+   "split": "tau",
+   "seed": 42
+  },
+  {
+   "file": "balanced_s42.log",
+   "path": "~/xcad/outputs/reports/b7_mlp_hybrid_2026_11_19/algo/balanced_s42.log",
+   "clf": {
+    "LogisticRegression": {
+     "split": "algo-split",
+     "per": {
+      "T4": {
+       "recall": 63.83,
+       "precision": 88.03,
+       "n": 9518
+      },
+      "MISC": {
+       "recall": 59.28,
+       "precision": 73.84,
+       "n": 8556
+      },
+      "P100": {
+       "recall": 53.16,
+       "precision": 27.62,
+       "n": 1695
+      },
+      "V100": {
+       "recall": 65.4,
+       "precision": 39.13,
+       "n": 1575
+      },
+      "V100M32": {
+       "recall": 34.92,
+       "precision": 7.81,
+       "n": 484
+      }
+     },
+     "marginal": {
+      "T4": 6901,
+      "MISC": 6869,
+      "P100": 3262,
+      "V100": 2632,
+      "V100M32": 2164
+     },
+     "acc": 60.69,
+     "macro": 55.32
+    },
+    "RandomForest": {
+     "split": "algo-split",
+     "per": {
+      "T4": {
+       "recall": 96.91,
+       "precision": 94.75,
+       "n": 9518
+      },
+      "MISC": {
+       "recall": 48.74,
+       "precision": 86.62,
+       "n": 8556
+      },
+      "P100": {
+       "recall": 59.29,
+       "precision": 28.17,
+       "n": 1695
+      },
+      "V100": {
+       "recall": 62.48,
+       "precision": 92.13,
+       "n": 1575
+      },
+      "V100M32": {
+       "recall": 59.3,
+       "precision": 10.86,
+       "n": 484
+      }
+     },
+     "marginal": {
+      "T4": 9735,
+      "MISC": 4814,
+      "P100": 3568,
+      "V100": 1068,
+      "V100M32": 2643
+     },
+     "acc": 71.79,
+     "macro": 65.34
+    },
+    "MLP": {
+     "split": "algo-split",
+     "per": {
+      "T4": {
+       "recall": 96.88,
+       "precision": 94.71,
+       "n": 9518
+      },
+      "MISC": {
+       "recall": 49.8,
+       "precision": 87.23,
+       "n": 8556
+      },
+      "P100": {
+       "recall": 58.23,
+       "precision": 29.0,
+       "n": 1695
+      },
+      "V100": {
+       "recall": 61.59,
+       "precision": 96.23,
+       "n": 1575
+      },
+      "V100M32": {
+       "recall": 60.74,
+       "precision": 10.52,
+       "n": 484
+      }
+     },
+     "marginal": {
+      "T4": 9736,
+      "MISC": 4885,
+      "P100": 3404,
+      "V100": 1008,
+      "V100M32": 2795
+     },
+     "acc": 72.08,
+     "macro": 65.45
+    }
+   },
+   "fit": {
+    "class_weight": "balanced",
+    "n_train": 87254,
+    "n_test": 21828
+   },
+   "traces": 0,
+   "split": "algo",
+   "seed": 42
+  },
+  {
+   "file": "none_s42.log",
+   "path": "~/xcad/outputs/reports/b7_mlp_hybrid_2026_11_19/algo/none_s42.log",
+   "clf": {
+    "LogisticRegression": {
+     "split": "algo-split",
+     "per": {
+      "T4": {
+       "recall": 79.06,
+       "precision": 83.5,
+       "n": 9518
+      },
+      "MISC": {
+       "recall": 86.71,
+       "precision": 64.43,
+       "n": 8556
+      },
+      "P100": {
+       "recall": 5.19,
+       "precision": 32.12,
+       "n": 1695
+      },
+      "V100": {
+       "recall": 58.79,
+       "precision": 90.17,
+       "n": 1575
+      },
+      "V100M32": {
+       "recall": 0.0,
+       "precision": null,
+       "n": 484
+      }
+     },
+     "marginal": {
+      "T4": 9012,
+      "MISC": 11515,
+      "P100": 274,
+      "V100": 1027
+     },
+     "acc": 73.11,
+     "macro": 45.95
+    },
+    "RandomForest": {
+     "split": "algo-split",
+     "per": {
+      "T4": {
+       "recall": 97.17,
+       "precision": 94.75,
+       "n": 9518
+      },
+      "MISC": {
+       "recall": 93.75,
+       "precision": 76.59,
+       "n": 8556
+      },
+      "P100": {
+       "recall": 10.86,
+       "precision": 46.46,
+       "n": 1695
+      },
+      "V100": {
+       "recall": 62.41,
+       "precision": 97.62,
+       "n": 1575
+      },
+      "V100M32": {
+       "recall": 29.55,
+       "precision": 74.87,
+       "n": 484
+      }
+     },
+     "marginal": {
+      "T4": 9761,
+      "MISC": 10473,
+      "P100": 396,
+      "V100": 1007,
+      "V100M32": 191
+     },
+     "acc": 85.12,
+     "macro": 58.75
+    },
+    "MLP": {
+     "split": "algo-split",
+     "per": {
+      "T4": {
+       "recall": 97.02,
+       "precision": 94.75,
+       "n": 9518
+      },
+      "MISC": {
+       "recall": 95.29,
+       "precision": 75.86,
+       "n": 8556
+      },
+      "P100": {
+       "recall": 5.01,
+       "precision": 64.39,
+       "n": 1695
+      },
+      "V100": {
+       "recall": 61.84,
+       "precision": 98.58,
+       "n": 1575
+      },
+      "V100M32": {
+       "recall": 30.37,
+       "precision": 68.37,
+       "n": 484
+      }
+     },
+     "marginal": {
+      "T4": 9746,
+      "MISC": 10747,
+      "P100": 132,
+      "V100": 988,
+      "V100M32": 215
+     },
+     "acc": 85.18,
+     "macro": 57.91
+    }
+   },
+   "fit": {
+    "class_weight": "none",
+    "n_train": 87254,
+    "n_test": 21828
+   },
+   "traces": 0,
+   "split": "algo",
+   "seed": 42
+  }
+ ]
+}

@@ -1,0 +1,171 @@
+{
+  "provenance": {
+    "3_compat_only": {
+      "42": "baselines_idspace/ablate_v2/a2_compat.log",
+      "123": "night_2026_11_18/s4_compat_s123.log",
+      "2024": "night_2026_11_18/s4_compat_s2024.log"
+    },
+    "4_joint": {
+      "42": "baselines_idspace/ablate_v2/a4_joint.log",
+      "123": "baselines_idspace/v2_joint_s123.log",
+      "2024": "baselines_idspace/v2_joint_s2024.log"
+    }
+  },
+  "gates": "G1 final-block-only / G2 class n / G3 macro==mean(per-class)",
+  "rows": [
+    {
+      "class": "T4",
+      "arm3_per_seed": [
+        95.89,
+        96.03,
+        96.22
+      ],
+      "arm4_per_seed": [
+        96.84,
+        96.03,
+        96.05
+      ],
+      "arm3_mean": 96.05,
+      "arm4_mean": 96.31,
+      "paired_diff_per_seed": [
+        0.95,
+        0.0,
+        -0.17
+      ],
+      "mean_diff": 0.26,
+      "arm3_own_seed_span": 0.33,
+      "arm4_own_seed_span": 0.81,
+      "max_abs_paired_diff": 0.95,
+      "resolvable_vs_own_span": false
+    },
+    {
+      "class": "MISC",
+      "arm3_per_seed": [
+        99.24,
+        94.49,
+        92.36
+      ],
+      "arm4_per_seed": [
+        97.48,
+        97.73,
+        97.58
+      ],
+      "arm3_mean": 95.36,
+      "arm4_mean": 97.6,
+      "paired_diff_per_seed": [
+        -1.76,
+        3.24,
+        5.22
+      ],
+      "mean_diff": 2.23,
+      "arm3_own_seed_span": 6.88,
+      "arm4_own_seed_span": 0.25,
+      "max_abs_paired_diff": 5.22,
+      "resolvable_vs_own_span": false
+    },
+    {
+      "class": "P100",
+      "arm3_per_seed": [
+        0.0,
+        9.78,
+        0.72
+      ],
+      "arm4_per_seed": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "arm3_mean": 3.5,
+      "arm4_mean": 0.0,
+      "paired_diff_per_seed": [
+        0.0,
+        -9.78,
+        -0.72
+      ],
+      "mean_diff": -3.5,
+      "arm3_own_seed_span": 9.78,
+      "arm4_own_seed_span": 0.0,
+      "max_abs_paired_diff": 9.78,
+      "resolvable_vs_own_span": false
+    },
+    {
+      "class": "V100",
+      "arm3_per_seed": [
+        59.8,
+        60.42,
+        59.8
+      ],
+      "arm4_per_seed": [
+        59.93,
+        59.68,
+        59.8
+      ],
+      "arm3_mean": 60.01,
+      "arm4_mean": 59.8,
+      "paired_diff_per_seed": [
+        0.13,
+        -0.74,
+        0.0
+      ],
+      "mean_diff": -0.2,
+      "arm3_own_seed_span": 0.62,
+      "arm4_own_seed_span": 0.25,
+      "max_abs_paired_diff": 0.74,
+      "resolvable_vs_own_span": false
+    },
+    {
+      "class": "V100M32",
+      "arm3_per_seed": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "arm4_per_seed": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "arm3_mean": 0.0,
+      "arm4_mean": 0.0,
+      "paired_diff_per_seed": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_diff": 0.0,
+      "arm3_own_seed_span": 0.0,
+      "arm4_own_seed_span": 0.0,
+      "max_abs_paired_diff": 0.0,
+      "resolvable_vs_own_span": false
+    },
+    {
+      "class": "macro",
+      "arm3_per_seed": [
+        50.99,
+        52.14,
+        49.82
+      ],
+      "arm4_per_seed": [
+        50.85,
+        50.69,
+        50.69
+      ],
+      "arm3_mean": 50.98,
+      "arm4_mean": 50.74,
+      "paired_diff_per_seed": [
+        -0.14,
+        -1.45,
+        0.87
+      ],
+      "mean_diff": -0.24,
+      "arm3_own_seed_span": 2.32,
+      "arm4_own_seed_span": 0.16,
+      "max_abs_paired_diff": 1.45,
+      "resolvable_vs_own_span": false
+    }
+  ],
+  "noise_reference": {
+    "run_to_run_r1_H1_spread_points": 1.72,
+    "note": "'不大于运行间波动'若以全体 r1 H@1 的 1.72 点为尺子，MISC 的 +2.23 点越线；以同臂自身逐种子跨度为尺子（MISC ③ = 6.88 点）才成立 ⇒ 这一主张只能以后者为尺子。"
+  }
+}

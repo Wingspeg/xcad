@@ -1,0 +1,17 @@
+checkpoint : xcad-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42
+bytes      : 125351502
+total numel: 31330560
+  dynamic_emb        24978200  79.72%
+  other               4858398  15.51%
+  compat_feat         1333930   4.26%
+  msg_basis            160000   0.51%
+  rel_msg_coeff            32   0.00%
+-- hetero tensors --
+  rgcn.layers.0.msg_basis  shape=(2, 200, 200)  numel=80000
+  rgcn.layers.0.rel_msg_coeff  shape=(8, 2)  numel=16
+  rgcn.layers.1.msg_basis  shape=(2, 200, 200)  numel=80000
+  rgcn.layers.1.rel_msg_coeff  shape=(8, 2)  numel=16
+layers with hetero basis : ['0', '1']
+hetero extra total       : 160032
+per-layer hetero extra   : 80016
+GATES      : PASS

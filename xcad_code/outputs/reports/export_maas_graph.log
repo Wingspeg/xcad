@@ -1,0 +1,157 @@
+{
+ "built_utc": "2026-11-16T16:32:01.844756+00:00",
+ "shards_glob": "~/xcad/datasets/maas/instance_daily/part_[0-5].parquet",
+ "out_dir": "~/xcad/xcad_code/xcad_model/data/maas",
+ "relation": "gpu_alloc",
+ "rel_id": 0,
+ "head": "model_id",
+ "tail": "gpu_type",
+ "history_snaps": 20,
+ "test_frac": 0.2,
+ "valid_frac": 0.1,
+ "shards": [
+  "part_0.parquet",
+  "part_1.parquet",
+  "part_2.parquet",
+  "part_3.parquet",
+  "part_4.parquet",
+  "part_5.parquet"
+ ],
+ "raw_rows": 13736375,
+ "raw_days": 65,
+ "raw_day_range": [
+  2,
+  175
+ ],
+ "unknown_gpu_type_share": 0.000355,
+ "dropped_blank_name_rows": 124,
+ "blank_model_id_rows": 70,
+ "blank_gpu_type_rows": 54,
+ "edges_after_dedup": 583296,
+ "snapshots_used": 65,
+ "heads": 80257,
+ "tails": 30,
+ "edges_per_snapshot": {
+  "min": 4551,
+  "median": 8919,
+  "max": 14875
+ },
+ "head_day_multi_type_frac": 0.5426,
+ "head_day_max_types": 25,
+ "head_distinct_days": {
+  "eq1": 0.9187,
+  "ge2": 0.0813,
+  "ge3": 0.062,
+  "max": 65
+ },
+ "heads_changing_card_type_over_time": 0.8434,
+ "split_cutpoints": {
+  "train_tau_max": 47,
+  "valid": [
+   48,
+   53
+  ],
+  "test": [
+   54,
+   65
+  ]
+ },
+ "train_edges": 394274,
+ "train_edge_frac": 0.6759,
+ "train_snapshots": 47,
+ "valid_edges": 67651,
+ "valid_edge_frac": 0.116,
+ "valid_snapshots": 6,
+ "test_edges": 121371,
+ "test_edge_frac": 0.2081,
+ "test_snapshots": 12,
+ "n_head_entities": 80257,
+ "n_gpu_entities": 30,
+ "n_entities": 80287,
+ "gpu_segment": [
+  80257,
+  80286
+ ],
+ "heads_never_in_train": 28355,
+ "file_train.txt_rows": 394274,
+ "file_valid.txt_rows": 67651,
+ "file_test.txt_rows": 121371,
+ "fleet_channel_head_coverage": 0.1525,
+ "baseline_strata_sizes": {
+  "all": 121371,
+  "head_seen_in_history": 18504,
+  "head_recurs_ge2_snaps": 17990,
+  "head_NEVER_in_history": 102867,
+  "edge_recurs_in_history": 17525,
+  "edge_NOT_in_history": 103846
+ },
+ "cohort_channel_separation": {
+  "cohort_edges_edge_recurs": 17525,
+  "cohort_edges_both_channels_defined": 17525,
+  "agreement_memory_vs_profile": 0.524451,
+  "lookup_memory_H@1_on_cohort": 0.524108,
+  "lookup_profile_H@1_on_cohort": 0.511213,
+  "only_memory_right": 1616,
+  "only_profile_right": 1390,
+  "v2020_reference_agreement": 0.999747
+ },
+ "test_head_coverage": {
+  "heads_in_test": 21551,
+  "test_edges": 121371
+ },
+ "task_caveat": "maas is an inference-serving trace: an edge means 'this model variant was served on this card type on this day', decided by capacity planning / serving orchestration rather than a per-job scheduler.  (model, day) cells are multi-valued in card type on 54.3% of cells (max 25 types in one day), so the task is multi-label and every number is a filtered rank against the head's other answers.  gpu_type is an anonymised id, so real hardware specifications cannot be cited from this dataset."
+}
+
+============================================================================================
+CLOSED-FORM CHANNELS  (filtered, forward edges, random tie-break, n_entities=80287, n_tails=30)
+============================================================================================
+
+  uniform
+    all                      n=  121371  MRR=0.161495  H@1=0.0426  H@3=0.1313  H@10=0.4376
+    head_seen_in_history     n=   18504  MRR=0.155660  H@1=0.0403  H@3=0.1274  H@10=0.4200
+    head_recurs_ge2_snaps    n=   17990  MRR=0.156142  H@1=0.0404  H@3=0.1278  H@10=0.4220
+    head_NEVER_in_history    n=  102867  MRR=0.162544  H@1=0.0431  H@3=0.1320  H@10=0.4408
+    edge_recurs_in_history   n=   17525  MRR=0.156329  H@1=0.0407  H@3=0.1281  H@10=0.4225
+    edge_NOT_in_history      n=  103846  MRR=0.162366  H@1=0.0429  H@3=0.1319  H@10=0.4402
+
+  tail_prior(history)
+    all                      n=  121371  MRR=0.352898  H@1=0.1679  H@3=0.3988  H@10=0.8671
+    head_seen_in_history     n=   18504  MRR=0.392514  H@1=0.1832  H@3=0.4934  H@10=0.8839
+    head_recurs_ge2_snaps    n=   17990  MRR=0.395136  H@1=0.1865  H@3=0.4957  H@10=0.8832
+    head_NEVER_in_history    n=  102867  MRR=0.345771  H@1=0.1651  H@3=0.3818  H@10=0.8640
+    edge_recurs_in_history   n=   17525  MRR=0.399149  H@1=0.1896  H@3=0.5043  H@10=0.8866
+    edge_NOT_in_history      n=  103846  MRR=0.345092  H@1=0.1642  H@3=0.3810  H@10=0.8638
+
+  entity_memory(head,tail)
+    all                      n=  121371  MRR=0.122916  H@1=0.1102  H@3=0.1336  H@10=0.1437
+    head_seen_in_history     n=   18504  MRR=0.805459  H@1=0.7227  H@3=0.8759  H@10=0.9421
+    head_recurs_ge2_snaps    n=   17990  MRR=0.807394  H@1=0.7228  H@3=0.8794  H@10=0.9473
+    head_NEVER_in_history    n=  102867  MRR=0.000138  H@1=0.0000  H@3=0.0000  H@10=0.0001
+    edge_recurs_in_history   n=   17525  MRR=0.850448  H@1=0.7631  H@3=0.9248  H@10=0.9947
+    edge_NOT_in_history      n=  103846  MRR=0.000138  H@1=0.0000  H@3=0.0000  H@10=0.0001
+
+  memory_last20_snaps
+    all                      n=  121371  MRR=0.125022  H@1=0.1142  H@3=0.1342  H@10=0.1427
+    head_seen_in_history     n=   18504  MRR=0.819272  H@1=0.7489  H@3=0.8798  H@10=0.9353
+    head_recurs_ge2_snaps    n=   17990  MRR=0.821602  H@1=0.7498  H@3=0.8834  H@10=0.9403
+    head_NEVER_in_history    n=  102867  MRR=0.000138  H@1=0.0000  H@3=0.0000  H@10=0.0001
+    edge_recurs_in_history   n=   17525  MRR=0.865033  H@1=0.7908  H@3=0.9290  H@10=0.9875
+    edge_NOT_in_history      n=  103846  MRR=0.000138  H@1=0.0000  H@3=0.0000  H@10=0.0001
+
+  memory_last1_snapshot
+    all                      n=  121371  MRR=0.109872  H@1=0.1002  H@3=0.1182  H@10=0.1259
+    head_seen_in_history     n=   18504  MRR=0.719904  H@1=0.6569  H@3=0.7750  H@10=0.8253
+    head_recurs_ge2_snaps    n=   17990  MRR=0.719396  H@1=0.6551  H@3=0.7755  H@10=0.8272
+    head_NEVER_in_history    n=  102867  MRR=0.000138  H@1=0.0000  H@3=0.0000  H@10=0.0001
+    edge_recurs_in_history   n=   17525  MRR=0.760114  H@1=0.6936  H@3=0.8183  H@10=0.8714
+    edge_NOT_in_history      n=  103846  MRR=0.000138  H@1=0.0000  H@3=0.0000  H@10=0.0001
+
+  fleet_prior(head's clusters)
+    all                      n=  121371  MRR=0.067385  H@1=0.0508  H@3=0.0797  H@10=0.0992
+    head_seen_in_history     n=   18504  MRR=0.441225  H@1=0.3331  H@3=0.5228  H@10=0.6506
+    head_recurs_ge2_snaps    n=   17990  MRR=0.444329  H@1=0.3333  H@3=0.5281  H@10=0.6594
+    head_NEVER_in_history    n=  102867  MRR=0.000138  H@1=0.0000  H@3=0.0000  H@10=0.0001
+    edge_recurs_in_history   n=   17525  MRR=0.459616  H@1=0.3473  H@3=0.5443  H@10=0.6767
+    edge_NOT_in_history      n=  103846  MRR=0.001193  H@1=0.0007  H@3=0.0013  H@10=0.0018
+
+wrote ~/xcad/xcad_code/xcad_model/data/maas

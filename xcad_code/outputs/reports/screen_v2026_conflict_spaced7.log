@@ -1,0 +1,17 @@
+window: 7 snapshots  (0, 0) .. (180, 0)
+edges/snapshot: [8933, 9544, 9179, 10382, 10122, 10336, 9333]
+
+cut    test_e   rec>=2  span>=2     rec% |     MEM    PROF    both |      M!P      P!M    M!P+w    P!M+w
+1        9544        0        0     0.0 | 0.0000 0.0000 0.0000 |        0        0        0        0
+2        9179     2560     2560    27.9 | 0.9988 0.4434 0.4434 |     1425     1422     1422        0
+3       10382     2864     2864    27.6 | 0.9997 0.4986 0.4986 |     1435     1435     1435        0
+4       10122     3125     3125    30.9 | 0.9997 0.4029 0.4029 |     1865     1865     1865        0
+5       10336     3820     3820    37.0 | 0.9974 0.5510 0.5510 |     1705     1705     1705        0
+6        9333     3722     3722    39.9 | 0.9962 0.4742 0.4737 |     1948     1948     1945        2
+
+window totals: recurrent edges=16091  MEM right=16062 (0.9982)  PROF right=7692 (0.4780)
+disagreement cells: MEM!=PROF on 8378 edges (MEM correct 8372, PROF correct 2)
+
+heads with >=2 distinct GPU types over the window (true migration): 28 / 40636 = 0.07%
+test edges belonging to those heads: 1168114
+distinct-GPU-type count histogram: [(1, 40608), (2, 25), (3, 2), (5, 1)]

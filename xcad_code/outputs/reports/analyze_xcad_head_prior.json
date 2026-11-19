@@ -1,0 +1,289 @@
+{
+  "dataset": "xcad_v2",
+  "rel": 1,
+  "gpu_base": 124886,
+  "n_test": 11836,
+  "reference": {
+    "published": {
+      "all": 0.884843,
+      "rec": 0.697947,
+      "novel": 0.902525
+    },
+    "lookup": {
+      "all": 0.478033,
+      "rec": 0.999022,
+      "novel": 0.428743
+    },
+    "rf_attr": {
+      "all": 0.889659,
+      "rec": 0.804496,
+      "novel": 0.897716
+    },
+    "oracle": {
+      "all": 0.918214,
+      "rec": 1.0,
+      "novel": 0.91057
+    }
+  },
+  "lines_thresholds": {
+    "fix": 0.9,
+    "tie": 0.997,
+    "attr": 0.889659,
+    "hold_all": 0.874843,
+    "hold_novel": 0.892525,
+    "ceil": 0.900865,
+    "agree": 0.95,
+    "stop": 0.804496,
+    "noise_rec": 0.03,
+    "noise_big": 0.01
+  },
+  "arms": {
+    "joint_recheck": {
+      "all": {
+        "n": 11836,
+        "mrr": 0.9272505210031448,
+        "h1": 0.8848428523149713,
+        "h3": 0.9765968232510983,
+        "h10": 0.9961135518756337
+      },
+      "rec": {
+        "n": 1023,
+        "mrr": 0.8114096516891066,
+        "h1": 0.6979472140762464,
+        "h3": 0.9755620723362659,
+        "h10": 0.9941348973607038
+      },
+      "novel": {
+        "n": 10813,
+        "mrr": 0.9382100335628655,
+        "h1": 0.9025247387404051,
+        "h3": 0.9766947193193378,
+        "h10": 0.9963007490983076
+      }
+    },
+    "headprior_ts": {
+      "all": {
+        "n": 11836,
+        "mrr": 0.9282695125920828,
+        "h1": 0.8856032443393038,
+        "h3": 0.9754984792159513,
+        "h10": 0.998901655964853
+      },
+      "rec": {
+        "n": 1023,
+        "mrr": 0.8218697236292544,
+        "h1": 0.70772238514174,
+        "h3": 0.9853372434017595,
+        "h10": 0.9970674486803519
+      },
+      "novel": {
+        "n": 10813,
+        "mrr": 0.9383358201948735,
+        "h1": 0.9024322574678627,
+        "h3": 0.9745676500508647,
+        "h10": 0.9990751872745769
+      }
+    },
+    "headprior_ts_s43": {
+      "all": {
+        "n": 11836,
+        "mrr": 0.9190773918978438,
+        "h1": 0.8684521797904697,
+        "h3": 0.9653599188915174,
+        "h10": 0.9999155119972963
+      },
+      "rec": {
+        "n": 1023,
+        "mrr": 0.822254806125774,
+        "h1": 0.7165200391006843,
+        "h3": 0.9589442815249267,
+        "h10": 1.0
+      },
+      "novel": {
+        "n": 10813,
+        "mrr": 0.9282376161875715,
+        "h1": 0.882826227688893,
+        "h3": 0.9659668917044298,
+        "h10": 0.9999075187274576
+      }
+    },
+    "headprior_static": {
+      "all": {
+        "n": 11836,
+        "mrr": 0.9222312874346233,
+        "h1": 0.8714937478878,
+        "h3": 0.9763433592429875,
+        "h10": 0.9996620479891856
+      },
+      "rec": {
+        "n": 1023,
+        "mrr": 0.8288604520276075,
+        "h1": 0.718475073313783,
+        "h3": 0.9775171065493646,
+        "h10": 0.9990224828934506
+      },
+      "novel": {
+        "n": 10813,
+        "mrr": 0.9310649473459688,
+        "h1": 0.8859705909553316,
+        "h3": 0.9762323129566263,
+        "h10": 0.999722556182373
+      }
+    },
+    "headprior_ts_smoke": {
+      "all": {
+        "n": 11836,
+        "mrr": 0.9263832113416303,
+        "h1": 0.8861946603582291,
+        "h3": 0.9651064548834065,
+        "h10": 0.9967894558972626
+      },
+      "rec": {
+        "n": 1023,
+        "mrr": 0.8203696065353301,
+        "h1": 0.7106549364613881,
+        "h3": 0.9824046920821115,
+        "h10": 0.9970674486803519
+      },
+      "novel": {
+        "n": 10813,
+        "mrr": 0.9364129827017379,
+        "h1": 0.902802182558032,
+        "h3": 0.9634698973457875,
+        "h10": 0.9967631554610191
+      }
+    }
+  },
+  "splice_manual_h1": 0.9107806691449815,
+  "seed_diff": {
+    "all": 0.017151064548834083,
+    "rec": 0.008797653958944274,
+    "novel": 0.019606029778969747
+  },
+  "lines": {
+    "1 修复线 复发>=0.90": {
+      "pass": false,
+      "detail": "headprior_ts 复发层 H@1=0.707722（模型 0.697947 / 查表 0.999022 / RF 0.804496）"
+    },
+    "2 追平线 复发>=0.997": {
+      "pass": false,
+      "detail": "headprior_ts 复发层 H@1=0.707722 —— 过了就等于『基本是那张表』，必须与⑥同报"
+    },
+    "3 属性线 全体>=0.889659": {
+      "pass": false,
+      "detail": "headprior_ts 全体 H@1=0.885603 vs 离线属性 RF 0.889659"
+    },
+    "4a 不回退(全体)": {
+      "pass": true,
+      "detail": "0.885603 vs 0.884843-0.01=0.874843"
+    },
+    "4b 不回退(全新层)": {
+      "pass": true,
+      "detail": "0.902432 vs 0.902525-0.01=0.892525（该层表恒 0，是接线自检）"
+    },
+    "5 天花板 全体>=0.901": {
+      "pass": false,
+      "detail": "本臂全体 0.885603 vs 现场拼装(复发查表+全新模型) 0.910781（判线 = 拼装-0.01 = 0.900865；ORACLE 查表∪RF = 0.918214，单通道注入到不了，不拿它当线）"
+    },
+    "7 噪声带(只报数)": {
+      "pass": true,
+      "detail": "|42-43| 全体=0.017151(线 0.01) 复发=0.008798(线 0.03) 全新=0.019606(线 0.01) —— 差小于线时任何强弱陈述都不许写"
+    },
+    "8 停止线未触发(复发>=0.804496)": {
+      "pass": false,
+      "detail": "headprior_ts 复发层 H@1=0.707722 vs 停止线 0.804496"
+    },
+    "6 成色 同率>=0.95": {
+      "pass": false,
+      "detail": "headprior_ts 复发层与闭式查表 top-1 同率=0.706745；同率高=分数由先验主导（要写进正文），同率低但 H@1 高=encoder 有独立贡献"
+    }
+  },
+  "mechanism": {
+    "joint_recheck": {
+      "top1_agree_all": 0.45496789455897263,
+      "top1_agree_rec": 0.696969696969697,
+      "top1_agree_novel": 0.43207250531767316,
+      "top1_outside_segment_rows": 0,
+      "only_model_right_rec": 1,
+      "only_table_right_rec": 309,
+      "n_table_wrong_rec": 1,
+      "model_h1_where_table_wrong_rec": 1.0,
+      "model_h1_where_table_zero_novel": 0.9025247387404051,
+      "oracle_model_or_table_all": 0.9240452855694491,
+      "oracle_model_or_table_rec": 1.0
+    },
+    "headprior_ts": {
+      "top1_agree_all": 0.4558127745860088,
+      "top1_agree_rec": 0.7067448680351907,
+      "top1_agree_novel": 0.43207250531767316,
+      "top1_outside_segment_rows": 0,
+      "only_model_right_rec": 1,
+      "only_table_right_rec": 299,
+      "n_table_wrong_rec": 1,
+      "model_h1_where_table_wrong_rec": 1.0,
+      "model_h1_where_table_zero_novel": 0.9024322574678627,
+      "oracle_model_or_table_all": 0.9239607975667455,
+      "oracle_model_or_table_rec": 1.0
+    },
+    "headprior_ts_s43": {
+      "top1_agree_all": 0.46924636701588374,
+      "top1_agree_rec": 0.7155425219941349,
+      "top1_agree_novel": 0.4459446961990197,
+      "top1_outside_segment_rows": 0,
+      "only_model_right_rec": 1,
+      "only_table_right_rec": 290,
+      "n_table_wrong_rec": 1,
+      "model_h1_where_table_wrong_rec": 1.0,
+      "model_h1_where_table_zero_novel": 0.882826227688893,
+      "oracle_model_or_table_all": 0.9081615410611693,
+      "oracle_model_or_table_rec": 1.0
+    },
+    "headprior_static": {
+      "top1_agree_all": 0.47237242311591754,
+      "top1_agree_rec": 0.7174975562072337,
+      "top1_agree_novel": 0.44918154073800054,
+      "top1_outside_segment_rows": 0,
+      "only_model_right_rec": 1,
+      "only_table_right_rec": 288,
+      "n_table_wrong_rec": 1,
+      "model_h1_where_table_wrong_rec": 1.0,
+      "model_h1_where_table_zero_novel": 0.8859705909553316,
+      "oracle_model_or_table_all": 0.9084150050692802,
+      "oracle_model_or_table_rec": 1.0
+    },
+    "headprior_ts_smoke": {
+      "top1_agree_all": 0.4620648867860764,
+      "top1_agree_rec": 0.7096774193548387,
+      "top1_agree_novel": 0.4386386756681772,
+      "top1_outside_segment_rows": 0,
+      "only_model_right_rec": 1,
+      "only_table_right_rec": 296,
+      "n_table_wrong_rec": 1,
+      "model_h1_where_table_wrong_rec": 1.0,
+      "model_h1_where_table_zero_novel": 0.902802182558032,
+      "oracle_model_or_table_all": 0.9207502534640081,
+      "oracle_model_or_table_rec": 1.0
+    }
+  },
+  "alpha": {
+    "joint_recheck": {
+      "_best_epoch": 10,
+      "_checkpoint": "xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42"
+    },
+    "headprior_ts": {
+      "head_alpha": 1.5510306358337402,
+      "_best_epoch": 10,
+      "_checkpoint": "xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-headprior-priorts-seed42"
+    },
+    "headprior_ts_s43": {
+      "head_alpha": 1.9073678255081177,
+      "_best_epoch": 20,
+      "_checkpoint": "xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-headprior-priorts-seed43"
+    },
+    "headprior_static": {
+      "head_alpha": 1.7863637208938599,
+      "_best_epoch": 15,
+      "_checkpoint": "xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-headprior-seed42"
+    }
+  }
+}

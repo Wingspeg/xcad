@@ -1,0 +1,26 @@
+{
+  "n_ents": 80287,
+  "head_lo": 0,
+  "head_hi": 80257,
+  "n_bases": 918,
+  "n_bases_in_raw": 918,
+  "pad_index": 918,
+  "n_heads_mapped": 80257,
+  "n_heads_padded": 0,
+  "n_heads_hit_after_strip_prefix": 0,
+  "head_base_coverage": 1.0,
+  "n_models_multi_base_collapsed": 1935,
+  "multi_base_share": 0.02411,
+  "model_id_to_base": "modal base over history (count desc, then lexicographic)",
+  "sources": {
+    "entity2id": "~/xcad/xcad_code/xcad_model/data/maas/entity2id.txt",
+    "shards": [
+      "part_0.parquet",
+      "part_1.parquet",
+      "part_2.parquet",
+      "part_3.parquet",
+      "part_4.parquet",
+      "part_5.parquet"
+    ]
+  }
+}

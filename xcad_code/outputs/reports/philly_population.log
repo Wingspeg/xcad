@@ -1,0 +1,21 @@
+device rows 3918  machines 552  carrying placements 415
+count dist ALL    : {2: 83, 8: 469}
+count dist USED   : {8: 415}
+count dist UNUSED : {2: 83, 8: 54}
+
+tier dist USED    : {'PHILLY-TIER-2x12': 238, 'PHILLY-TIER-8x24': 177}
+tier dist UNUSED  : {'PHILLY-TIER-2x12': 83, 'PHILLY-TIER-8x24': 54}
+
+evidence values   : {'declared_only': 1582, 'observed_only': 1428, 'declared+observed': 908}
+evidence by tier  :
+gpu_label         evidence         
+PHILLY-TIER-2x12  declared+observed     476
+                  declared_only         166
+                  observed_only        1428
+PHILLY-TIER-8x24  declared+observed     432
+                  declared_only        1416
+
+USED machines, tier x device-count:
+tier              n
+PHILLY-TIER-2x12  8    238
+PHILLY-TIER-8x24  8    177

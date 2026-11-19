@@ -1,0 +1,11 @@
+ls: cannot access '~/xcad/xcad_code/.venv/lib/python3.10/site-packages/nvidia/*/lib': No such file or directory
+[diag_base_v2] start=15:51:34
+[diag_base_v2] exit=0 done=15:52:03
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-seed42
+[diag_base_legacy] start=15:52:03
+[diag_base_legacy] exit=0 done=15:52:31
+Sanity Check: stat name : ../models/xcad-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-seed42
+[diag_joint_v2] start=15:52:32
+[diag_joint_v2] exit=0 done=15:53:01
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42
+ALL_DONE 15:53:01

@@ -1,0 +1,3 @@
+[basefeat] start=04:11:39
+[basefeat] exit=0 done=04:20:21
+[id-space] num_nodes=80287 r1_tail_max=None -> gpu_base=0 (LEGACY 局部编号)

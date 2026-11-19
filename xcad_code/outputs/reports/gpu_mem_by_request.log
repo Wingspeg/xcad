@@ -1,0 +1,41 @@
+task rows=1,261,050  whole-GPU-per-instance rows usable=403,184 (32.0%)  n_gpus distribution={1.0: 376442, 2.0: 14524, 4.0: 4523, 5.0: 4135, 8.0: 2055, 3.0: 1049, 6.0: 120, 1.5: 89}
+sensor rows=3,033,232  joined to a whole-GPU request=243,663 (8.0%)  devices covered=6,583
+
+== per-device lower bound on memory capacity (GB), by declared gpu_type ==
+          devices    p10    p50     p90     p99     max  ge_4G  ge_6G  ge_8G  ge_10G  ge_11G  ge_12G  ge_14G  ge_16G  ge_20G  ge_24G  ge_32G
+gpu_type                                                                                                                                    
+MISC         2230  10.58  10.65   10.89   18.90   61.70   2229   2229   2228    2187      62      62      62      60      22      16      16
+P100         1485   9.25  15.33   15.40   15.87   16.79   1442   1434   1428    1290    1244    1152    1004       2       0       0       0
+T4            985   4.26   8.28   14.32   14.68   28.75    908    665    611     361     276     257     223       2       2       2       0
+V100          830   5.07  15.11   30.15   60.52   61.27    768    741    723     639     617     590     496     117     117     111      23
+V100M32      1053  12.83  88.18  202.76  243.65  249.36   1046   1040   1032     968     965     961     935     901     696     653     556
+
+== control: does the estimator respect the catalogue capacity? ==
+  P100      catalogue 16 GB   p50= 15.33 p90= 15.40 p99= 15.87 max= 16.79  above catalogue: 2/1485
+  T4        catalogue 16 GB   p50=  8.28 p90= 14.32 p99= 14.68 max= 28.75  above catalogue: 2/985
+  V100      catalogue 16 GB   p50= 15.11 p90= 30.15 p99= 60.52 max= 61.27  above catalogue: 117/830
+  V100M32   catalogue 32 GB   p50= 88.18 p90=202.76 p99=243.65 max=249.36  above catalogue: 556/1053
+
+== MISC bucket: per-machine envelope ==
+count    279.00
+mean      13.96
+std        9.46
+min        9.06
+25%       10.86
+50%       10.89
+75%       10.91
+max       61.70
+
+histogram of per-machine envelope (GB):
+max
+(0.0, 6.0]                0
+(6.0, 8.0]                0
+(8.0, 10.0]               1
+(10.0, 12.0]            224
+(12.0, 16.0]              2
+(16.0, 24.0]             36
+(24.0, 32.0]              0
+(32.0, 1000000000.0]     16
+
+MISC machines with an envelope above 12 GB (rules out K40m/K80 per-GPU): 54/279
+MISC machines with an envelope above 8 GB  (rules out M60 per-GPU):        279/279

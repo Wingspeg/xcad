@@ -1,0 +1,91 @@
+[id-space] n_ents=124891 rel=1 tail 段=[124886,124890] n_types=5 → prior_lo=124886 prior_n=5
+[splits] train: n=84646 ts=[1,49] 唯一=49  valid: n=12600 ts=[50,55] 唯一=6  test: n=11836 ts=[56,61] 唯一=6
+[edges] history(rel1)=97246  test(rel1)=11836  T=62
+[static] 全局类计数 {124886: 43396, 124887: 36880, 124888: 7777, 124889: 7060, 124890: 2133} -> 众数列=0
+
+[availability] 两口径对照（§28 探针：fit 时序 0.0835 / test 0.0864 / 静态捷径率 1.0000）
+   集合     n        静态可用率  时序可用率  静态命中gold  时序命中gold(仅可用行)  自泄漏行
+   train       84646   1.0000      0.0839      1.0000        1.0000              0
+   valid       12600   1.0000      0.0810      1.0000        1.0000              0
+   test        11836   0.0864      0.0864      0.4780        0.9990              0
+   fit(=train+valid)    97246   1.0000      0.0835      1.0000        1.0000              0
+   >>> 可用率 fit - test：静态 1.0000-0.0864=+0.9136（§25 maas 是 +0.8475）   时序 -0.0029（§28 探针 −0.0029）
+
+[lookup] 查表 H@1 实测=0.478033/0.999022/0.428743  ref(§2.4)=0.478033/0.999022/0.428743  复发 1023/11836 = 8.64%
+
+[write] ~/xcad/xcad_code/xcad_model/data/xcad_v2/head_prior_ts.npy shape=(62, 124891, 5) (154.9 MB float32)  log1p<= 2.1972
+[write] ~/xcad/xcad_code/xcad_model/data/xcad_v2/head_prior.npy shape=(124891, 5) (2.5 MB)  log1p<= 2.1972
+{
+  "convention": "head_prior_ts[t,v,k] = log1p(#{train+valid rel==1 edges with ts<t, head==v, tail==gpu_k})",
+  "dataset": "xcad_v2",
+  "rel": 1,
+  "T": 62,
+  "n_ents": 124891,
+  "prior_lo": 124886,
+  "prior_n": 5,
+  "tails": [
+    124886,
+    124887,
+    124888,
+    124889,
+    124890
+  ],
+  "ts_axis": "dim0 == 第 4 列原始 τ (train 1..49 / valid 50..55 / test 56..61)；第 0 层恒全 0",
+  "history_edges_in_table": 97246,
+  "test_first_ts": 56,
+  "test_side_static_vs_temporal_identical": true,
+  "avail_static_fit_minus_test": 0.9136,
+  "avail_temporal_fit_minus_test": -0.0029,
+  "maas_reference_avail_gap_static": 0.8475,
+  "lookup_h1": {
+    "all": 0.478033,
+    "recurrent": 0.999022,
+    "novel": 0.428743,
+    "reference_2_4": [
+      0.478033,
+      0.999022,
+      0.428743
+    ]
+  },
+  "recurrent_share": 0.0864,
+  "splits": {
+    "train": {
+      "n": 84646,
+      "static_avail": 1.0,
+      "ts_avail": 0.0839,
+      "static_hit_rate": 1.0,
+      "ts_hit_rate_on_available": 1.0,
+      "self_leak_rows": 0
+    },
+    "valid": {
+      "n": 12600,
+      "static_avail": 1.0,
+      "ts_avail": 0.081,
+      "static_hit_rate": 1.0,
+      "ts_hit_rate_on_available": 1.0,
+      "self_leak_rows": 0
+    },
+    "test": {
+      "n": 11836,
+      "static_avail": 0.0864,
+      "ts_avail": 0.0864,
+      "static_hit_rate": 0.478,
+      "ts_hit_rate_on_available": 0.999,
+      "self_leak_rows": 0
+    },
+    "fit(=train+valid)": {
+      "n": 97246,
+      "static_avail": 1.0,
+      "ts_avail": 0.0835,
+      "static_hit_rate": 1.0,
+      "ts_hit_rate_on_available": 1.0,
+      "self_leak_rows": 0
+    }
+  },
+  "log1p_max_static": 2.1972,
+  "log1p_max_ts": 2.1972,
+  "heads_with_history": 89122,
+  "self_leak_rows_all_splits": 0
+}
+
+ALL CHECKS OK

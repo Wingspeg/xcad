@@ -1,0 +1,23 @@
+================================================================================================
+PART B  the trace paper and its citations
+================================================================================================
+
+### q=Large Deep Learning Clusters at Internet Scale  total=None
+
+### q=Analysis of Large-Scale Multi-Tenant GPU Clusters for DNN Training Workloads  total=None
+
+chosen paperId: None
+
+================================================================================================
+PART C/D  targeted searches: placement-as-label, and Philly GPU models
+================================================================================================
+
+### placement as prediction target   q=job placement prediction GPU cluster trace   total=None
+
+### learning the scheduler from a trace   q=learned scheduler production trace GPU cluster   total=None
+
+### Philly + model names   q=Philly GPU cluster trace V100 K80   total=None
+
+### Philly by name   q=Philly GPU cluster   total=None
+
+DONE

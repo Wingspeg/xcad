@@ -1,0 +1,20 @@
+s1_base_h3|42|-d xcad_v2 --train-history-len 3
+s1_base_h1|42|-d xcad_v2 --train-history-len 1
+s1_base_h9|42|-d xcad_v2 --train-history-len 9
+s1_base_h12|42|-d xcad_v2 --train-history-len 12
+s2_joint_h3|42|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --train-history-len 3
+s2_joint_h1|42|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --train-history-len 1
+s2_joint_h9|42|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --train-history-len 9
+s2_joint_h12|42|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --train-history-len 12
+s3_joint_lam1|42|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 1.0 --compat-aux-weight 0.5 --stat-suffix=-lam1
+s3_joint_lam10|42|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 10.0 --compat-aux-weight 0.5 --stat-suffix=-lam10
+s3_joint_beta0|42|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.0 --stat-suffix=-beta0
+s3_joint_lamL|42|-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-aux-weight 0.5 --stat-suffix=-lamL
+s4_base_s123|123|-d xcad_v2
+s4_compat_s123|123|-d xcad_v2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5
+s4_het_s123|123|-d xcad_v2 --hetero --n-msg-basis 2
+s4_base_s2024|2024|-d xcad_v2
+s4_compat_s2024|2024|-d xcad_v2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5
+s4_het_s2024|2024|-d xcad_v2 --hetero --n-msg-basis 2
+s5_maas_priorts_s44|44|-d maas --probe-rel 0 --base-prior --head-prior --prior-ts
+s5_maas_priorts_s45|45|-d maas --probe-rel 0 --base-prior --head-prior --prior-ts

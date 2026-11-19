@@ -1,0 +1,55 @@
+[03:36:50] probe arm start
+[03:36:55] 采样器自检通过: 前 5s 有 19 行
+[03:51:18] probe arm done rc=0 墙钟=863s
+--- summary ---
+[03:35:31] probe arm start
+[03:36:50] probe arm start
+[03:36:55] 采样器自检通过: 前 5s 有 19 行
+[03:51:18] probe arm done rc=0 墙钟=863s
+=== L1 样本线 ===
+样本数=3623 (需>=1000)  覆盖=867.6s (需>=800)  采样间隔中位≈0.2s  墙钟=863s  rc=0
+  -> 样本线 PASS
+=== 训练侧显存（两个口径）===
+device memory.used : 峰值=12398 MiB @ +861s  均值=12270  尾部25%均值=4131
+compute-app 进程占位: 峰值=12388 MiB @ +861s  均值=12261
+利用率: 峰值=99%  非零窗口=859.6s / 覆盖 867.6s
+=== L3 上限线 ===
+卡容量=24576 MiB  余量=12178 MiB  -> 有余量
+=== 时间线（epoch -> 起于第几秒 / device 显存当时值）===
+  epoch  0  +   31.7s  loss=12.3043  dev=12330 MiB
+  epoch  1  +   55.7s  loss=7.5546  dev=12330 MiB
+  epoch  2  +   78.7s  loss=7.0669  dev=12330 MiB
+  epoch  3  +  102.7s  loss=6.8150  dev=12330 MiB
+  epoch  4  +  126.7s  loss=6.6982  dev=12330 MiB
+  epoch  5  +  149.7s  loss=6.6185  dev=12330 MiB
+  epoch  6  +  198.7s  loss=6.5720  dev=12392 MiB
+  epoch  7  +  222.7s  loss=6.5347  dev=12392 MiB
+  epoch  8  +  245.7s  loss=6.4757  dev=12392 MiB
+  epoch  9  +  269.7s  loss=6.4570  dev=12392 MiB
+  epoch 10  +  293.7s  loss=6.4254  dev=12392 MiB
+  epoch 11  +  341.7s  loss=6.4081  dev=12394 MiB
+  epoch 12  +  365.7s  loss=6.3812  dev=12394 MiB
+  epoch 13  +  388.7s  loss=6.3678  dev=12394 MiB
+  epoch 14  +  412.7s  loss=6.3291  dev=12394 MiB
+  epoch 15  +  435.7s  loss=6.3021  dev=12394 MiB
+  epoch 16  +  484.7s  loss=6.2802  dev=12394 MiB
+  epoch 17  +  507.7s  loss=6.2601  dev=12394 MiB
+  epoch 18  +  531.7s  loss=6.2255  dev=12394 MiB
+  epoch 19  +  555.7s  loss=6.2124  dev=12394 MiB
+  epoch 20  +  579.7s  loss=6.1740  dev=12394 MiB
+  epoch 21  +  627.7s  loss=6.1419  dev=12394 MiB
+  epoch 22  +  651.7s  loss=6.1094  dev=12394 MiB
+  epoch 23  +  674.7s  loss=6.0782  dev=12394 MiB
+  epoch 24  +  698.7s  loss=6.0403  dev=12394 MiB
+  epoch 25  +  721.7s  loss=5.9956  dev=12394 MiB
+  epoch 26  +  770.7s  loss=5.9529  dev=12394 MiB
+  epoch 27  +  793.7s  loss=5.9055  dev=12394 MiB
+  epoch 28  +  817.7s  loss=5.8646  dev=12394 MiB
+  epoch 29  +  841.7s  loss=5.8206  dev=12394 MiB
+=== L2 回归线（应逐位 = 0.065962 / 0.884843 / 0.5085）===
+  filter_ent\): ([\d.]+)             got=0.065631     want=0.065962  MISMATCH
+  (filter_ent\) @ 1: ([\d.]+)        got=0.058991     want=0.884843  MISMATCH
+  U Hits@1 Macro: ([\d.]+)           got=MISSING      want=0.5085  MISMATCH
+  stderr 无 Traceback/OOM
+=== 附带读数 ===
+  arm.log=70812 B  err=90772 B

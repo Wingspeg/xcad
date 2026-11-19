@@ -1,0 +1,24 @@
+=== instance_daily.zip
+HTTP/1.1 200 Connection established
+HTTP/1.1 200 OK
+Content-Type: application/zip
+Content-Length: 10528173427
+Accept-Ranges: bytes
+x-oss-object-type: Multipart
+
+=== instance_week_5min.zip
+HTTP/1.1 200 Connection established
+HTTP/1.1 200 OK
+Content-Type: application/zip
+Content-Length: 4812189789
+Accept-Ranges: bytes
+x-oss-object-type: Normal
+
+=== app_metrics.csv.zip
+HTTP/1.1 200 Connection established
+HTTP/1.1 200 OK
+Content-Type: application/zip
+Content-Length: 99947
+Accept-Ranges: bytes
+x-oss-object-type: Normal
+

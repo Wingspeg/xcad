@@ -1,0 +1,121 @@
+==============================================================================
+Q1  which published columns describe a physical device
+==============================================================================
+
+-- ali_v2020
+   gpu_types                  6 rows   ['gpu_label', 'mem_gib_stated', 'model_name_published']
+   devices                6,829 rows   ['gpu_label', 'gpu_type_raw']
+   nodes                  1,903 rows   ['gpu_type_raw', 'gpu_label', 'cap_mem']
+   placements         7,190,867 rows   ['gpu_label']
+   placement_devices  3,033,232 rows   ['gpu_label']
+   gpu_types columns: ['gpu_label', 'n_devices_in_inventory', 'n_machines_in_inventory', 'raw_spellings', 'n_placements', 'n_machines_used', 'dataset', 'mem_gib_stated', 'model_name_published', 'label_provenance', 'note']
+
+-- philly
+   gpu_types                  2 rows   ['gpu_label', 'mem_gib_stated', 'model_name_published']
+   devices                3,918 rows   ['gpu_label', 'gpu_type_raw']
+   nodes                    552 rows   ['cap_mem', 'gpu_type_raw', 'gpu_label']
+   placements           179,828 rows   ['gpu_label']
+   placement_devices    343,082 rows   ['gpu_label']
+   gpu_types columns: ['gpu_label', 'n_devices_in_inventory', 'n_machines_in_inventory', 'raw_spellings', 'n_placements', 'n_machines_used', 'dataset', 'mem_gib_stated', 'model_name_published', 'label_provenance', 'note']
+
+==============================================================================
+Q2  workload exposure to names we cannot resolve
+==============================================================================
+
+-- ali_v2020
+                    devices  devices_with_raw  machines  devices_with_raw_pct
+gpu_label                                                                    
+NVIDIA-LEGACY-MISC     2240              2240       280                 100.0
+NVIDIA-P100            1674              1596       798                 95.34
+NVIDIA-T4               994               994       497                 100.0
+NVIDIA-V100             832               832       104                 100.0
+NVIDIA-V100-32G        1080              1080       135                 100.0
+UNRESOLVED                9                 0         6                   0.0
+
+   demand (gpu placements / distinct jobs):
+                    gpu_placements  jobs_touching  gpu_placements_pct  jobs_pct
+gpu_label                                                                      
+NVIDIA-LEGACY-MISC         3470108         703582               50.34     60.83
+NVIDIA-P100                1618130         135431               23.47     11.71
+NVIDIA-T4                  1430823         216597               20.76     18.73
+NVIDIA-V100                 229830          62282                3.33      5.38
+NVIDIA-V100-32G             144345          38768                2.09      3.35
+
+-- philly
+                  devices  devices_with_raw  machines  devices_with_raw_pct
+gpu_label                                                                  
+PHILLY-TIER-2x12     2070                 0       321                   0.0
+PHILLY-TIER-8x24     1848                 0       231                   0.0
+
+   demand (gpu placements / distinct jobs):
+                  gpu_placements  jobs_touching  gpu_placements_pct  jobs_pct
+gpu_label                                                                    
+PHILLY-TIER-2x12          119865          77161               66.66     65.45
+PHILLY-TIER-8x24           59963          40725               33.34     34.55
+
+==============================================================================
+Q3  does an opaque name leak into otherwise-resolvable jobs?
+==============================================================================
+
+-- ali_v2020   gpu jobs 1,042,992
+   only opaque labels :   627,449  60.16%
+   only named labels  :   332,158  31.85%
+   mixed (opaque+named):    83,385   7.99%
+   distinct label sets : 34
+        625,552  -|-|A|A|C|C|D|E|G|I|I|I|L|M|N|S|V|Y
+        211,276  -|4|A|D|I|I|N|T|V
+         66,245  -|0|0|1|A|D|I|I|N|P|V
+         40,164  -|-|-|0|0|1|A|A|A|C|C|D|D|E|G|I|I|I|I|I|L|M|N|N|P|S|V|V|Y||
+         28,172  -|0|0|1|A|D|I|I|N|V|V
+         17,229  -|-|0|0|1|2|3|A|D|G|I|I|N|V|V
+         10,251  -|-|-|0|0|1|A|A|A|C|C|D|D|E|G|I|I|I|I|I|L|M|N|N|S|V|V|V|Y||
+          6,647  -|-|-|-|0|0|0|0|1|1|A|A|A|A|C|C|D|D|D|E|G|I|I|I|I|I|I|I|L|M|N|N|N|P|S|V|V|V|V|Y||||
+          6,473  -|-|-|-|-|-|0|0|0|0|0|0|1|1|1|2|3|A|A|A|A|A|C|C|D|D|D|D|E|G|G|I|I|I|I|I|I|I|I|I|L|M|N|N|N|N|P|S|V|V|V|V|V|V|Y||||||
+          4,872  -|-|-|-|-|0|0|0|0|1|1|2|3|A|A|A|A|C|C|D|D|D|E|G|G|I|I|I|I|I|I|I|L|M|N|N|N|P|S|V|V|V|V|Y||||
+          4,794  -|-|-|-|0|0|1|2|3|A|A|A|C|C|D|D|E|G|G|I|I|I|I|I|L|M|N|N|S|V|V|V|Y||
+          3,868  -|-|0|0|1|4|A|A|D|D|I|I|I|I|N|N|T|V|V|V||
+
+-- philly   gpu jobs 112,018
+   only opaque labels :         0   0.00%
+   only named labels  :   112,018  100.00%
+   mixed (opaque+named):         0   0.00%
+   distinct label sets : 3
+         71,293  -|-|1|2|2|E|H|I|I|L|L|P|R|T|Y|x
+         34,857  -|-|2|4|8|E|H|I|I|L|L|P|R|T|Y|x
+          5,868  -|-|-|-|1|2|2|2|4|8|E|E|H|H|I|I|I|I|L|L|L|L|P|P|R|R|T|T|Y|Y|x|x||
+
+==============================================================================
+Q4  attribute space the two traces BOTH publish
+==============================================================================
+
+-- ali gpu_types (full)
+         gpu_label  n_devices_in_inventory  n_machines_in_inventory raw_spellings  n_placements  n_machines_used   dataset  mem_gib_stated model_name_published                   label_provenance                                                                                          note
+NVIDIA-LEGACY-MISC                    2240                      280          MISC       3470108            280.0 ali_v2020             NaN                 True trace-column:machine_spec.gpu_type                                  README: MISC groups several older generations (K40m/K80/M60)
+       NVIDIA-P100                    1674                      798          P100       1618130            798.0 ali_v2020             NaN                 True trace-column:machine_spec.gpu_type                                                                                              
+         NVIDIA-T4                     994                      497            T4       1430823            497.0 ali_v2020             NaN                 True trace-column:machine_spec.gpu_type                                                                                              
+       NVIDIA-V100                     832                      104          V100        229830            104.0 ali_v2020             NaN                 True trace-column:machine_spec.gpu_type                                                                                              
+   NVIDIA-V100-32G                    1080                      135       V100M32        144345            135.0 ali_v2020            32.0                 True trace-column:machine_spec.gpu_type                                                                                              
+        UNRESOLVED                       9                        6                        <NA>              NaN ali_v2020             NaN                False trace-column:machine_spec.gpu_type fallback bucket: these machines have no gpu_type in pai_machine_spec, so no model name exists
+
+-- philly gpu_types (full)
+       gpu_label  n_devices_in_inventory  n_machines_in_inventory raw_spellings  n_placements  n_machines_used dataset  mem_gib_stated  model_name_published                   label_provenance                                                                                                                         note
+PHILLY-TIER-2x12                    2070                      321                      119865              238  philly            12.0                 False derived:machine_list_capacity_tier machine_list publishes (number of GPUs, single GPU mem) only; no card model name -> the label is a capacity tier, not a type
+PHILLY-TIER-8x24                    1848                      231                       59963              177  philly            24.0                 False derived:machine_list_capacity_tier machine_list publishes (number of GPUs, single GPU mem) only; no card model name -> the label is a capacity tier, not a type
+
+-- ali_v2020 nodes columns: ['dataset', 'machine_id', 'machine_gid', 'gpu_type_raw', 'gpu_label', 'cap_cpu', 'cap_mem', 'cap_gpu', 'is_gpu_machine', 'label_provenance', 'n_slots_declared', 'n_slots_observed', 'n_slots_observed_distinct', 'slot_conflict']
+   gpu_type_raw     nunique=    7  {'P100': 798, 'T4': 497, 'MISC': 280, 'V100M32': 135, 'V100': 104, 'CPU': 83, '': 6}
+   gpu_label        nunique=    7  {'NVIDIA-P100': 798, 'NVIDIA-T4': 497, 'NVIDIA-LEGACY-MISC': 280, 'NVIDIA-V100-32G': 135, 'NVIDIA-V100': 104, 'CPU-ONLY': 83, 'UNRESOLVED': 6}
+   cap_mem          nunique=    3  {512.0: 1717, 384.0: 180, nan: 6}
+   cap_gpu          nunique=    4  {2.0: 1295, 8.0: 519, 0.0: 83, nan: 6}
+   devices columns: ['dataset', 'machine_id', 'gpu_index', 'gpu_label', 'gpu_type_raw', 'machine_gid', 'device_gid', 'evidence', 'n_jobs_observed', 'label_provenance']
+   gpu_label              nunique=    6  {'NVIDIA-LEGACY-MISC': 2240, 'NVIDIA-P100': 1674, 'NVIDIA-V100-32G': 1080, 'NVIDIA-T4': 994, 'NVIDIA-V100': 832, 'UNRESOLVED': 9}
+   gpu_type_raw           nunique=    6  {'MISC': 2240, 'P100': 1596, 'V100M32': 1080, 'T4': 994, 'V100': 832, '': 87}
+
+-- philly nodes columns: ['dataset', 'machine_id', 'machine_gid', 'cap_gpu', 'cap_cpu', 'cap_mem', 'gpu_type_raw', 'gpu_label', 'is_gpu_machine', 'label_provenance', 'n_slots_declared', 'n_slots_observed', 'n_slots_observed_distinct', 'slot_conflict']
+   cap_gpu          nunique=    2  {2: 321, 8: 231}
+   cap_mem          nunique=    1  {None: 552}
+   gpu_type_raw     nunique=    1  {'': 552}
+   gpu_label        nunique=    2  {'PHILLY-TIER-2x12': 321, 'PHILLY-TIER-8x24': 231}
+   devices columns: ['dataset', 'machine_id', 'gpu_index', 'gpu_label', 'gpu_type_raw', 'machine_gid', 'device_gid', 'evidence', 'n_jobs_observed', 'label_provenance']
+   gpu_label              nunique=    2  {'PHILLY-TIER-2x12': 2070, 'PHILLY-TIER-8x24': 1848}
+   gpu_type_raw           nunique=    1  {'': 3918}

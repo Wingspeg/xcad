@@ -1,0 +1,72 @@
+-- actual schema of part_0 --
+  day              int64
+  instance_id      string
+  app_id           string
+  model_id         string
+  base_id          string
+  cluster_id       string
+  site_id          string
+  gpu_type         string
+  workload         string
+  model_arch       string
+  params_b         double
+  pd_role          string
+  gpu_count        double
+  gpu_hours        double
+  samples          int64
+  zero_samples     int64
+  sm_util          double
+  gpu_mem_util     double
+  cpu_usage        double
+  mem_usage        double
+  base_arch        string
+  variant_arch     string
+  gpu_mem_alloc    double
+raw rows=13,736,375  from 6 shards
+
+-- null rates (candidate columns) --
+  day            null=0.0000  distinct=65  mean=65.06327550026845
+  instance_id    null=0.0000  distinct=13354870  mean=-
+  app_id         null=0.0000  distinct=105721  mean=-
+  model_id       null=0.0000  distinct=80258  mean=-
+  base_id        null=0.0000  distinct=1076  mean=-
+  cluster_id     null=0.0000  distinct=56  mean=-
+  site_id        null=0.0000  distinct=61  mean=-
+  gpu_type       null=0.0000  distinct=31  mean=-
+  workload       null=0.0000  distinct=2  mean=-
+  model_arch     null=0.0000  distinct=2  mean=-
+  params_b       null=0.1065  distinct=128  mean=26.016873826476328
+  pd_role        null=0.0000  distinct=3  mean=-
+  gpu_count      null=0.0000  distinct=5  mean=1.2259229236243185
+  gpu_mem_alloc  null=0.0000  distinct=83  mean=116.60569904109745
+
+-- gpu_type distribution --
+  distinct=31  top5 share=0.5864  most frequent=0.1612
+  gpu_d7bba4af71a4b63f56fa71f941b73d04f0a776f6740f228577e1ec583ce08659:0.161, gpu_a4c9b5cf4ae29324db1b9844d6742afa8a7b7ab76aa3aab4bc6f3bd531518ff0:0.142, gpu_3372d01d0573e67d482ebe4327f7909032f08c0f45057ff6aae23d4f2b0f5b5e:0.100, gpu_dcc6360c03e703e8c5e80a6bdd0c655ae7f7279fbc75f6a8e85eb0b439e74ba3:0.096, gpu_6e395263687cdf4bbd37a4c02e74f71da8df094a23a610713efabf30a1d96bcc:0.088, gpu_0437bdf8c4e1d09d40ac69b6e70f2d6a3e4f2519b19304286540c59e28183df7:0.082, gpu_60a3b3182ffbd4a74f86efc55e22f39092482f904446ce4c61b55fd49d8e37f6:0.054, gpu_2c76bc8a0add06cc9ccdfb9ca94be04a10c999a7f403cc8aae8282a00c963b96:0.050
+
+-- day coverage --
+  distinct days=65  range=[2..175]  gaps>1: 38  largest gap=20
+  raw rows/day  min=21,907 med=194,983 max=523,278
+
+-- edges (model_id, gpu_type, day) dedup --
+  edges=583,420  heads=80,258  tails=31
+  edges/day  min=4,551 med=8,919 max=14,875
+  head degree: 1=0.1046  2=0.0936  3+=0.8018  max=984
+  head distinct days: 1=0.9187  >=2=0.0813  >=3=0.0620  max=65
+  (head,day) with >1 gpu_type: 79,097 / 145,734 = 0.5427   max types in one day=26
+  raw-level (model,day) >1 type: 0.5427
+
+-- head type drift --
+  heads whose first-day type == last-day type: 0.1643 (n=80,258); drifting heads=67,072
+  head span in days: med=0  >=2 days=0.0690  >=7=0.0606
+
+-- second-relation candidates --
+  rows with both params_b & gpu_mem_alloc: 12,273,907 (0.8935)
+  gpu_mem_alloc distinct=81  params_b distinct=128
+  model_arch: distinct=2  top={'dense': 12251539, 'moe': 1484836}
+  workload: distinct=2  top={'offline': 13200072, 'online': 536303}
+  pd_role: distinct=3  top={'fused': 13716768, 'prefill': 11805, 'decode': 7802}
+
+-- base_id / app_id as alternative head granularity --
+  base_id: distinct=1,076  median distinct days per value=7.0
+  app_id: distinct=105,721  median distinct days per value=1.0

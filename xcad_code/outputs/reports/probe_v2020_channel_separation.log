@@ -1,0 +1,58 @@
+[edges] history r1=97246  test r1=11836  train ts 1..49  valid 50..55  test 56..61
+[strata] 复发 1023/11836 = 8.64%
+[static] 全局类计数 {'T4': 43396, 'MISC': 36880, 'P100': 7777, 'V100': 7060, 'V100M32': 2133}
+[avail] 有严格更早历史的行比例  fit=0.0835  test=0.0864   差=-0.0029
+[shortcut] 拟合期：静态表 argmax==本行 gold 的比例 = 1.0000   时序口径（同率，含不可用行记错）= 0.0835   仅在可用行上 = 1.0000
+
+==============================================================================
+  回归对照（必须复现 §2.4 那张表，否则下面读数不可用）
+==============================================================================
+  恒答众数         got=[0.4251, 0.3871, 0.4287] ref(§2.4)=[0.4251, 0.3871, 0.4287]  OK
+  算法查表         got=[0.478, 0.999, 0.4287] ref(§2.4)=[0.478, 0.999, 0.4287]  OK
+  RandomForest got=[0.8897, 0.8045, 0.8977] ref(§2.4)=[0.8898, 0.8055, 0.8978]  OK
+
+  ── 全部 test 边  (n=11836)
+    prior  acc=0.4251
+    mem    acc=0.4780
+    rf     acc=0.8897
+    mem_ts acc=0.4780
+    model  acc=0.8848   (已发表读数, joint_xcad_v2 日志)
+    agree[prior vs mem] = 0.946942   only_prior=    1  only_mem=  627
+    agree[prior vs rf] = 0.447871   only_prior=  146  only_rf= 5644
+    agree[prior vs mem_ts] = 0.946942   only_prior=    1  only_mem_ts=  627
+    agree[mem vs rf] = 0.474400   only_mem=  338  only_rf= 5210
+    agree[mem vs mem_ts] = 1.000000   only_mem=    0  only_mem_ts=    0
+    agree[rf vs mem_ts] = 0.474400   only_rf= 5210  only_mem_ts=  338
+    ORACLE(mem ∪ rf) = 0.9182   (模型 0.8848 ⇒ 空位 +0.0334)
+
+  ── FULL&r1 复发  (n=1023)
+    prior  acc=0.3871
+    mem    acc=0.9990
+    rf     acc=0.8045
+    mem_ts acc=0.9990
+    model  acc=0.6979   (已发表读数, joint_xcad_v2 日志)
+    agree[prior vs mem] = 0.386119   only_prior=    1  only_mem=  627
+    agree[prior vs rf] = 0.496579   only_prior=    8  only_rf=  435
+    agree[prior vs mem_ts] = 0.386119   only_prior=    1  only_mem_ts=  627
+    agree[mem vs rf] = 0.803519   only_mem=  200  only_rf=    1
+    agree[mem vs mem_ts] = 1.000000   only_mem=    0  only_mem_ts=    0
+    agree[rf vs mem_ts] = 0.803519   only_rf=    1  only_mem_ts=  200
+    ORACLE(mem ∪ rf) = 1.0000   (模型 0.6979 ⇒ 空位 +0.3021)
+
+  ── FULL&r1 全新  (n=10813)
+    prior  acc=0.4287
+    mem    acc=0.4287
+    rf     acc=0.8977
+    mem_ts acc=0.4287
+    model  acc=0.9025   (已发表读数, joint_xcad_v2 日志)
+    agree[prior vs mem] = 1.000000   only_prior=    0  only_mem=    0
+    agree[prior vs rf] = 0.443263   only_prior=  138  only_rf= 5209
+    agree[prior vs mem_ts] = 1.000000   only_prior=    0  only_mem_ts=    0
+    agree[mem vs rf] = 0.443263   only_mem=  138  only_rf= 5209
+    agree[mem vs mem_ts] = 1.000000   only_mem=    0  only_mem_ts=    0
+    agree[rf vs mem_ts] = 0.443263   only_rf= 5209  only_mem_ts=  138
+    ORACLE(mem ∪ rf) = 0.9105   (模型 0.9025 ⇒ 空位 +0.0080)
+
+  [可用率] 全部/复发/全新 三档上 test 行有严格更早历史的比例 = 0.0864 / 1.0000 / 0.0000
+
+[written] ~/xcad/xcad_code/scripts/../outputs/reports/probe_v2020_channel_separation.json

@@ -1,0 +1,45 @@
+==============================================================================
+C0  published columns per table
+==============================================================================
+ali_v2020   placements         7,190,867  ['dataset', 'job_name', 'job_gid', 'inst_id', 'task_name', 'worker_name', 'machine', 'machine_gid', 'gpu_label', 'is_gpu_placement', 'alloc_unit', 'label_provenance', 'inst_status', 'n_instance_rows', 't_start_s', 't_end_s', 'snap_start']
+ali_v2020   placement_devices  3,033,232  ['job_name', 'task_name', 'worker_name', 'machine', 'gpu_index', 'gpu_label', 'inst_id', 'n_events', 'dataset', 'job_gid', 'machine_gid', 'device_gid', 'label_provenance']
+ali_v2020   jobs               1,055,501  ['dataset', 'job_id', 'job_gid', 'task_ordinal', 'n_array_tasks', 'is_array_task', 'native_id_missing', 'request_id', 'user_id', 'user_gid', 'account_id', 'account_gid', 'app_name', 'queue_id', 'qos', 'framework', 'state_raw', 'state_norm', 'n_tasks', 'n_alloc_units', 'n_machines', 'req_cpus', 'req_mem_gib', 'n_gpus_req', 'n_gpus_obs', 'n_gpu_machines', 'gpu_type_requested_raw', 'gpu_label_req', 'gpu_label_obs', 'gpu_label_final', 'label_provenance', 'is_gpu_job', 't_submit_s', 't_submit_utc', 'snap_submit', 'tod_submit', 't_start_s', 't_start_utc', 'snap_start', 'tod_start', 't_end_s', 't_end_utc', 'snap_end', 'tod_end', 'wait_s', 'run_s']
+philly      placements           179,828  ['dataset', 'job_id', 'job_gid', 'attempt', 'machine', 'machine_gid', 'gpu_label', 'n_gpus', 'gpu_ids', 'cap_conflict', 'alloc_unit', 'label_provenance', 't_start_s', 't_end_s', 'snap_start']
+philly      placement_devices    343,082  ['job_id', 'attempt', 'machine', 'gpu_index', 'n_rows', 'dataset', 'job_gid', 'machine_gid', 'gpu_label', 'device_gid', 'label_provenance']
+philly      jobs                 117,325  ['dataset', 'job_id', 'job_gid', 'task_ordinal', 'n_array_tasks', 'is_array_task', 'native_id_missing', 'user_id', 'user_gid', 'account_id', 'account_gid', 'app_name', 'queue_id', 'qos', 'state_raw', 'state_norm', 'n_attempts', 'n_alloc_units', 'n_machines', 'n_gpus_req', 'n_gpus_obs', 'req_cpus', 'req_mem_gib', 'gpu_label_obs', 'gpu_label_final', 'label_provenance', 'is_gpu_job', 't_submit_s', 't_submit_utc', 'snap_submit', 'tod_submit', 't_start_s', 't_start_utc', 'snap_start', 'tod_start', 't_end_s', 't_end_utc', 'snap_end', 'tod_end', 'wait_s', 'run_s', 'gpu_label_req']
+==============================================================================
+C1  ali_v2020 exposure, three granularities
+==============================================================================
+device rows      : n=6,829  opaque  32.93%
+gpu placement rows: n=3,033,232  opaque  62.42%
+distinct gpu jobs  : n=837,529  touched by opaque  68.77%   fully opaque  68.67%
+
+label share over gpu placement rows:
+gpu_label
+NVIDIA-LEGACY-MISC    62.42
+NVIDIA-T4             18.60
+NVIDIA-P100           15.41
+NVIDIA-V100            2.14
+NVIDIA-V100-32G        1.44
+UNRESOLVED             0.00
+
+==============================================================================
+C2  philly: tier claim vs observed device count per machine
+==============================================================================
+machines=552
+                  count      mean       std  min  25%  50%  75%  max
+gpu_label                                                           
+PHILLY-TIER-2x12  321.0  6.448598  2.631184  2.0  2.0  8.0  8.0  8.0
+PHILLY-TIER-8x24  231.0  8.000000  0.000000  8.0  8.0  8.0  8.0  8.0
+
+observed == claim ?
+                  sum  size      mean
+gpu_label                            
+PHILLY-TIER-2x12   83   321  0.258567
+PHILLY-TIER-8x24  231   231  1.000000
+
+observed value counts by tier:
+gpu_label         observed
+PHILLY-TIER-2x12  2            83
+                  8           238
+PHILLY-TIER-8x24  8           231

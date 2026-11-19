@@ -1,0 +1,13 @@
+[reg_base] start=02:20:50
+[reg_base] exit=0 done=02:21:25
+	Maximum resident set size (kbytes): 1712480
+[seg_base] start=02:21:25
+[seg_base] exit=0 done=02:21:56
+	Maximum resident set size (kbytes): 1815024
+[seg_hetero] start=02:21:56
+[seg_hetero] exit=0 done=02:22:27
+	Maximum resident set size (kbytes): 1810056
+[seg_static] start=02:22:27
+[seg_static] exit=0 done=02:22:58
+	Maximum resident set size (kbytes): 1807108
+ALL_DONE 02:22:58

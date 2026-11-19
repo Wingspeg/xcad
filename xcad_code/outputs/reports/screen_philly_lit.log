@@ -1,0 +1,145 @@
+================================================================================================
+Q1/Q2  arXiv survey of task framing
+================================================================================================
+
+### placement is the label   q=abs:"job placement"   n=15
+    1606.02283 2016-06-07        [placement is the label] The Formation and Imprinting of Network Effects Among the Business Elite
+    2410.21510 2024-10-28        [placement is the label] Carbon-Aware Computing for Data Centers with Probabilistic Performance Guarantee
+    2112.13354 2021-12-26        [placement is the label] Large-scale Machine Learning Cluster Scheduling via Multi-agent Graph Reinforcem
+    2504.03618 2025-04-04        [placement is the label] Trading off Relevance and Revenue in the Jobs Marketplace: Estimation, Optimizat
+    2608.01707 2026-08-03        [placement is the label] On Topology's Role in ML Training Performance
+    2604.15594 2026-04-17        [placement is the label] DataCenterGym: A Physics-Grounded Simulator for Multi-Objective Data Center Sche
+    1611.00522 2016-11-02        [placement is the label] Optimized Thermal-Aware Job Scheduling and Control of Data Centers
+    2304.06381 2023-04-13        [placement is the label] Energy-Efficient GPU Clusters Scheduling for Deep Learning
+    2512.16099 2025-12-18        [placement is the label] An Online Fragmentation-Aware Scheduler for Managing GPU-Sharing Workloads on Mu
+    1902.04056 2019-02-11        [placement is the label] Policy Learning for Fairness in Ranking
+    2401.16492 2024-01-29        [placement is the label] GPU Cluster Scheduling for Network-Sensitive Deep Learning
+    2311.06048 2023-11-10        [placement is the label] Empirical Review of Youth-Employment Programs in Ghana
+    2505.08936 2025-05-13        [placement is the label] ATLAHS: An Application-centric Network Simulator Toolchain for AI, HPC, and Dist
+    1608.06310 2016-08-22        [placement is the label] Job Placement Advisor Based on Turnaround Predictions for HPC Hybrid Clouds
+    2006.14429 2020-06-25        [placement is the label] Sequence-to-sequence models for workload interference
+
+### placement+GPU   q=abs:"job placement" AND abs:"GPU"   n=5
+    2512.16099 2025-12-18        [placement+GPU] An Online Fragmentation-Aware Scheduler for Managing GPU-Sharing Workloads on Mu
+    2112.13354 2021-12-26        [placement+GPU] Large-scale Machine Learning Cluster Scheduling via Multi-agent Graph Reinforcem
+    2304.06381 2023-04-13        [placement+GPU] Energy-Efficient GPU Clusters Scheduling for Deep Learning
+    2401.16492 2024-01-29        [placement+GPU] GPU Cluster Scheduling for Network-Sensitive Deep Learning
+    2512.11306 2025-12-12        [placement+GPU] RollMux: Phase-Level Multiplexing for Disaggregated RL Post-Training
+
+### node assignment from trace   q=abs:"node assignment" AND abs:"trace"   n=0
+
+### which machine   q=abs:"which server" OR abs:"which machine"   n=15
+    1507.03648 2015-07-13        [which machine] Deadline-aware Power Management in Data Centers
+    http://arxiv.org/abs/1208.5872v2 2012-08-29        [which machine] Non-Existence of Stabilizing Policies for the Critical Push-Pull Network and Gen
+    http://arxiv.org/abs/quant-ph/0008044v2 2000-08-09        [which machine] Quantum authentication using entangled state
+    2403.13584 2024-03-20        [which machine] On Strong Converse Theorems for Quantum Hypothesis Testing and Channel Coding
+    2005.13744 2020-05-28        [which machine] A Theory of Auto-Scaling for Resource Reservation in Cloud Services
+    2404.13624 2024-04-21        [which machine] Necessary and Sufficient Conditions for Capacity-Achieving Private Information R
+    http://arxiv.org/abs/1409.3651v1 2014-09-12        [which machine] An Advanced Approach On Load Balancing in Grid Computing
+    1512.01609 2015-12-05        [which machine] Data Center Server Provision: Distributed Asynchronous Control for Coupled Renew
+    http://arxiv.org/abs/math/0605188v1 2006-05-08        [which machine] On Decentralized Policies for the Stochastic k-Server Problem
+    2207.00428 2022-06-24        [which machine] FLVoogd: Robust And Privacy Preserving Federated Learning
+    2211.16416 2022-11-29        [which machine] Exploiting Data Locality to Improve Performance of Heterogeneous Server Clusters
+    1711.09761 2017-11-23        [which machine] Mitigating Blackout Risk via Maintenance : Inference from Simulation Data
+    http://arxiv.org/abs/1409.4991v4 2014-09-17        [which machine] RoBuSt: A Crash-Failure-Resistant Distributed Storage System
+    2006.09271 2020-06-15        [which machine] A Survey of Machine Learning Methods and Challenges for Windows Malware Classifi
+    2105.08967 2021-05-19        [which machine] Speed Scaling On Parallel Servers with MapReduce Type Precedence Constraints
+
+### Philly in full text   q=abs:"Philly"   n=3
+    2512.10271 2025-12-11 PHILLY [Philly in full text] Hybrid Learning and Optimization-Based Dynamic Scheduling for DL Workloads on He
+    1908.00799 2019-08-02 PHILLY [Philly in full text] Generic approach for the modeling of liquefied thermochemical products and bioma
+    http://arxiv.org/abs/cond-mat/0505075v2 2005-05-03        [Philly in full text] Interpretation of Diffusing Wave Spectra in Nontrivial Systems
+
+### machine_configs fingerprint   q=abs:"machine_configs" OR abs:"cluster_job_log"   n=0
+
+### heterogeneous GPU cluster + trace   q=abs:"heterogeneous GPU cluster" AND abs:"trace"   n=3
+    2610.25066 2026-10-18        [heterogeneous GPU cluster + trace] Ineffective Occupancy in Heterogeneous GPU Clusters: Prediction, Contribution An
+    2512.10271 2025-12-11 PHILLY [heterogeneous GPU cluster + trace] Hybrid Learning and Optimization-Based Dynamic Scheduling for DL Workloads on He
+    2505.05286 2025-05-08        [heterogeneous GPU cluster + trace] HEXGEN-FLOW: Optimizing LLM Inference Request Scheduling for Agentic Text-to-SQL
+
+### graph learned on cluster trace   q=abs:"cluster trace" AND abs:"graph neural"   n=1
+    2609.22142 2026-08-25        [graph learned on cluster trace] When Does Learning Beat Heuristics? A Case Study in Kubernetes Scheduler Score P
+
+### temporal graph + scheduling   q=abs:"temporal graph" AND abs:"scheduling"   n=15
+    1504.07976 2015-04-29        [temporal graph + scheduling] On Temporal Graph Exploration
+    2605.15833 2026-05-15        [temporal graph + scheduling] Exploration of $k$-edge-deficient temporal graphs in linear time
+    2010.05313 2020-10-11        [temporal graph + scheduling] Controlling Graph Dynamics with Reinforcement Learning and Graph Neural Networks
+    2609.03503 2026-09-03        [temporal graph + scheduling] PPO-STGNN: A Proximal Policy Optimization Approach with Spatio-Temporal Graph Ne
+    2505.14046 2025-05-20        [temporal graph + scheduling] Exploring Temporal Graphs with Frequent and Regular Edges
+    2504.07920 2025-04-10        [temporal graph + scheduling] Directed Temporal Tree Realization for Periodic Public Transport: Easy and Hard 
+    2604.24227 2026-04-27        [temporal graph + scheduling] Minimum Temporal Spanners in Happy Graphs
+    2603.21090 2026-03-22        [temporal graph + scheduling] StreamTGN: A GPU-Efficient Serving System for Streaming Temporal Graph Neural Ne
+    2203.14883 2022-03-28        [temporal graph + scheduling] TGL: A General Framework for Temporal GNN Training on Billion-Scale Graphs
+    2502.07496 2025-02-11        [temporal graph + scheduling] Exploring Word-Representable Temporal Graphs
+    2112.06172 2021-12-12        [temporal graph + scheduling] Temporal Interval Cliques and Independent Sets
+    2504.16837 2025-04-23        [temporal graph + scheduling] Approximating Optimal Labelings for Temporal Connectivity
+    2509.12222 2025-09-05        [temporal graph + scheduling] Accelerating Privacy-Preserving Federated Learning in Large-Scale LEO Satellite 
+    2607.08454 2026-07-09        [temporal graph + scheduling] Spatio-Temporal Scheduling Prediction Under Backhaul Delay for Resilient Coordin
+    2403.18513 2024-03-27        [temporal graph + scheduling] Realizing temporal transportation trees
+
+pool size (unique ids) = 52
+
+--- papers whose abstract says placement is *learned/predicted* ---
+  2112.13354 2021-12-26 Large-scale Machine Learning Cluster Scheduling via Multi-agent Graph Rein
+      ...luster/data center, and propose a multi-agent reinforcement learning (MARL) scheduling framework to cooperatively learn fine-grained job placement policies, towards the objective of minimizing job completion time (JCT). To achieve topol...
+  2211.16416 2022-11-29 Exploiting Data Locality to Improve Performance of Heterogeneous Server Cl
+      ...vers. The constraints are naturally captured by a bipartite graph between the servers and the dispatchers handling assignments of various arrival flows. When a task arrives, the corresponding dispatcher assigns it t...
+  2604.15594 2026-04-17 DataCenterGym: A Physics-Grounded Simulator for Multi-Objective Data Cente
+      ...-compatible interface. We also develop a Hierarchical Model Predictive Control (H-MPC) scheduling algorithm that performs distributed job placement while explicitly accounting for thermal and power dynamics. Through experiments on nomina...
+  2609.22142 2026-08-25 When Does Learning Beat Heuristics? A Case Study in Kubernetes Scheduler S
+      ...are, in production, hand-tuned heuristics. We ask whether a learned scoring function - trained on real placement decisions from a production cluster trace - can match or exceed these heuristics, and if...
+
+--- papers naming Philly, and the vocabulary they use ---
+
+  1908.00799 2019-08-02 Generic approach for the modeling of liquefied thermochemical products and bioma
+      [arrival/sim] n=2  ...illys database for different biomass types and implemented in process simulators such as Aspen Plus. For the biocrude modeling, a multi-objective optimization model is proposed that refin...
+
+  2512.10271 2025-12-11 Hybrid Learning and Optimization-Based Dynamic Scheduling for DL Workloads on He
+      [fairness/JCT] n=5  ...ed job-to-node mapping to optimize system-wide objectives such as job completion time (JCT), queueing delay, and resource utilization. Trained on large-scale production traces from Microsoft Phil...
+      [utilization] n=2  ...tives such as job completion time (JCT), queueing delay, and resource utilization. Trained on large-scale production traces from Microsoft Philly, Helios, and Alibaba, RLTune improves GP...
+
+--- papers that report GPU *model names* for a public trace (any dataset) ---
+
+================================================================================================
+Q3  OpenAlex citation footprint of the trace paper (retried, few calls)
+================================================================================================
+    attempt 1: {"error":"Rate limit exceeded","message":"Anonymous search is temporarily rate-limited while the search cluster is under elevated load. Please retry i
+     W2910100551 2019 cites= 246 Analysis of Large-Scale Multi-Tenant GPU Clusters for DNN Training Workl
+     W2809420642 2018 cites=  42 Multi-tenant GPU Clusters for Deep Learning Workloads: Analysis and Impl
+     W4304192541 2022 cites= 104 MISO: exploiting multi-instance GPU capability on multi-tenant GPU clust
+     W2982157693 2019 cites= 267 Nexus: a GPU cluster engine for accelerating DNN-based video analysis
+     W3134991928 2021 cites=  52 Elastic Deep Learning in Multi-Tenant GPU Clusters
+  citing works returned: 200 of 243
+    title census: {'predict/learn': 101, 'heterogen': 19, 'fair': 7, 'energy': 8, 'LLM': 4, 'schedul': 68, 'failur': 7, 'simulat': 1, 'placement': 6, 'graph': 4}
+      2020 c233  Scalable Deep Learning on Distributed Infrastructures: Challenges, Techniques, and Too
+      2021 c185  Characterization and prediction of deep learning workloads in large-scale GPU datacent
+      2021 c158  Analyzing and mitigating data stalls in DNN training
+      2020 c153  Balancing efficiency and fairness in heterogeneous GPU clusters for deep learning
+      2024 c137  Characterizing Power Management Opportunities for LLMs in the Cloud
+      2021 c118  Horus: Interference-Aware and Prediction-Based Scheduling in Deep Learning Systems
+      2020 c117  An empirical study on program failures of deep learning jobs
+      2023 c114  GEMINI: Fast Failure Recovery in Distributed Training with In-Memory Checkpoints
+      2022 c104  MISO: exploiting multi-instance GPU capability on multi-tenant GPU clusters
+      2023 c104  Sia: Heterogeneity-aware, goodput-optimized ML-cluster scheduling
+      2023 c102  Toward Sustainable HPC: Carbon Footprint Estimation and Environmental Implications of 
+      2022 c90   Serverless computing on heterogeneous computers
+      2021 c86   Communication-efficient Decentralized Machine Learning over Heterogeneous Networks
+      2021 c80   Liquid: Intelligent Resource Estimation and Network-Efficient Scheduling for Deep Lear
+      2021 c78   Accelerating recommendation system training by leveraging popular choices
+      2023 c78   A Survey on Scheduling Techniques in Computing and Network Convergence
+      2025 c78   Revisiting Reliability in Large-Scale Machine Learning Research Clusters
+      2021 c61   λDNN: Achieving Predictable Distributed DNN Training With Serverless Architectures
+      2023 c60   Egeria: Efficient DNN Training with Knowledge-Guided Layer Freezing
+      2021 c57   In-network Aggregation for Shared Machine Learning Clusters
+      2021 c52   Universal Scaling of Distributed Queues Under Load Balancing in the Super-Halfin-Whitt
+      2021 c51   The MIT Supercloud Dataset
+      2022 c48   AI-Enabling Workloads on Large-Scale GPU-Accelerated System: Characterization, Opportu
+      2024 c44   Reducing Energy Bloat in Large Model Training
+      2023 c39   A2TP: Aggregator-aware In-network Aggregation for Multi-tenant Learning
+      2024 c38   vTrain: A Simulation Framework for Evaluating Cost-Effective and Compute-Optimal Large
+      2024 c36   Just-In-Time Checkpointing: Low Cost Error Recovery from Deep Learning Training Failur
+      2024 c36   TCCL: Discovering Better Communication Paths for PCIe GPU Clusters
+      2024 c30   Heet: Accelerating Elastic Training in Heterogeneous Deep Learning Clusters
+      2022 c29   SpotLake: Diverse Spot Instance Dataset Archive Service
+
+DONE

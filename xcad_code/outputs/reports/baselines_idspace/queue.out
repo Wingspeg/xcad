@@ -1,0 +1,105 @@
+[gate_regcn_a] start=11:18:22 cwd=RE-GCN
+[gate_regcn_a] exit=0 done=11:18:46
+[id-space] num_nodes=124891 r1_tail_max=5 -> gpu_base=0 -> LEGACY 局部编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2014
+  gpu_after: 1 MiB
+[gate_cen_a] start=11:18:46 cwd=CEN
+[gate_cen_a] exit=0 done=11:19:15
+[id-space] num_nodes=124891 r1_tail_max=5 -> gpu_base=0 -> LEGACY 局部编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+  gpu_after: 1 MiB
+[gate_regcn_b] start=11:19:15 cwd=RE-GCN
+[gate_regcn_b] exit=0 done=11:19:39
+[id-space] num_nodes=124891 r1_tail_max=5 -> gpu_base=0 -> LEGACY 局部编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2014
+  gpu_after: 1 MiB
+[gate_cen_b] start=11:19:39 cwd=CEN
+[gate_cen_b] exit=0 done=11:20:09
+[id-space] num_nodes=124891 r1_tail_max=5 -> gpu_base=0 -> LEGACY 局部编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+  gpu_after: 1 MiB
+[gate_retia_curtrain] start=11:20:09 cwd=RETIA
+[gate_retia_curtrain] exit=0 done=11:34:46
+[id-space] num_nodes=124891 r1_tail_max=5 -> gpu_base=0 -> LEGACY 局部编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+[id-space] num_nodes=124891 r1_tail_max=5 -> gpu_base=0 -> LEGACY 局部编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+[id-space] num_nodes=124891 r1_tail_max=5 -> gpu_base=0 -> LEGACY 局部编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+  gpu_after: 1 MiB
+PHASE_A_DONE 11:34:46
+[smoke_regcn] start=11:34:46 cwd=RE-GCN
+[smoke_regcn] exit=1 done=11:35:03
+Traceback (most recent call last):
+FileNotFoundError: [Errno 2] No such file or directory: '../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his3-weight:0.5-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0'
+  gpu_after: 1 MiB
+[smoke_cen] start=11:35:03 cwd=CEN
+[smoke_cen] exit=0 done=11:36:02
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+  gpu_after: 1 MiB
+[smoke_retia] start=11:36:02 cwd=RETIA
+[smoke_retia] exit=1 done=11:36:57
+Traceback (most recent call last):
+FileNotFoundError: [Errno 2] No such file or directory: '../models/xcad_v2/xcad_v2-uvrgcn-convtranse-ly2-his2-dp0.4|0.4|0.4|0.4-gpu0'
+  gpu_after: 1 MiB
+PHASE_B_SMOKE_DONE 11:36:57
+[v2_regcn] start=11:36:57 cwd=RE-GCN
+[v2_regcn] exit=0 done=12:21:03
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.1901
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+  gpu_after: 1 MiB
+[v2_cen_pretrain] start=12:21:03 cwd=CEN
+[v2_cen_pretrain] exit=0 done=12:27:55
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+  gpu_after: 1 MiB
+[v2_cen_curriculum] start=12:27:55 cwd=CEN
+[v2_cen_curriculum] exit=1 done=12:28:23
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+Traceback (most recent call last):
+RuntimeError: cuDNN error: CUDNN_STATUS_NOT_INITIALIZED
+  gpu_after: 1 MiB
+[v2_cen_test] start=12:28:23 cwd=CEN
+[v2_cen_test] exit=0 done=12:28:29
+  gpu_after: 1 MiB
+[v2_retia_curtrain] start=12:28:29 cwd=RETIA
+[v2_retia_curtrain] exit=0 done=12:54:41
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+  gpu_after: 1 MiB
+PHASE_B_DONE 12:54:41
+[v2_joint_s123] start=12:54:41
+[v2_joint_s123] exit=0 done=13:09:02
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 (GLOBAL 四段编号)
+  Per-GPU Hits@1 Macro (unweighted) = 0.5226
+  Per-GPU Hits@1 Macro (unweighted) = 0.5279
+  Per-GPU Hits@1 Macro (unweighted) = 0.5287
+  Per-GPU Hits@1 Macro (unweighted) = 0.5318
+  Per-GPU Hits@1 Macro (unweighted) = 0.5261
+  gpu_after: 1 MiB
+[v2_joint_s2024] start=13:09:02
+[v2_joint_s2024] exit=0 done=13:23:23
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 (GLOBAL 四段编号)
+  Per-GPU Hits@1 Macro (unweighted) = 0.5180
+  Per-GPU Hits@1 Macro (unweighted) = 0.5206
+  Per-GPU Hits@1 Macro (unweighted) = 0.5230
+  Per-GPU Hits@1 Macro (unweighted) = 0.5269
+  Per-GPU Hits@1 Macro (unweighted) = 0.5240
+  gpu_after: 1 MiB
+ALL_DONE 13:23:23

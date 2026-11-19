@@ -1,0 +1,48 @@
+======================== datasets/maas/instance_daily/six_shards_slim.parquet HEAD=app_id
+  rows=13,736,375  days=65 [2..175]  app_id=105,721 models=80,258 types=31
+  F1: unknown_ gpu_type share=0.0355%  distinct types=31
+
+  === test = last 3 days (154..175), n_edges=55,269, n_models=7,549
+      class-prior  H@1=0.1953
+      repeat-prior H@1=0.0810 (covered 4,478/55,269)
+      memory       H@1=0.0870 (covered 4,810)
+      cluster-modal H@1=0.3817 (covered 21,096, clusters seen in hist=0.999)
+      onlyPRIOR=311  onlyMEM=643  both=4,167  neither=50,148
+      [复发层 n=6,073] memory H@1=0.7920  class-prior H@1=0.1398  repeat-prior H@1=0.7374
+      [复发层 记忆 vs 画像] 同点率=0.784126  分歧边=1,311  仅记忆对=643  仅画像对=311
+      [head>=2历史天 n=5,953] memory H@1=0.7744  class-prior H@1=0.1379  repeat-prior H@1=0.7176
+      [复发层∩集群可见 n=6,057] memory H@1=0.7918  cluster-modal H@1=0.4785  仅记忆对=2,385  仅集群对=487
+      [head>=2天∩集群可见 n=5,938] memory H@1=0.7742  repeat-prior H@1=0.7174  cluster-modal H@1=0.4771
+      recurrent edges=6,073  edges with head in >=2 history days=5,953   (criterion (i) bar = 500)
+      cluster_id: [in-sample inventory ceiling] modal-type H@1=0.4435  explains 0.5442 of type entropy  median #types per cluster_id=2
+      site_id: [in-sample inventory ceiling] modal-type H@1=0.3938  explains 0.4038 of type entropy  median #types per site_id=2
+
+  === test = last 5 days (148..175), n_edges=96,398, n_models=12,179
+      class-prior  H@1=0.1760
+      repeat-prior H@1=0.0786 (covered 7,580/96,398)
+      memory       H@1=0.0832 (covered 8,020)
+      cluster-modal H@1=0.3757 (covered 36,212, clusters seen in hist=0.997)
+      onlyPRIOR=638  onlyMEM=1,078  both=6,942  neither=87,740
+      [复发层 n=10,216] memory H@1=0.7850  class-prior H@1=0.1339  repeat-prior H@1=0.7420
+      [复发层 记忆 vs 画像] 同点率=0.774863  分歧边=2,300  仅记忆对=1,078  仅画像对=638
+      [head>=2历史天 n=10,134] memory H@1=0.7636  class-prior H@1=0.1325  repeat-prior H@1=0.7197
+      [复发层∩集群可见 n=10,104] memory H@1=0.7865  cluster-modal H@1=0.4731  仅记忆对=4,027  仅集群对=860
+      [head>=2天∩集群可见 n=10,022] memory H@1=0.7648  repeat-prior H@1=0.7214  cluster-modal H@1=0.4730
+      recurrent edges=10,216  edges with head in >=2 history days=10,134   (criterion (i) bar = 500)
+      cluster_id: [in-sample inventory ceiling] modal-type H@1=0.4435  explains 0.5442 of type entropy  median #types per cluster_id=2
+      site_id: [in-sample inventory ceiling] modal-type H@1=0.3938  explains 0.4038 of type entropy  median #types per site_id=2
+
+  === test = last 7 days (142..175), n_edges=133,670, n_models=16,237
+      class-prior  H@1=0.1531
+      repeat-prior H@1=0.0793 (covered 10,594/133,670)
+      memory       H@1=0.0846 (covered 11,315)
+      cluster-modal H@1=0.3772 (covered 50,423, clusters seen in hist=0.996)
+      onlyPRIOR=1,124  onlyMEM=1,845  both=9,470  neither=121,231
+      [复发层 n=15,893] memory H@1=0.7119  class-prior H@1=0.1320  repeat-prior H@1=0.6666
+      [复发层 记忆 vs 画像] 同点率=0.692129  分歧边=4,893  仅记忆对=1,845  仅画像对=1,124
+      [head>=2历史天 n=15,537] memory H@1=0.6906  class-prior H@1=0.1326  repeat-prior H@1=0.6438
+      [复发层∩集群可见 n=15,712] memory H@1=0.7120  cluster-modal H@1=0.4570  仅记忆对=5,649  仅集群对=1,643
+      [head>=2天∩集群可见 n=15,374] memory H@1=0.6908  repeat-prior H@1=0.6460  cluster-modal H@1=0.4557
+      recurrent edges=15,893  edges with head in >=2 history days=15,537   (criterion (i) bar = 500)
+      cluster_id: [in-sample inventory ceiling] modal-type H@1=0.4435  explains 0.5442 of type entropy  median #types per cluster_id=2
+      site_id: [in-sample inventory ceiling] modal-type H@1=0.3938  explains 0.4038 of type entropy  median #types per site_id=2

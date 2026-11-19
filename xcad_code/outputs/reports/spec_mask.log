@@ -1,0 +1,44 @@
+==============================================================================
+ali_v2020: missingness mask as a label fingerprint
+==============================================================================
+              placements  labels  top_placements                 labels_in_mask  share_pct
+mask                                                                                      
+100000000000     1893453       2         1893444  NVIDIA-LEGACY-MISC|UNRESOLVED  62.423613
+111101011111      564056       1          564056                      NVIDIA-T4  18.595874
+111110111111      108396       2           64843    NVIDIA-V100|NVIDIA-V100-32G   3.573614
+111111001110      467327       1          467327                    NVIDIA-P100  15.406899
+
+distinct masks=4   labels=6
+label recoverable from the mask ALONE = 98.56%
+
+per label:
+                            mask n_obs_typical  placements  mem_gib  share_pct
+gpu_label                                                                     
+NVIDIA-LEGACY-MISC  100000000000           [8]     1893444      NaN  62.423316
+NVIDIA-P100         111111001110        [2, 8]      467327     16.0  15.406899
+NVIDIA-T4           111101011111           [2]      564056     16.0  18.595874
+NVIDIA-V100         111110111111           [8]       64843     16.0   2.137753
+NVIDIA-V100-32G     111110111111           [8]       43553     32.0   1.435861
+UNRESOLVED          100000000000        [1, 2]           9      NaN   0.000297
+==============================================================================
+philly: missingness mask as a label fingerprint
+==============================================================================
+              placements  labels  top_placements                     labels_in_mask  share_pct
+mask                                                                                          
+110000000000      343082       2          267591  PHILLY-TIER-2x12|PHILLY-TIER-8x24      100.0
+
+distinct masks=1   labels=2
+label recoverable from the mask ALONE = 78.00%
+
+per label:
+                          mask n_obs_typical  placements  mem_gib  share_pct
+gpu_label                                                                   
+PHILLY-TIER-2x12  110000000000           [8]      267591       12  77.996222
+PHILLY-TIER-8x24  110000000000           [8]       75491       24  22.003778
+==============================================================================
+cross-dataset: do the two traces share a missingness pattern?
+==============================================================================
+ali masks     : ['100000000000', '111101011111', '111110111111', '111111001110']
+philly masks  : ['110000000000']
+shared masks  : []
+mask-only label accuracy: ali 98.56%   philly 78.00%

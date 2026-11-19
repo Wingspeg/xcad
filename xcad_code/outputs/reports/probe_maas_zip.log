@@ -1,0 +1,14 @@
+ZIP64 EOCD: entries_this_disk=61 entries_total=61 cd_size=5,190 cd_offset=10,528,168,139
+members=61  methods=[0] (0=STORED 8=DEFLATE)
+sum raw=10,528,164,489  sum compressed=10,528,164,489  ratio=1.000
+   instance_daily/part_0.parquet      method=0  compressed=  171,991,127  raw=  171,991,127  local_hdr@0
+   instance_daily/part_1.parquet      method=0  compressed=  193,658,202  raw=  193,658,202  local_hdr@171991186
+   instance_daily/part_2.parquet      method=0  compressed=  166,852,370  raw=  166,852,370  local_hdr@365649447
+   instance_daily/part_3.parquet      method=0  compressed=  144,365,689  raw=  144,365,689  local_hdr@532501876
+   instance_daily/part_60.parquet     method=0  compressed=   33,007,921  raw=   33,007,921  local_hdr@10495160158
+
+member[0]=instance_daily/part_0.parquet method=0 raw=171,991,127 nlen=29 elen=0 data@59
+   head4=b'PAR1'  footer4=b'PAR1'  PAR1=True  footer_len=70,588
+   => slice window for a full member: bytes=59-171991185 (172.0 MB)
+
+SLICING RECIPE (used by download_maas_shards.py): st = lho + 30 + nlen + elen ; en = st + raw - 1. Anchoring on lho alone truncates the last 59 bytes and kills the footer.

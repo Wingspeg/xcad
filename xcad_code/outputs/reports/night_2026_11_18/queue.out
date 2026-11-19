@@ -1,0 +1,77 @@
+[16:20:46] ==== night_2026_11_18 队列启动 | ARM_TIMEOUT=1800 硬线=23:10 UTC ====
+[16:20:46] P0 旗舰 checkpoint 已备份 -> ~/xcad/outputs/reports/night_2026_11_18/backup_models.tar (706M)
+[16:20:50] P0 旗标检查:  | Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his3-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42-gatecheck
+[16:21:19] P0 回归: MRR=0.065962 r1_H@1=0.884843 macro=0.5085 (期望 0.065962 / 0.884843 / 0.5085)
+[16:21:19] P0 通过, 开跑 P1–P5
+[16:21:19] ---- P1 骨架 h 扫描(候选段逃逸是否 h 依赖) ----
+[16:21:19] s1_base_h3 start  seed=42 h=3 timeout=1500s args=[-d xcad_v2 --train-history-len 3]
+[16:29:57] s1_base_h3 done   rc=0 用时=518s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his3-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-seed42
+[16:29:57] s1_base_h1 start  seed=42 h=1 timeout=1100s args=[-d xcad_v2 --train-history-len 1]
+[16:35:35] s1_base_h1 done   rc=0 用时=338s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his1-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-seed42
+[16:35:35] s1_base_h9 start  seed=42 h=9 timeout=2700s args=[-d xcad_v2 --train-history-len 9]
+[16:52:23] s1_base_h9 done   rc=0 用时=1008s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his9-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-seed42
+[16:52:23] s1_base_h12 start  seed=42 h=12 timeout=3300s args=[-d xcad_v2 --train-history-len 12]
+[17:12:48] s1_base_h12 done   rc=0 用时=1225s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his12-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-seed42
+[17:12:48] ---- P2 joint h 扫描 ----
+[17:12:48] s2_joint_h3 start  seed=42 h=3 timeout=1500s args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --train-history-len 3]
+[17:22:28] s2_joint_h3 done   rc=0 用时=580s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his3-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42
+[17:22:28] s2_joint_h1 start  seed=42 h=1 timeout=1100s args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --train-history-len 1]
+[17:28:52] s2_joint_h1 done   rc=0 用时=384s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his1-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42
+[17:28:52] s2_joint_h9 start  seed=42 h=9 timeout=2700s args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --train-history-len 9]
+[17:47:33] s2_joint_h9 done   rc=0 用时=1121s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his9-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42
+[17:47:33] s2_joint_h12 start  seed=42 h=12 timeout=3300s args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5 --train-history-len 12]
+[18:10:11] s2_joint_h12 done   rc=0 用时=1358s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his12-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42
+[18:10:11] ---- P3 compat λ/β 扫描 ----
+[18:10:11] s3_joint_lam1 start  seed=42 h=6 timeout=2100s args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 1.0 --compat-aux-weight 0.5 --stat-suffix=-lam1]
+[18:24:29] s3_joint_lam1 done   rc=0 用时=858s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42-lam1
+[18:24:29] s3_joint_lam10 start  seed=42 h=6 timeout=2100s args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 10.0 --compat-aux-weight 0.5 --stat-suffix=-lam10]
+[18:38:52] s3_joint_lam10 done   rc=0 用时=863s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42-lam10
+[18:38:52] s3_joint_beta0 start  seed=42 h=6 timeout=2100s args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-lambda 5.0 --compat-aux-weight 0.0 --stat-suffix=-beta0]
+[18:53:11] s3_joint_beta0 done   rc=0 用时=859s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42-beta0
+[18:53:11] s3_joint_lamL start  seed=42 h=6 timeout=2100s args=[-d xcad_v2 --hetero --n-msg-basis 2 --compat --compat-aux-weight 0.5 --stat-suffix=-lamL]
+[19:07:27] s3_joint_lamL done   rc=0 用时=856s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-compat-seed42-lamL
+[19:07:27] ---- P4 消融补种 ----
+[19:07:27] s4_base_s123 start  seed=123 h=6 timeout=2100s args=[-d xcad_v2]
+[19:20:17] s4_base_s123 done   rc=0 用时=770s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-seed123
+[19:20:17] s4_compat_s123 start  seed=123 h=6 timeout=2100s args=[-d xcad_v2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5]
+[19:33:49] s4_compat_s123 done   rc=0 用时=812s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-compat-seed123
+[19:33:49] s4_het_s123 start  seed=123 h=6 timeout=2100s args=[-d xcad_v2 --hetero --n-msg-basis 2]
+[19:47:31] s4_het_s123 done   rc=0 用时=822s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-seed123
+[19:47:31] s4_base_s2024 start  seed=2024 h=6 timeout=2100s args=[-d xcad_v2]
+[20:00:24] s4_base_s2024 done   rc=0 用时=773s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-seed2024
+[20:00:24] s4_compat_s2024 start  seed=2024 h=6 timeout=2100s args=[-d xcad_v2 --compat --compat-lambda 5.0 --compat-aux-weight 0.5]
+[20:13:52] s4_compat_s2024 done   rc=0 用时=808s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-compat-seed2024
+[20:13:52] s4_het_s2024 start  seed=2024 h=6 timeout=2100s args=[-d xcad_v2 --hetero --n-msg-basis 2]
+[20:27:33] s4_het_s2024 done   rc=0 用时=821s  final-test块=6
+Sanity Check: stat name : ../models/xcad_v2-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-seed2024
+[20:27:33] ---- P5 maas prior-ts 补种 ----
+[20:27:33] s5_maas_priorts_s44 start  seed=44 h=6 timeout=2100s args=[-d maas --probe-rel 0 --base-prior --head-prior --prior-ts]
+[20:37:04] s5_maas_priorts_s44 done   rc=0 用时=571s  final-test块=6
+Sanity Check: stat name : ../models/maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseprior-headprior-priorts-seed44
+[20:37:04] s5_maas_priorts_s45 start  seed=45 h=6 timeout=2100s args=[-d maas --probe-rel 0 --base-prior --head-prior --prior-ts]
+[20:46:36] s5_maas_priorts_s45 done   rc=0 用时=572s  final-test块=6
+Sanity Check: stat name : ../models/maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseprior-headprior-priorts-seed45
+[20:46:36] ---- P6 晋级检查(macro5 > 0.5285 才补 seed 123) ----
+[20:46:36] P6 无臂晋级
+[20:46:36] ---- P7 汇总 ----
+臂数 = 22  -> ~/xcad/outputs/reports/night_2026_11_18/night_summary.{tsv,md}
+!! 没有 final test 指标的臂(要人看日志): p0_flagcheck
+[20:46:36] ==== 队列结束 20:46:36 | 读数在 ~/xcad/outputs/reports/night_2026_11_18/night_summary.md ====
+[20:46:36] 问题臂: 0 个 | 跳过臂: 0 个

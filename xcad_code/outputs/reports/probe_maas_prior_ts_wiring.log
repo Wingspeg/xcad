@@ -1,0 +1,16 @@
+[id-space] n_ents=80287 prior_lo=80257 prior_n=30 n_bases=918 pad=918 test_ts=[54, 55, 56]..65
+[PASS] T1 静态口径(ts=None)逐位还原 §23/§24  maxdiff=0.0 head段不动=True 卡型段右侧不动=True
+[PASS] T1b 逆向行(subject=卡型实体)偏置恒 0  
+[PASS] T2 时序口径按层取表逐位还原  ts=[1, 20, 47, 48, 53, 54, 65] maxdiff=0.0
+[PASS] T3 所有 test 层注入结果 == 静态注入(逐位)  首个 test ts=54 层数=12 首个不同层=None  head 覆盖率 ts=1 0.0000 -> ts=65 0.7567
+[PASS] T3b 训练层确实与静态层不同(否则这次改动没咬住)  ts=1 注入结果 != 静态注入
+[PASS] T4 门控梯度可达 gate_w/gate_c(时序口径)  ts=20: |grad w|=14606.674 |grad c|=11128.498  ts=65: |grad w|=41930.230 |grad c|=21969.420
+[PASS] T4b 门控输入特征/输出信任度随 ts 变  head 支持度均值 ts=1 0.000000 / ts=20 0.034763 / ts=65 0.103715  alpha_m 均值 ts=1 1.0000 vs ts=65 0.9677
+[PASS] T4c ts=1(没有更早历史)注入恒 0 => 首个快照逐位等于不开先验的原模型  
+[PASS] T5 未 set_prior_ts 直接调用 => 报错  (--prior-ts 已开启但调用方没有先 set_prior_ts(τ): 静默沿用上一个快照的表会让训练与评测读到不)
+[PASS] T5b 同一个 ts pop 两次 => 报错  (--prior-ts 已开启但调用方没有先 set_prior_ts(τ): 静默沿用上一个快照的表会让训练与评测读到不)
+[PASS] T5c set/pop 传值正确  pop 得到 7
+[PASS] T5d ts 越出表长 => 报错  (ts=66 越界时序表 [0, 66))
+[PASS] T5e 静态口径下 set/pop 是 no-op(老臂一个字节都不用改)  
+
+[ALL PASS] 5 条全过, 可以开臂

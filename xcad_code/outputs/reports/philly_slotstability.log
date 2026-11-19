@@ -1,0 +1,32 @@
+placements: gpu_ids sample
+  machine         gpu_label  n_gpus                                  gpu_ids
+0    m192  PHILLY-TIER-2x12       8  gpu0|gpu1|gpu2|gpu3|gpu4|gpu5|gpu6|gpu7
+1    m119  PHILLY-TIER-8x24       2                                gpu0|gpu1
+2    m198  PHILLY-TIER-8x24       2                                gpu0|gpu1
+3    m272  PHILLY-TIER-8x24       2                                gpu0|gpu1
+4     m78  PHILLY-TIER-8x24       2                                gpu0|gpu1
+5    m167  PHILLY-TIER-8x24       2                                gpu0|gpu1
+6    m200  PHILLY-TIER-8x24       2                                gpu0|gpu1
+7    m295  PHILLY-TIER-8x24       2                                gpu0|gpu1
+
+n_gpus per placement, by tier:
+                  min  max      mean  <lambda_0>
+gpu_label                                       
+PHILLY-TIER-2x12    1    8  2.232436       28122
+PHILLY-TIER-8x24    1    8  1.258960        2293
+
+devices touched by ONE attempt, by tier:
+                 size               nunique               max             
+                  min max      mean     min max      mean min max     mean
+gpu_label                                                                 
+PHILLY-TIER-2x12    1   8  2.267374       1   8  2.267374   0   7  4.39383
+PHILLY-TIER-8x24    1   8  1.266798       1   8  1.266798   0   7  0.90143
+
+2x12 attempts: n=118,018  with >2 distinct indices: 28,718 (24.33%)  with index >=2: 97,019 (82.21%)
+
+union-of-indices per 2x12 machine, value counts:
+gpu_index
+(0, 1, 2, 3, 4, 5, 6, 7)    238
+(0, 1)                       83
+
+2x12 machines whose observed index union has size 8: 238

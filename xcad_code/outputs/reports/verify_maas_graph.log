@@ -1,0 +1,103 @@
+{
+ "entity2id_lines": 80287,
+ "stat_declares": [
+  80287,
+  1
+ ],
+ "trace_blank_name_rows": {
+  "model_id": 6543,
+  "gpu_type": 76,
+  "either": 6619
+ },
+ "n_tails_in_trace": 30,
+ "n_heads_in_trace": 80257,
+ "gpu_segment_start": 80257,
+ "rows_train_valid_test": {
+  "train": 394274,
+  "valid": 67651,
+  "test": 121371
+ },
+ "tau_bounds": {
+  "train": [
+   1,
+   47
+  ],
+  "valid": [
+   48,
+   53
+  ],
+  "test": [
+   54,
+   65
+  ]
+ },
+ "edges_match_dedup_trace": 583296,
+ "rank_check": {
+  "subsample": 2000,
+  "n_entities": 80287,
+  "per_channel": {
+   "uniform": {
+    "candidate_rows": 2000,
+    "exact_match": 2000,
+    "noncandidate_rows": 0,
+    "within_bounds": 0,
+    "mean_rank_cand_fast": 15.54,
+    "mean_rank_cand_ref": 15.54,
+    "mean_rank_noncand_fast": null,
+    "mean_rank_noncand_ref": null
+   },
+   "tail_prior(history)": {
+    "candidate_rows": 2000,
+    "exact_match": 2000,
+    "noncandidate_rows": 0,
+    "within_bounds": 0,
+    "mean_rank_cand_fast": 8.489,
+    "mean_rank_cand_ref": 8.489,
+    "mean_rank_noncand_fast": null,
+    "mean_rank_noncand_ref": null
+   },
+   "entity_memory(head,tail)": {
+    "candidate_rows": 252,
+    "exact_match": 252,
+    "noncandidate_rows": 1748,
+    "within_bounds": 1748,
+    "mean_rank_cand_fast": 3.583,
+    "mean_rank_cand_ref": 3.583,
+    "mean_rank_noncand_fast": 41263.8,
+    "mean_rank_noncand_ref": 39008.0
+   },
+   "memory_last20_snaps": {
+    "candidate_rows": 250,
+    "exact_match": 250,
+    "noncandidate_rows": 1750,
+    "within_bounds": 1750,
+    "mean_rank_cand_fast": 3.204,
+    "mean_rank_cand_ref": 3.204,
+    "mean_rank_noncand_fast": 41257.3,
+    "mean_rank_noncand_ref": 39003.8
+   },
+   "memory_last1_snapshot": {
+    "candidate_rows": 225,
+    "exact_match": 225,
+    "noncandidate_rows": 1775,
+    "within_bounds": 1775,
+    "mean_rank_cand_fast": 2.684,
+    "mean_rank_cand_ref": 2.684,
+    "mean_rank_noncand_fast": 41152.0,
+    "mean_rank_noncand_ref": 38877.7
+   },
+   "fleet_prior(head's clusters)": {
+    "candidate_rows": 168,
+    "exact_match": 168,
+    "noncandidate_rows": 1832,
+    "within_bounds": 1832,
+    "mean_rank_cand_fast": 4.006,
+    "mean_rank_cand_ref": 4.006,
+    "mean_rank_noncand_fast": 41165.2,
+    "mean_rank_noncand_ref": 39074.7
+   }
+  }
+ }
+}
+
+ALL INVARIANTS OK

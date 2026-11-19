@@ -1,0 +1,442 @@
+{
+ "n_test_edges": 121371,
+ "n_ents": 80287,
+ "gpu_base": 80257,
+ "n_types": 30,
+ "n_bases_excl_pad": 918,
+ "novel_share": 0.847542,
+ "recurrent_share": 0.144392,
+ "arms_present": [
+  "base",
+  "hetero",
+  "static",
+  "baseemb",
+  "basefeat",
+  "baseprior",
+  "headprior",
+  "priorgate",
+  "priorts",
+  "priortsgate",
+  "priorts_s43"
+ ],
+ "arms_missing": [],
+ "cohort_n": {
+  "all": 121371,
+  "novel": 102867,
+  "recurrent": 17525
+ },
+ "selfcheck_closed_form_vs_prod": [
+  {
+   "channel": "entity_mem",
+   "cohort": "recurrent",
+   "mine_H@1": 0.7504,
+   "prod_H@1": 0.7515,
+   "rank_diff_rows": 951
+  },
+  {
+   "channel": "tail_prior",
+   "cohort": "recurrent",
+   "mine_H@1": 0.1896,
+   "prod_H@1": 0.1896,
+   "rank_diff_rows": 0
+  }
+ ],
+ "seed_noise": [
+  {
+   "cohort": "all",
+   "cohort_cn": "全部 test 边",
+   "seed42_H@1": 0.359,
+   "seed43_H@1": 0.3447,
+   "abs_delta": 0.0142
+  },
+  {
+   "cohort": "novel",
+   "cohort_cn": "全新 head",
+   "seed42_H@1": 0.2977,
+   "seed43_H@1": 0.281,
+   "abs_delta": 0.0167
+  },
+  {
+   "cohort": "recurrent",
+   "cohort_cn": "复发边（硬线层）",
+   "seed42_H@1": 0.7364,
+   "seed43_H@1": 0.7362,
+   "abs_delta": 0.0002
+  }
+ ],
+ "verdicts": [
+  {
+   "line": "不回退线",
+   "definition": "复发层 H@1 ≥ 0.7337（§24 的 0.7357 − 0.002）",
+   "threshold": 0.7337,
+   "arm": "priorts",
+   "readout": 0.7364,
+   "verdict": "过"
+  },
+  {
+   "line": "不回退线",
+   "definition": "复发层 H@1 ≥ 0.7337（§24 的 0.7357 − 0.002）",
+   "threshold": 0.7337,
+   "arm": "priortsgate",
+   "readout": 0.7452,
+   "verdict": "过"
+  },
+  {
+   "line": "不回退线",
+   "definition": "复发层 H@1 ≥ 0.7337（§24 的 0.7357 − 0.002）",
+   "threshold": 0.7337,
+   "arm": "priorts_s43",
+   "readout": 0.7362,
+   "verdict": "过"
+  },
+  {
+   "line": "硬线（用户裁定）",
+   "definition": "复发层 H@1 ≥ 0.3473（编队构成基线）",
+   "threshold": 0.3473,
+   "arm": "priorts",
+   "readout": 0.7364,
+   "verdict": "过"
+  },
+  {
+   "line": "硬线（用户裁定）",
+   "definition": "复发层 H@1 ≥ 0.3473（编队构成基线）",
+   "threshold": 0.3473,
+   "arm": "priortsgate",
+   "readout": 0.7452,
+   "verdict": "过"
+  },
+  {
+   "line": "修复线",
+   "definition": "全新 head H@1 ≥ 0.2877（§23 单通道读数）",
+   "threshold": 0.2877,
+   "arm": "priorts",
+   "readout": 0.2977,
+   "verdict": "过"
+  },
+  {
+   "line": "修复线",
+   "definition": "全新 head H@1 ≥ 0.2877（§23 单通道读数）",
+   "threshold": 0.2877,
+   "arm": "priortsgate",
+   "readout": 0.2932,
+   "verdict": "过"
+  },
+  {
+   "line": "修复线",
+   "definition": "全新 head H@1 ≥ 0.2877（§23 单通道读数）",
+   "threshold": 0.2877,
+   "arm": "priorts_s43",
+   "readout": 0.281,
+   "verdict": "不过"
+  },
+  {
+   "line": "合格线",
+   "definition": "全体 H@1 ≥ 0.3580（不学习的 add_hist）",
+   "threshold": 0.358,
+   "arm": "priorts",
+   "readout": 0.359,
+   "verdict": "过"
+  },
+  {
+   "line": "合格线",
+   "definition": "全体 H@1 ≥ 0.3580（不学习的 add_hist）",
+   "threshold": 0.358,
+   "arm": "priortsgate",
+   "readout": 0.3563,
+   "verdict": "不过"
+  },
+  {
+   "line": "合格线",
+   "definition": "全体 H@1 ≥ 0.3580（不学习的 add_hist）",
+   "threshold": 0.358,
+   "arm": "priorts_s43",
+   "readout": 0.3447,
+   "verdict": "不过"
+  },
+  {
+   "line": "停止线",
+   "definition": "全体 H@1 < 0.3244（§24）即停止调参",
+   "threshold": 0.3244,
+   "arm": "priorts",
+   "readout": 0.359,
+   "verdict": "未触发"
+  },
+  {
+   "line": "停止线",
+   "definition": "全体 H@1 < 0.3244（§24）即停止调参",
+   "threshold": 0.3244,
+   "arm": "priortsgate",
+   "readout": 0.3563,
+   "verdict": "未触发"
+  },
+  {
+   "line": "停止线",
+   "definition": "全体 H@1 < 0.3244（§24）即停止调参",
+   "threshold": 0.3244,
+   "arm": "priorts_s43",
+   "readout": 0.3447,
+   "verdict": "未触发"
+  },
+  {
+   "line": "机制线",
+   "definition": "两条闭式通道都答错的边上 H@1 ≥ 0.0700",
+   "threshold": 0.07,
+   "arm": "priorts",
+   "readout": 0.0062,
+   "verdict": "不过"
+  },
+  {
+   "line": "机制线",
+   "definition": "两条闭式通道都答错的边上 H@1 ≥ 0.0700",
+   "threshold": 0.07,
+   "arm": "priortsgate",
+   "readout": 0.0247,
+   "verdict": "不过"
+  },
+  {
+   "line": "机制线",
+   "definition": "两条闭式通道都答错的边上 H@1 ≥ 0.0700",
+   "threshold": 0.07,
+   "arm": "priorts_s43",
+   "readout": 0.0193,
+   "verdict": "不过"
+  }
+ ],
+ "mechanism": [
+  {
+   "arm": "baseprior",
+   "agree_base_all": 0.9438745664120753,
+   "agree_mem_all": 0.6824776923647329,
+   "gain_over_base_all": 2874,
+   "loss_vs_base_all": 3938,
+   "bothwrong_n_all": 73460,
+   "bothwrong_H@1_all": 0.037054179145112984,
+   "agree_base_novel": 0.9346632058872136,
+   "agree_mem_novel": 0.6951694907015855,
+   "gain_over_base_novel": 2828,
+   "loss_vs_base_novel": 3893,
+   "bothwrong_n_novel": 69099,
+   "bothwrong_H@1_novel": 0.03916120349064386,
+   "agree_base_recurrent": 0.9950356633380885,
+   "agree_mem_recurrent": 0.5985734664764621,
+   "gain_over_base_recurrent": 45,
+   "loss_vs_base_recurrent": 42,
+   "bothwrong_n_recurrent": 3530,
+   "bothwrong_H@1_recurrent": 0.00424929178470255
+  },
+  {
+   "arm": "headprior",
+   "agree_base_all": 0.8646793715137883,
+   "agree_mem_all": 0.751818803503308,
+   "gain_over_base_all": 8598,
+   "loss_vs_base_all": 7826,
+   "bothwrong_n_all": 73460,
+   "bothwrong_H@1_all": 0.0430710590797713,
+   "agree_base_novel": 0.8974112203136089,
+   "agree_mem_novel": 0.7227390708390445,
+   "gain_over_base_novel": 3167,
+   "loss_vs_base_novel": 7386,
+   "bothwrong_n_novel": 69099,
+   "bothwrong_H@1_novel": 0.04392248802442872,
+   "agree_base_recurrent": 0.6710984308131241,
+   "agree_mem_recurrent": 0.9109843081312411,
+   "gain_over_base_recurrent": 5431,
+   "loss_vs_base_recurrent": 333,
+   "bothwrong_n_recurrent": 3530,
+   "bothwrong_H@1_recurrent": 0.03654390934844193
+  },
+  {
+   "arm": "priorgate",
+   "agree_base_all": 0.8417414374109137,
+   "agree_mem_all": 0.7712797950086924,
+   "gain_over_base_all": 9011,
+   "loss_vs_base_all": 10197,
+   "bothwrong_n_all": 73460,
+   "bothwrong_H@1_all": 0.04512659950993738,
+   "agree_base_novel": 0.8737398777061642,
+   "agree_mem_novel": 0.7421719307455258,
+   "gain_over_base_novel": 3328,
+   "loss_vs_base_novel": 9660,
+   "bothwrong_n_novel": 69099,
+   "bothwrong_H@1_novel": 0.0462090623598026,
+   "agree_base_recurrent": 0.6516405135520684,
+   "agree_mem_recurrent": 0.9312410841654779,
+   "gain_over_base_recurrent": 5683,
+   "loss_vs_base_recurrent": 422,
+   "bothwrong_n_recurrent": 3530,
+   "bothwrong_H@1_recurrent": 0.03456090651558073
+  },
+  {
+   "arm": "priorts",
+   "agree_base_all": 0.9456295161117565,
+   "agree_mem_all": 0.7206663865338507,
+   "gain_over_base_all": 5783,
+   "loss_vs_base_all": 816,
+   "bothwrong_n_all": 73460,
+   "bothwrong_H@1_all": 0.00616662129049823,
+   "agree_base_novel": 0.9931659327092265,
+   "agree_mem_novel": 0.6857398388210019,
+   "gain_over_base_novel": 333,
+   "loss_vs_base_novel": 370,
+   "bothwrong_n_novel": 69099,
+   "bothwrong_H@1_novel": 0.004688924586462901,
+   "agree_base_recurrent": 0.6697289586305278,
+   "agree_mem_recurrent": 0.9124679029957204,
+   "gain_over_base_recurrent": 5449,
+   "loss_vs_base_recurrent": 339,
+   "bothwrong_n_recurrent": 3530,
+   "bothwrong_H@1_recurrent": 0.036260623229461754
+  },
+  {
+   "arm": "priortsgate",
+   "agree_base_all": 0.9150044079722504,
+   "agree_mem_all": 0.7272495077077721,
+   "gain_over_base_all": 7482,
+   "loss_vs_base_all": 2834,
+   "bothwrong_n_all": 73460,
+   "bothwrong_H@1_all": 0.024693710863054722,
+   "agree_base_novel": 0.9607648711442931,
+   "agree_mem_novel": 0.69027968153052,
+   "gain_over_base_novel": 1766,
+   "loss_vs_base_novel": 2270,
+   "bothwrong_n_novel": 69099,
+   "bothwrong_H@1_novel": 0.02418269439499848,
+   "agree_base_recurrent": 0.6485592011412268,
+   "agree_mem_recurrent": 0.9310128388017118,
+   "gain_over_base_recurrent": 5712,
+   "loss_vs_base_recurrent": 447,
+   "bothwrong_n_recurrent": 3530,
+   "bothwrong_H@1_recurrent": 0.03937677053824363
+  },
+  {
+   "arm": "priorts_s43",
+   "agree_base_all": 0.9146995575549348,
+   "agree_mem_all": 0.733997412891053,
+   "gain_over_base_all": 6797,
+   "loss_vs_base_all": 3556,
+   "bothwrong_n_all": 73460,
+   "bothwrong_H@1_all": 0.019343860604410564,
+   "agree_base_novel": 0.9565166671527312,
+   "agree_mem_novel": 0.701624427659016,
+   "gain_over_base_novel": 1357,
+   "loss_vs_base_novel": 3116,
+   "bothwrong_n_novel": 69099,
+   "bothwrong_H@1_novel": 0.01869781038799404,
+   "agree_base_recurrent": 0.6705848787446504,
+   "agree_mem_recurrent": 0.9114978601997147,
+   "gain_over_base_recurrent": 5440,
+   "loss_vs_base_recurrent": 333,
+   "bothwrong_n_recurrent": 3530,
+   "bothwrong_H@1_recurrent": 0.03654390934844193
+  }
+ ],
+ "learned_alphas": {
+  "baseprior": {
+   "ckpt": "maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseprior-seed42",
+   "prior_alpha": 1.5557
+  },
+  "headprior": {
+   "ckpt": "maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseprior-headprior-seed42",
+   "prior_alpha": 1.4006,
+   "head_alpha": 1.8313
+  },
+  "priorgate": {
+   "ckpt": "maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseprior-headprior-priorgate-seed42",
+   "prior_alpha": 1.0,
+   "head_alpha": 1.0,
+   "gate_w": [
+    [
+     0.0111,
+     -0.3769,
+     0.2397
+    ],
+    [
+     0.7259,
+     0.2258,
+     0.7717
+    ]
+   ],
+   "gate_c": [
+    0.7806,
+    1.3125
+   ]
+  },
+  "priorts": {
+   "ckpt": "maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseprior-headprior-priorts-seed42",
+   "prior_alpha": 1.306,
+   "head_alpha": 1.7963
+  },
+  "priortsgate": {
+   "ckpt": "maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseprior-headprior-priorgate-priorts-seed42",
+   "prior_alpha": 1.0,
+   "head_alpha": 1.0,
+   "gate_w": [
+    [
+     0.1533,
+     -0.5985,
+     0.167
+    ],
+    [
+     0.9224,
+     -0.0572,
+     0.7957
+    ]
+   ],
+   "gate_c": [
+    0.8358,
+    1.3348
+   ]
+  },
+  "priorts_s43": {
+   "ckpt": "maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseprior-headprior-priorts-seed43",
+   "prior_alpha": 1.3783,
+   "head_alpha": 1.8294
+  }
+ },
+ "val_mrr_and_epoch": {
+  "base": {
+   "val_mrr": 0.114,
+   "best_epoch": 15
+  },
+  "hetero": {
+   "val_mrr": 0.0975,
+   "best_epoch": 15
+  },
+  "static": {
+   "val_mrr": 0.1276,
+   "best_epoch": 15
+  },
+  "baseemb": {
+   "val_mrr": 0.1176,
+   "best_epoch": 20
+  },
+  "basefeat": {
+   "val_mrr": 0.1141,
+   "best_epoch": 20
+  },
+  "baseprior": {
+   "val_mrr": 0.158,
+   "best_epoch": 25
+  },
+  "headprior": {
+   "val_mrr": 0.2079,
+   "best_epoch": 25
+  },
+  "priorgate": {
+   "val_mrr": 0.212,
+   "best_epoch": 25
+  },
+  "priorts": {
+   "val_mrr": 0.1771,
+   "best_epoch": 25
+  },
+  "priortsgate": {
+   "val_mrr": 0.1756,
+   "best_epoch": 25
+  },
+  "priorts_s43": {
+   "val_mrr": 0.1745,
+   "best_epoch": 25
+  }
+ }
+}

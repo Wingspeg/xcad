@@ -1,0 +1,76 @@
+====================================================================================================
+PART 1  entry points, one fetch each
+====================================================================================================
+--- g5k_home          200 32446 https://www.grid5000.fr/w/Grid5000:Home            chars=5841    -
+    https://www.grid5000.fr/w/Grid5000:Home
+    hits={'gpu': 2, 'slurm': 0, 'placement': 0, 'download': 0, 'authwall': 0}
+    [gpu] ...e amount of resources : 15000 cores, 800 compute-nodes grouped in homogeneous clusters, and featuring various technologies: PMEM, GPU, SSD, NVMe, 10G and 25G Ethernet, Infiniband, Omni-Path highly reconfigurable and controllable : researchers can experiment with a fully customized software stack thanks to bare-metal deployment features, and can iso...
+--- g5k_tracing       200 14151 https://www.grid5000.fr/w/Tracing                  chars=659     AUTH-WALL (bytes fetched, but content is a login/anti-bot page)
+    https://www.grid5000.fr/w/Tracing
+    hits={'gpu': 0, 'slurm': 0, 'placement': 0, 'download': 0, 'authwall': 3}
+--- g5k_api_sid       401 540 https://api.grid5000.fr/sid/sites                    chars=299     HTTP-401
+    https://api.grid5000.fr/sid/sites
+    hits={'gpu': 0, 'slurm': 0, 'placement': 0, 'download': 0, 'authwall': 0}
+--- g5k_traces_repo   404 224787 https://github.com/grid5000/grid5000-traces       chars=2780    GITHUB-404 (repo path does not exist)
+    https://github.com/grid5000/grid5000-traces
+    hits={'gpu': 0, 'slurm': 0, 'placement': 0, 'download': 0, 'authwall': 0}
+--- cham_index        200 18385 https://chameleoncloud.readthedocs.io/en/latest/index.html chars=5159    -
+    https://chameleoncloud.readthedocs.io/en/latest/index.html
+    hits={'gpu': 4, 'slurm': 0, 'placement': 0, 'download': 0, 'authwall': 0}
+    [gpu] ...ud with diverse Intel/AMD hardware including GigaIO nodes CHI@UC (Chicago): Networking-focused site with specialized hardware and GPU/FPGA resources CHI@NCAR (Colorado): Baremetal site focused on performant networking and CPU hardware including ARM ThunderX2 nodes and NVIDIA GH200 GPU nodes CHI@Edge : Distributed edge computing with Raspberry Pi de...
+--- cham_power        200 12111 https://chameleoncloud.readthedocs.io/en/latest/technical/power_monitoring/index.html chars=2338    -
+    https://chameleoncloud.readthedocs.io/en/latest/technical/power_monitoring/index.html
+    hits={'gpu': 1, 'slurm': 0, 'placement': 0, 'download': 0, 'authwall': 0}
+    [gpu] ...on and visualization Hardware support  Power monitoring support varies by node type: - Full support : Most Intel and AMD compute/GPU nodes - Limited support : Specialized nodes (FPGAs, ARM64) - Temperature monitoring : Only available when nodes are powered on Getting started  For system-level monitoring : Use ipmitool dcmi power reading to get cu...
+--- cham_data_page    404 8371 https://www.chameleoncloud.org/data/                chars=662     HTTP-404
+    https://www.chameleoncloud.org/data/
+    hits={'gpu': 0, 'slurm': 0, 'placement': 0, 'download': 0, 'authwall': 0}
+--- htk_github        404 224620 https://github.com/hpc/traces                     chars=2780    GITHUB-404 (repo path does not exist)
+    https://github.com/hpc/traces
+    hits={'gpu': 0, 'slurm': 0, 'placement': 0, 'download': 0, 'authwall': 0}
+--- htk_pypi_json     404 24 https://pypi.org/pypi/hpctracekit/json                chars=24      HTTP-404
+    https://pypi.org/pypi/hpctracekit/json
+    hits={'gpu': 0, 'slurm': 0, 'placement': 0, 'download': 0, 'authwall': 0}
+--- tacc_mirror       404 9379 http://ipsych.korea.ac.kr/papers/trace/tacc/        chars=412     HTTP-404
+    http://ipsych.korea.ac.kr/papers/trace/tacc/
+    hits={'gpu': 0, 'slurm': 0, 'placement': 0, 'download': 0, 'authwall': 0}
+--- cloudlab_root     200 24565 https://www.cloudlab.us/                           chars=7005    -
+    https://www.cloudlab.us/
+    hits={'gpu': 1, 'slurm': 0, 'placement': 0, 'download': 0, 'authwall': 0}
+    [gpu] ...t the Utah cluster. September 24, 2024 We have revamped the page describing CloudLab's hardware August 1, 2024 Two new nodes with NVIDIA's Grace Hopper architecture are available at Clemson March 15, 2024 We have released a report studying CloudLab users' needs January 5, 2024 Reservations in CloudLab are now per-user; see the news post for details...
+--- cloudlab_goldfish 404 224692 https://github.com/c2smith/goldfish               chars=2780    GITHUB-404 (repo path does not exist)
+    https://github.com/c2smith/goldfish
+    hits={'gpu': 0, 'slurm': 0, 'placement': 0, 'download': 0, 'authwall': 0}
+
+  cham_index links mentioning monitor/data/metric/trace:
+     Power Monitoring -> technical/power_monitoring/index.html
+  cham_power external data links (zenodo|figshare|dataverse|globus|.csv|.tar): 0
+  cloudlab_root links mentioning trace/measure/dataset: []
+
+====================================================================================================
+PART 2  discovery APIs (anonymous): Zenodo records + GitHub repo search
+====================================================================================================
+--- zenodo q='"gpu cluster trace" slurm'            200 58332 https://zenodo.org/api/records?q=%22gpu+cluster+trace%22+slurm&size=10 total=939
+    https://zenodo.org/api/records?q=%22gpu+cluster+trace%22+slurm&size=10
+       The Preliminary Study of Federated Learning for Enhancing the HPC Job Scheduling Policy | ['Centra7-FL-abstract-NCHC-whuang-20240112v3.pdf']
+       Wrapper Impact Workloads and BSC Slurm Simulator Output of Dynamic Traces from CEA Curie | ['dynamic_experiment.zip']
+       ShAVe : Short-read Alignment pipeline for Vectors - slurm version | ['shave-v1.zip']
+       Slurm REST API | ['SchedMD-Rest-API.pdf']
+       NVGPUFREQ SLURM Plugin | ['slurm-nvgpufreq-master.zip']
+--- zenodo q='"GPU cluster workload trace"'         200 458 https://zenodo.org/api/records?q=%22GPU+cluster+workload+trace%22&size=10 total=0
+    https://zenodo.org/api/records?q=%22GPU+cluster+workload+trace%22&size=10
+--- zenodo q='hpctracekit'                          200 437 https://zenodo.org/api/records?q=hpctracekit&size=10 total=0
+    https://zenodo.org/api/records?q=hpctracekit&size=10
+--- zenodo q='slurm accounting open data GPUs'      200 49603 https://zenodo.org/api/records?q=slurm+accounting+open+data+GPUs&size=10 total=1442300
+    https://zenodo.org/api/records?q=slurm+accounting+open+data+GPUs&size=10
+       guilbaults/slurm-job-exporter: v0.5.2 | ['guilbaults/slurm-job-exporter-v0.5.2.zip']
+       The Preliminary Study of Federated Learning for Enhancing the HPC Job Scheduling Policy | ['Centra7-FL-abstract-NCHC-whuang-20240112v3.pdf']
+       SLURM Executor Plugin - Support for GPUs | ['SLURM_executor_plugin_update.pdf']
+       MoMA Collection - Automatic Monthly Update | ['collection-v1.52.zip']
+       MoMA Collection - Automatic Update | ['collection-v2024-04-16.zip']
+--- github q='hpctracekit'                          total=0
+--- github q='hpc job traces slurm gpu'             total=1
+       zhanyl-tech/slurm-scheduler-lab | Replays real Slurm job traces against multifactor priority and EASY ba
+--- github q='cluster trace gpu placement dataset'  total=0
+
+DONE  (0 GPU minutes; every claim above is backed by bytes in /tmp/hpcscreen)

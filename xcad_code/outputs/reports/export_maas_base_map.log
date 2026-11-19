@@ -1,0 +1,32 @@
+[entities] n_ents=80287  head 段=[0,80257)  tail 段=[80257,80287)
+[raw] rows=13736375 shards=6
+[pairs] model_id 有 base 的个数=80257  distinct base=918  跨期多 base 被众数折叠=1935 (2.4110%)
+[map] head=80257  映射到真实 base=80257 (1.0000)  落 pad=0 (0.0000)  去前缀才命中=0
+[vocab] raw distinct base=918  图内 head 用到的 base=918  被丢弃的 base=0
+[write] ~/xcad/xcad_code/xcad_model/data/maas/base_of.npy ~/xcad/xcad_code/xcad_model/data/maas/base_map_report.json
+{
+  "n_ents": 80287,
+  "head_lo": 0,
+  "head_hi": 80257,
+  "n_bases": 918,
+  "n_bases_in_raw": 918,
+  "pad_index": 918,
+  "n_heads_mapped": 80257,
+  "n_heads_padded": 0,
+  "n_heads_hit_after_strip_prefix": 0,
+  "head_base_coverage": 1.0,
+  "n_models_multi_base_collapsed": 1935,
+  "multi_base_share": 0.02411,
+  "model_id_to_base": "modal base over history (count desc, then lexicographic)",
+  "sources": {
+    "entity2id": "~/xcad/xcad_code/xcad_model/data/maas/entity2id.txt",
+    "shards": [
+      "part_0.parquet",
+      "part_1.parquet",
+      "part_2.parquet",
+      "part_3.parquet",
+      "part_4.parquet",
+      "part_5.parquet"
+    ]
+  }
+}

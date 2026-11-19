@@ -1,0 +1,16 @@
+[id-space] n_ents=80287 tail_lo=80257 n_types=30 n_bases=918
+[write] ~/xcad/xcad_code/xcad_model/data/maas/base_prior.npy shape=(919, 30)  log1p 计数范围=[0.0, 8.291]
+{
+  "n_bases": 918,
+  "pad_index": 918,
+  "n_types": 30,
+  "tail_lo_entity_id": 80257,
+  "columns": "bias[b, k] = log1p(count of history edges whose head's base == b and card type == k)",
+  "history_only": "train.txt + valid.txt rel0 edges; test never touched",
+  "n_bases_with_history": 825,
+  "total_history_edges": 461925,
+  "log1p_count_min": 0.0,
+  "log1p_count_max": 8.291,
+  "pad_row_max_abs": 0.0,
+  "argmax_equals_modal_card_type": true
+}

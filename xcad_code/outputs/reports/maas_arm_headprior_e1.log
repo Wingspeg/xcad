@@ -1,0 +1,6 @@
+[headprior] start=06:02:05
+[headprior] exit=0 done=06:11:36
+[id-space] num_nodes=80287 r1_tail_max=None -> gpu_base=0 (LEGACY 局部编号)
+[prior] 偏置列段 = [80257, 80287) = rel0 的 30 个 tail 实体 (num_nodes=80287) base=True head=True)
+[base-prior] ../data/maas/base_prior.npy shape=(919, 30) cols=[80257,80287)  alpha_init=1.0  log1p 上界=8.291
+[head-prior] ../data/maas/head_prior.npy shape=(80287, 30) cols=[80257,80287)  alpha_init=1.0  有历史行的实体=0.7567  log1p 上界=3.989

@@ -1,0 +1,26 @@
+================================================================================================
+PART A  msr-fiddle/philly-traces : file tree, README, notebook columns
+================================================================================================
+repo: None | star None | desc:  | license: None | pushed: None
+  tree fetch failed: {'message': "API rate limit exceeded for 18.181.218.208. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)", 'documentation_url'
+files=0
+
+source/analysis files to grep: 0
+
+  vocabulary found in the official repo:
+    (none of COLS matched)
+
+================================================================================================
+PART B  Semantic Scholar: citations of the Philly trace paper
+================================================================================================
+Traceback (most recent call last):
+  File "~/xcad/xcad_code/scripts/screen_philly_usage2.py", line 106, in <module>
+    q = ss(f"{SS}/paper/search?query=" +
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/xcad/xcad_code/scripts/screen_philly_usage2.py", line 99, in ss
+    raw = curl(url, to=60)
+          ^^^^^^^^^^^^^^^^
+  File "~/xcad/xcad_code/scripts/screen_philly_usage2.py", line 26, in curl
+    p = subprocess.run(["curl", "-sS", "-L", "--max-time", str(to)] + extra +
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+TypeError: can only concatenate list (not "tuple") to list

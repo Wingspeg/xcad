@@ -1,0 +1,10 @@
+[v2_cen_curriculum_r2] start=15:39:55
+[v2_cen_curriculum_r2] exit=0 done=15:47:42
+[v2_cen_test_r2] start=15:47:42
+[v2_cen_test_r2] exit=0 done=15:48:11
+MRR (filter_ent): 0.049006
+Hits (filter_ent) @ 1: 0.028959
+  r1_suits                  MRR=0.682748  H@1=0.425144  H@3=0.915259  H@10=1.000000
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 -> GLOBAL 四段编号
+  Per-GPU Hits@1 Macro (unweighted) = 0.2000
+CEN_RETRY_DONE 15:48:11

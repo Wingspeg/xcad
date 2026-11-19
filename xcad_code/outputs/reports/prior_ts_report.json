@@ -1,0 +1,54 @@
+{
+  "convention": "bias[t, *, k] = log1p(count of train+valid rel0 edges with ts < t)",
+  "index_axis": "dim0 == ts value from data file column 4 (maas: train 1..47, valid 48..53, test 54..65)",
+  "T": 66,
+  "n_ents": 80287,
+  "n_bases": 918,
+  "n_types": 30,
+  "head_table_shape": [
+    66,
+    80287,
+    30
+  ],
+  "base_table_shape": [
+    66,
+    919,
+    30
+  ],
+  "head_table_mb": 635.9,
+  "test_side_identical_to_static": {
+    "head": true,
+    "base": true,
+    "first_test_ts": 54
+  },
+  "static_convention_head_avail_gap_train_minus_test": 0.8475,
+  "temporal_head_avail_gap_train_minus_test": 0.0492,
+  "splits": {
+    "train": {
+      "n": 394274,
+      "head_avail": 0.2017,
+      "base_avail": 0.9646,
+      "head_avail_hit": 0.5336,
+      "self_leak_rows": 0
+    },
+    "valid": {
+      "n": 67651,
+      "head_avail": 0.2091,
+      "base_avail": 0.9985,
+      "head_avail_hit": 0.5089,
+      "self_leak_rows": 0
+    },
+    "test": {
+      "n": 121371,
+      "head_avail": 0.1525,
+      "base_avail": 0.9776,
+      "head_avail_hit": 0.4869,
+      "self_leak_rows": 0
+    }
+  },
+  "log1p_max_head": 3.989,
+  "log1p_max_base": 8.291,
+  "n_heads_with_history_at_last_ts": 60750,
+  "self_leak_rows_all_splits": 0,
+  "history_edges_in_table": 461925
+}

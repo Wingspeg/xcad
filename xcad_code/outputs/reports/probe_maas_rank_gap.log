@@ -1,0 +1,11 @@
+n_ent=80287 n_tail_block=30 noncandidate rows=1748
+closed form: mean kept=0.060 mean a=0.060 mean f_only=0.102 mean peers=80286.8 => E[rank]=40144.0
+dense: E[rank]=39008.0  above(block)=14.102  above(head segment)=38992.9  above&filtered=0.051
+dense ties with gold: 1.004 entities/row
+gold value distribution: median=5.170e-07 min=1.611e-09 max=9.987e-07
+head-segment entries with score>0: mean per row=80257.0 of 80257
+  jit_seed=1 fast_seed=1: dense mean=  39008.0 closed mean=  41263.8 gap= +2255.7
+  jit_seed=1 fast_seed=11: dense mean=  39008.0 closed mean=  39595.3 gap=  +587.3
+  jit_seed=2 fast_seed=1: dense mean=  40566.3 closed mean=  41263.8 gap=  +697.5
+  jit_seed=3 fast_seed=3: dense mean=  39163.5 closed mean=  39534.0 gap=  +370.5
+  jit_seed=4 fast_seed=5: dense mean=  39949.6 closed mean=  39522.2 gap=  -427.4

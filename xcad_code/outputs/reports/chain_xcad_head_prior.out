@@ -1,0 +1,56 @@
+==== §29 (D) xcad_v2 先验臂 chain start=2026-11-17 09:43:48 ====
+  gpu_before: 1 MiB, 0 %
+--- [0] 回归对照: 论文配置 + --test 复用已发表 checkpoint(不加任何先验旗标) ---
+[joint_recheck] exit=0 epochs=30 seed=42 extra='' --test
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 (GLOBAL 四段编号)
+  gpu_after: 1 MiB
+[0] 逐位对照(全体 / 复发 / 全新 H@1 + r1 MRR):
+  joint_xcad_v2.log:
+        r3_drives (attr, id=3+7):  MRR=0.003382  H@1=0.000179  H@3=0.000895  H@10=0.003578
+        placement                 MRR=0.011168  H@1=0.001912  H@3=0.005723  H@10=0.017279
+        r1_suits                  MRR=0.927251  H@1=0.884843  H@3=0.976597  H@10=0.996114
+        r2_requires               MRR=0.858116  H@1=0.834437  H@3=0.841060  H@10=0.960265
+          全部 test 边 n= 11836 (100.0%)  MRR=0.927251  H@1=0.884843  H@3=0.976597  H@10=0.996114
+                    macro5=0.5085  macro_occ=0.5085(c=5)  prior-H@1=0.4251   T4=0.968/5032  MISC=0.975/5246  P100=0.000/552  V100=0.599/811  V100M32=0.000/195
+          复发 head   n=  1023 (  8.6%)  MRR=0.811410  H@1=0.697947  H@3=0.975562  H@10=0.994135
+          全新 head   n= 10813 ( 91.4%)  MRR=0.938210  H@1=0.902525  H@3=0.976695  H@10=0.996301
+  joint_recheck.log:
+        r3_drives (attr, id=3+7):  MRR=0.003382  H@1=0.000179  H@3=0.000895  H@10=0.003578
+        placement                 MRR=0.011168  H@1=0.001912  H@3=0.005723  H@10=0.017279
+        r1_suits                  MRR=0.927251  H@1=0.884843  H@3=0.976597  H@10=0.996114
+        r2_requires               MRR=0.858116  H@1=0.834437  H@3=0.841060  H@10=0.960265
+          全部 test 边 n= 11836 (100.0%)  MRR=0.927251  H@1=0.884843  H@3=0.976597  H@10=0.996114
+                    macro5=0.5085  macro_occ=0.5085(c=5)  prior-H@1=0.4251   T4=0.968/5032  MISC=0.975/5246  P100=0.000/552  V100=0.599/811  V100M32=0.000/195
+          复发 head   n=  1023 (  8.6%)  MRR=0.811410  H@1=0.697947  H@3=0.975562  H@10=0.994135
+          全新 head   n= 10813 ( 91.4%)  MRR=0.938210  H@1=0.902525  H@3=0.976695  H@10=0.996301
+--- [1] 冒烟: 时序口径先验, EPOCHS=6 ---
+[headprior_ts_smoke] exit=0 epochs=6 seed=42 extra='--head-prior --prior-ts' 
+[prior-ts] 快照 ts: train 1..49(49)  valid 50..55(6)  test 56..61(6)
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 (GLOBAL 四段编号)
+[prior] 偏置列段 = [124886, 124891) = rel1 的 5 个 tail 实体 (num_nodes=124891) base=False head=True)
+[head-prior] ../data/xcad_v2/head_prior.npy shape=(124891, 5) cols=[124886,124891)  alpha_init=1.0  有历史行的实体=0.7136  log1p 上界=2.197
+[prior-ts] ../data/xcad_v2/head_prior_ts.npy shape=(62, 124891, 5) (155 MB on cuda:0)
+  gpu_after: 1 MiB
+--- [2] 臂 A: 时序口径 head 先验, seed 42(正式读数) ---
+[headprior_ts] exit=0 epochs=30 seed=42 extra='--head-prior --prior-ts' 
+[prior-ts] 快照 ts: train 1..49(49)  valid 50..55(6)  test 56..61(6)
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 (GLOBAL 四段编号)
+[prior] 偏置列段 = [124886, 124891) = rel1 的 5 个 tail 实体 (num_nodes=124891) base=False head=True)
+[head-prior] ../data/xcad_v2/head_prior.npy shape=(124891, 5) cols=[124886,124891)  alpha_init=1.0  有历史行的实体=0.7136  log1p 上界=2.197
+[prior-ts] ../data/xcad_v2/head_prior_ts.npy shape=(62, 124891, 5) (155 MB on cuda:0)
+  gpu_after: 1 MiB
+--- [3] 臂 A2: 同上, seed 43(噪声带) ---
+[headprior_ts_s43] exit=0 epochs=30 seed=43 extra='--head-prior --prior-ts' 
+[prior-ts] 快照 ts: train 1..49(49)  valid 50..55(6)  test 56..61(6)
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 (GLOBAL 四段编号)
+[prior] 偏置列段 = [124886, 124891) = rel1 的 5 个 tail 实体 (num_nodes=124891) base=False head=True)
+[head-prior] ../data/xcad_v2/head_prior.npy shape=(124891, 5) cols=[124886,124891)  alpha_init=1.0  有历史行的实体=0.7136  log1p 上界=2.197
+[prior-ts] ../data/xcad_v2/head_prior_ts.npy shape=(62, 124891, 5) (155 MB on cuda:0)
+  gpu_after: 1 MiB
+--- [4] 臂 S: 静态口径 head 先验(§28.2-③ 机制对照, 无新判线) ---
+[headprior_static] exit=0 epochs=30 seed=42 extra='--head-prior' 
+[id-space] num_nodes=124891 r1_tail_max=124890 -> gpu_base=124885 (GLOBAL 四段编号)
+[prior] 偏置列段 = [124886, 124891) = rel1 的 5 个 tail 实体 (num_nodes=124891) base=False head=True)
+[head-prior] ../data/xcad_v2/head_prior.npy shape=(124891, 5) cols=[124886,124891)  alpha_init=1.0  有历史行的实体=0.7136  log1p 上界=2.197
+  gpu_after: 1 MiB
+==== chain done=2026-11-17 10:32:38 ====

@@ -1,0 +1,12 @@
+window day90  snapshots=24  heads/snapshot=[10440, 10894, 10856]
+
+cut     test_e    rec_e |     MEM    PROF      LR   LR+cl |   LRwrong   onlyMEM
+6        10745    10401 |  0.9946  0.5210  0.2419  0.2419 |      7885      7830
+12       10260     9256 |  0.9947  0.5065  0.2269  0.2269 |      7156      7107
+18       10586     9727 |  0.9902  0.5006  0.2256  0.2256 |      7533      7439
+23       10146     9695 |  0.9906  0.5018  0.2258  0.2258 |      7506      7416
+
+columns: MEM=entity history mode, PROF=categorical profile class mode,
+         LR=static resource attributes, LR+cl=LR incl. cluster_id,
+         onlyMEM=recurrent edges MEM gets right that LR+cl gets wrong
+ALL_DONE

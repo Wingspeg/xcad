@@ -1,0 +1,27 @@
+1) placements  n=6,893,236
+gpu_label
+NVIDIA-LEGACY-MISC    50.34
+NVIDIA-P100           23.47
+NVIDIA-T4             20.76
+NVIDIA-V100            3.33
+NVIDIA-V100-32G        2.09
+   opaque share = 50.34%
+
+2) placement_devices (one row = one card)  n=3,033,232
+gpu_label
+NVIDIA-LEGACY-MISC    62.42
+NVIDIA-T4             18.60
+NVIDIA-P100           15.41
+NVIDIA-V100            2.14
+NVIDIA-V100-32G        1.44
+UNRESOLVED             0.00
+   opaque share = 62.42%
+
+3) jobs, gpu_label_final is a SET  n(gpu jobs)=1,042,992 labelled=1,042,992
+   touched by an opaque label  = 68.15%
+   fully opaque (nothing named) = 60.16%
+   fully resolvable            = 31.85%
+
+4) jobs that actually have device rows  n=837,529  touched by opaque = 68.77%
+
+5) 老探针的口径问题，记录下来：probe_spec_mapping.py Q2 的 gpu_placements_pct 与本脚本 (1) 完全一致（50.34%），不是膨胀 join；但它的 jobs_pct 把'标签集合里含 MISC 的同一个作业'同时计入 MISC 与 P100 两行，分母被放大，于是 MISC 报成 60.83%。作业粒度的正确值是上面 (3)：碰到 = 68.15%，整作业无具名标签 = 60.16%，整作业全具名 = 31.85%。

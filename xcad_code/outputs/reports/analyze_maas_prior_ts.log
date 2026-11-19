@@ -1,0 +1,153 @@
+[setup] n=121371 n_ents=80287 gpu_base=80257 n_types=30 n_bases=918 全新 head=0.8475 复发边=0.1444
+[dump] candidate_universe=None num_nodes=80287 dump 自带 entity_memory/tail_prior 秩(下面重算一遍对照)
+
+=== Q0 管道自检：重算的闭式 vs dump 里生产实现算的（H@1，全体/复发）===
+  entity_memory  全部 test 边      重算 H@1=0.1457  生产 H@1=0.1085  秩不同行数=104792
+  entity_memory  复发边(硬线层)       重算 H@1=0.7504  生产 H@1=0.7515  秩不同行数=951
+  tail_prior     全部 test 边      重算 H@1=0.1679  生产 H@1=0.1679  秩不同行数=0
+  tail_prior     复发边(硬线层)       重算 H@1=0.1896  生产 H@1=0.1896  秩不同行数=0
+
+=== Q1 同尺四臂 + 三通道（H@1/H@3/H@10）===
+  全部 test 边        n= 121371
+      base       H@1=0.1263 H@3=0.3615 H@10=0.8372 中位=5.0 p90=12.0 n=121371
+      baseemb    H@1=0.1483 H@3=0.4081 H@10=0.8459 中位=4.0 p90=12.0 n=121371
+      basefeat   H@1=0.1614 H@3=0.3405 H@10=0.7160 中位=6.0 p90=15.0 n=121371
+      baseprior  H@1=0.3093 H@3=0.5771 H@10=0.9013 中位=3.0 p90=10.0 n=121371
+      headprior  H@1=0.3244 H@3=0.5832 H@10=0.9042 中位=3.0 p90=10.0 n=121371
+      priorgate  H@1=0.3083 H@3=0.5902 H@10=0.9137 中位=3.0 p90=10.0 n=121371
+      priorts    H@1=0.3590 H@3=0.6152 H@10=0.9267 中位=2.0 p90=9.0 n=121371
+      priortsgate H@1=0.3563 H@3=0.6084 H@10=0.9181 中位=2.0 p90=10.0 n=121371
+      priorts_s43 H@1=0.3447 H@3=0.5961 H@10=0.8960 中位=3.0 p90=11.0 n=121371
+      base_hist  H@1=0.3180 H@3=0.5864 H@10=0.9138 中位=3.0 p90=10.0 n=121371
+      entity_mem H@1=0.1457 H@3=0.2457 H@10=0.5221 中位=10.0 p90=22.0 n=121371
+      add_hist   H@1=0.3580 H@3=0.6116 H@10=0.9192 中位=2.0 p90=10.0 n=121371
+      tail_prior H@1=0.1679 H@3=0.3988 H@10=0.8671 中位=5.0 p90=12.0 n=121371
+  全新 head          n= 102867
+      base       H@1=0.1233 H@3=0.3451 H@10=0.8281 中位=5.0 p90=13.0 n=102867
+      baseemb    H@1=0.1510 H@3=0.4124 H@10=0.8474 中位=4.0 p90=12.0 n=102867
+      basefeat   H@1=0.1551 H@3=0.3293 H@10=0.7011 中位=6.0 p90=16.0 n=102867
+      baseprior  H@1=0.2877 H@3=0.5533 H@10=0.8953 中位=3.0 p90=11.0 n=102867
+      headprior  H@1=0.2571 H@3=0.5302 H@10=0.8924 中位=3.0 p90=11.0 n=102867
+      priorgate  H@1=0.2365 H@3=0.5376 H@10=0.9034 中位=3.0 p90=10.0 n=102867
+      priorts    H@1=0.2977 H@3=0.5677 H@10=0.9178 中位=3.0 p90=10.0 n=102867
+      priortsgate H@1=0.2932 H@3=0.5590 H@10=0.9078 中位=3.0 p90=10.0 n=102867
+      priorts_s43 H@1=0.2810 H@3=0.5455 H@10=0.8828 中位=3.0 p90=11.0 n=102867
+      base_hist  H@1=0.2981 H@3=0.5643 H@10=0.9095 中位=3.0 p90=10.0 n=102867
+      entity_mem H@1=0.0441 H@3=0.1328 H@10=0.4434 中位=12.0 p90=22.0 n=102867
+      add_hist   H@1=0.2981 H@3=0.5643 H@10=0.9095 中位=3.0 p90=10.0 n=102867
+      tail_prior H@1=0.1651 H@3=0.3818 H@10=0.8640 中位=5.0 p90=12.0 n=102867
+  复发边(硬线层)         n=  17525
+      base       H@1=0.1472 H@3=0.4640 H@10=0.8910 中位=4.0 p90=11.0 n=17525
+      baseemb    H@1=0.1364 H@3=0.3933 H@10=0.8467 中位=5.0 p90=12.0 n=17525
+      basefeat   H@1=0.2015 H@3=0.4099 H@10=0.8033 中位=5.0 p90=14.0 n=17525
+      baseprior  H@1=0.4450 H@3=0.7301 H@10=0.9530 中位=2.0 p90=7.0 n=17525
+      headprior  H@1=0.7357 H@3=0.9091 H@10=0.9914 中位=1.0 p90=3.0 n=17525
+      priorgate  H@1=0.7450 H@3=0.9144 H@10=0.9924 中位=1.0 p90=3.0 n=17525
+      priorts    H@1=0.7364 H@3=0.9105 H@10=0.9924 中位=1.0 p90=3.0 n=17525
+      priortsgate H@1=0.7452 H@3=0.9151 H@10=0.9918 中位=1.0 p90=3.0 n=17525
+      priorts_s43 H@1=0.7362 H@3=0.9092 H@10=0.9914 中位=1.0 p90=3.0 n=17525
+      base_hist  H@1=0.4448 H@3=0.7293 H@10=0.9526 中位=2.0 p90=7.0 n=17525
+      entity_mem H@1=0.7504 H@3=0.9193 H@10=0.9945 中位=1.0 p90=3.0 n=17525
+      add_hist   H@1=0.7271 H@3=0.9045 H@10=0.9902 中位=1.0 p90=3.0 n=17525
+      tail_prior H@1=0.1896 H@3=0.5043 H@10=0.8866 中位=3.0 p90=11.0 n=17525
+
+=== Q1b 先验臂是不是只把先验搬过来：top-1 同率 + 逐边得失（每条先验臂一行）===
+  --- baseprior ---
+  全部 test 边      n= 121371  ∩base_hist=0.9439(top-1 同率)  ∩entity_mem=0.6825  模型对&先验错=  2874  先验对&模型错=  3937
+                   模型对&记忆错= 29194  记忆对&模型错=  9344  两者都错(模型单独答对的空间)= 全体 miss  74490
+  全新 head        n= 102867  ∩base_hist=0.9347(top-1 同率)  ∩entity_mem=0.6952  模型对&先验错=  2828  先验对&模型错=  3892
+                   模型对&记忆错= 28209  记忆对&模型错=  3147  两者都错(模型单独答对的空间)= 全体 miss  70124
+  复发边(硬线层)       n=  17525  ∩base_hist=0.9950(top-1 同率)  ∩entity_mem=0.5986  模型对&先验错=    45  先验对&模型错=    42
+                   模型对&记忆错=   841  记忆对&模型错=  6194  两者都错(模型单独答对的空间)= 全体 miss   3532
+  --- headprior ---
+  全部 test 边      n= 121371  ∩base_hist=0.8647(top-1 同率)  ∩entity_mem=0.7518  模型对&先验错=  8598  先验对&模型错=  7825
+                   模型对&记忆错= 25904  记忆对&模型错=  4218  两者都错(模型单独答对的空间)= 全体 miss  77780
+  全新 head        n= 102867  ∩base_hist=0.8974(top-1 同率)  ∩entity_mem=0.7227  模型对&先验错=  3167  先验对&模型错=  7386
+                   模型对&记忆错= 25215  记忆对&模型错=  3305  两者都错(模型单独答对的空间)= 全体 miss  73119
+  复发边(硬线层)       n=  17525  ∩base_hist=0.6711(top-1 同率)  ∩entity_mem=0.9110  模型对&先验错=  5431  先验对&模型错=   333
+                   模型对&记忆错=   651  记忆对&模型错=   909  两者都错(模型单独答对的空间)= 全体 miss   3723
+  --- priorgate ---
+  全部 test 边      n= 121371  ∩base_hist=0.8417(top-1 同率)  ∩entity_mem=0.7713  模型对&先验错=  9011  先验对&模型错= 10197
+                   模型对&记忆错= 23744  记忆对&模型错=  4016  两者都错(模型单独答对的空间)= 全体 miss  79940
+  全新 head        n= 102867  ∩base_hist=0.8737(top-1 同率)  ∩entity_mem=0.7422  模型对&先验错=  3328  先验对&模型错=  9660
+                   模型对&记忆错= 23159  记忆对&模型错=  3363  两者都错(模型单独答对的空间)= 全体 miss  75175
+  复发边(硬线层)       n=  17525  ∩base_hist=0.6516(top-1 同率)  ∩entity_mem=0.9312  模型对&先验错=  5683  先验对&模型错=   422
+                   模型对&记忆错=   555  记忆对&模型错=   650  两者都错(模型单独答对的空间)= 全体 miss   3819
+  --- priorts ---
+  全部 test 边      n= 121371  ∩base_hist=0.9456(top-1 同率)  ∩entity_mem=0.7207  模型对&先验错=  5783  先验对&模型错=   816
+                   模型对&记忆错= 29892  记忆对&模型错=  4011  两者都错(模型单独答对的空间)= 全体 miss  73792
+  全新 head        n= 102867  ∩base_hist=0.9932(top-1 同率)  ∩entity_mem=0.6857  模型对&先验错=   333  先验对&模型错=   370
+                   模型对&记忆错= 29209  记忆对&模型错=  3118  两者都错(模型单独答对的空间)= 全体 miss  69125
+  复发边(硬线层)       n=  17525  ∩base_hist=0.6697(top-1 同率)  ∩entity_mem=0.9125  模型对&先验错=  5449  先验对&模型错=   339
+                   模型对&记忆错=   644  记忆对&模型错=   890  两者都错(模型单独答对的空间)= 全体 miss   3730
+  --- priortsgate ---
+  全部 test 边      n= 121371  ∩base_hist=0.9150(top-1 同率)  ∩entity_mem=0.7272  模型对&先验错=  7482  先验对&模型错=  2834
+                   模型对&记忆错= 29333  记忆对&模型错=  3771  两者都错(模型单独答对的空间)= 全体 miss  74351
+  全新 head        n= 102867  ∩base_hist=0.9608(top-1 同率)  ∩entity_mem=0.6903  模型对&先验错=  1766  先验对&模型错=  2270
+                   模型对&记忆错= 28742  记忆对&模型错=  3118  两者都错(模型单独答对的空间)= 全体 miss  69592
+  复发边(硬线层)       n=  17525  ∩base_hist=0.6486(top-1 同率)  ∩entity_mem=0.9310  模型对&先验错=  5712  先验对&模型错=   447
+                   模型对&记忆错=   559  记忆对&模型错=   650  两者都错(模型单独答对的空间)= 全体 miss   3815
+
+=== Q2 encoder 的净贡献：在【先验答错】的边上各臂 H@1 ===
+  全部 test 边      base_hist    错 n=  82770  base=0.0971  baseemb=0.1154  basefeat=0.1007  baseprior=0.0347  headprior=0.1039  priorgate=0.1089  priorts=0.0699  priortsgate=0.0904  priorts_s43=0.0821  | 该通道单独 H@1=0.0000
+  全部 test 边      entity_memory错 n= 103684  base=0.1218  baseemb=0.1478  basefeat=0.1529  baseprior=0.2816  headprior=0.2498  priorgate=0.2290  priorts=0.2883  priortsgate=0.2829  priorts_s43=0.2722  | 该通道单独 H@1=0.0000
+  全新 head        base_hist    错 n=  72206  base=0.0966  baseemb=0.1190  basefeat=0.0964  baseprior=0.0392  headprior=0.0439  priorgate=0.0461  priorts=0.0046  priortsgate=0.0245  priorts_s43=0.0188  | 该通道单独 H@1=0.0000
+  全新 head        entity_memory错 n=  98334  base=0.1232  baseemb=0.1500  basefeat=0.1541  baseprior=0.2869  headprior=0.2564  priorgate=0.2355  priorts=0.2970  priortsgate=0.2923  priorts_s43=0.2800  | 该通道单独 H@1=0.0000
+  复发边(硬线层)       base_hist    错 n=   9730  base=0.1039  baseemb=0.0925  basefeat=0.1342  baseprior=0.0046  headprior=0.5582  priorgate=0.5841  priorts=0.5600  priortsgate=0.5871  priorts_s43=0.5591  | 该通道单独 H@1=0.0000
+  复发边(硬线层)       entity_memory错 n=   4374  base=0.1020  baseemb=0.1120  basefeat=0.1363  baseprior=0.1923  headprior=0.1488  priorgate=0.1269  priorts=0.1472  priortsgate=0.1278  priorts_s43=0.1488  | 该通道单独 H@1=0.0000
+
+=== Q3 与『非学习合并』的差距：hit-level oracle（任一通道 top-1 命中即算命中）===
+  --- baseprior ---
+  全部 test 边      baseprior=0.3093  oracle(base∪mem)=0.3947  oracle(+tail)=0.4381  | 单通道 base=0.3180 mem=0.1457 add=0.3580
+  全新 head        baseprior=0.2877  oracle(base∪mem)=0.3283  oracle(+tail)=0.3764  | 单通道 base=0.2981 mem=0.0441 add=0.2981
+  复发边(硬线层)       baseprior=0.4450  oracle(base∪mem)=0.7986  oracle(+tail)=0.8131  | 单通道 base=0.4448 mem=0.7504 add=0.7271
+  --- headprior ---
+  全部 test 边      headprior=0.3244  oracle(base∪mem)=0.3947  oracle(+tail)=0.4381  | 单通道 base=0.3180 mem=0.1457 add=0.3580
+  全新 head        headprior=0.2571  oracle(base∪mem)=0.3283  oracle(+tail)=0.3764  | 单通道 base=0.2981 mem=0.0441 add=0.2981
+  复发边(硬线层)       headprior=0.7357  oracle(base∪mem)=0.7986  oracle(+tail)=0.8131  | 单通道 base=0.4448 mem=0.7504 add=0.7271
+  --- priorgate ---
+  全部 test 边      priorgate=0.3083  oracle(base∪mem)=0.3947  oracle(+tail)=0.4381  | 单通道 base=0.3180 mem=0.1457 add=0.3580
+  全新 head        priorgate=0.2365  oracle(base∪mem)=0.3283  oracle(+tail)=0.3764  | 单通道 base=0.2981 mem=0.0441 add=0.2981
+  复发边(硬线层)       priorgate=0.7450  oracle(base∪mem)=0.7986  oracle(+tail)=0.8131  | 单通道 base=0.4448 mem=0.7504 add=0.7271
+  --- priorts ---
+  全部 test 边      priorts=0.3590  oracle(base∪mem)=0.3947  oracle(+tail)=0.4381  | 单通道 base=0.3180 mem=0.1457 add=0.3580
+  全新 head        priorts=0.2977  oracle(base∪mem)=0.3283  oracle(+tail)=0.3764  | 单通道 base=0.2981 mem=0.0441 add=0.2981
+  复发边(硬线层)       priorts=0.7364  oracle(base∪mem)=0.7986  oracle(+tail)=0.8131  | 单通道 base=0.4448 mem=0.7504 add=0.7271
+  --- priortsgate ---
+  全部 test 边      priortsgate=0.3563  oracle(base∪mem)=0.3947  oracle(+tail)=0.4381  | 单通道 base=0.3180 mem=0.1457 add=0.3580
+  全新 head        priortsgate=0.2932  oracle(base∪mem)=0.3283  oracle(+tail)=0.3764  | 单通道 base=0.2981 mem=0.0441 add=0.2981
+  复发边(硬线层)       priortsgate=0.7452  oracle(base∪mem)=0.7986  oracle(+tail)=0.8131  | 单通道 base=0.4448 mem=0.7504 add=0.7271
+
+=== Q5 encoder 的独立空间：【两条闭式通道都答错】的边上各臂 H@1（挤压的直接读数）===
+  全部 test 边      base&mem 都错        n= 73460  base=0.0962  baseemb=0.1172  basefeat=0.0966  baseprior=0.0371  headprior=0.0431  priorgate=0.0451  priorts=0.0062  priortsgate=0.0247  priorts_s43=0.0193
+  全部 test 边      base&mem&add 都错    n= 73318  base=0.0960  baseemb=0.1172  basefeat=0.0965  baseprior=0.0371  headprior=0.0416  priorgate=0.0440  priorts=0.0047  priortsgate=0.0235  priorts_s43=0.0179
+  全新 head        base&mem 都错        n= 69099  base=0.0970  baseemb=0.1187  basefeat=0.0961  baseprior=0.0392  headprior=0.0439  priorgate=0.0462  priorts=0.0047  priortsgate=0.0242  priorts_s43=0.0187
+  全新 head        base&mem&add 都错    n= 69099  base=0.0970  baseemb=0.1187  basefeat=0.0961  baseprior=0.0392  headprior=0.0439  priorgate=0.0462  priorts=0.0047  priortsgate=0.0242  priorts_s43=0.0187
+  复发边(硬线层)       base&mem 都错        n=  3530  base=0.0878  baseemb=0.1003  basefeat=0.1116  baseprior=0.0042  headprior=0.0365  priorgate=0.0346  priorts=0.0363  priortsgate=0.0394  priorts_s43=0.0365
+  复发边(硬线层)       base&mem&add 都错    n=  3388  base=0.0850  baseemb=0.0986  basefeat=0.1092  baseprior=0.0044  headprior=0.0050  priorgate=0.0089  priorts=0.0050  priortsgate=0.0136  priorts_s43=0.0050
+
+=== Q4 学到的信任度 ===
+  baseprior maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseprior-seed42
+            best epoch=25  prior_alpha=1.5557  base_prior max=8.2910
+  headprior maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseprior-headprior-seed42
+            best epoch=25  prior_alpha=1.4006  head_alpha=1.8313  base_prior max=8.2910  head_prior max=3.9890
+  priorgate maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseprior-headprior-priorgate-seed42
+            best epoch=25  prior_alpha=1.0000  head_alpha=1.0000  base_prior max=8.2910  head_prior max=3.9890
+  priorts   maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseprior-headprior-priorts-seed42
+            best epoch=25  prior_alpha=1.3060  head_alpha=1.7963  base_prior max=8.2910  head_prior max=3.9890
+  priortsgate maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseprior-headprior-priorgate-priorts-seed42
+            best epoch=25  prior_alpha=1.0000  head_alpha=1.0000  base_prior max=8.2910  head_prior max=3.9890
+
+=== Q6 (§25 自证伪线) 门控有没有真的按行分离信任度 ===
+  gate_w=[[0.15330000221729279, -0.5985000133514404, 0.16699999570846558], [0.9223999977111816, -0.05719999969005585, 0.7957000136375427]]  gate_c=[0.8357999920845032, 1.3348000049591064]
+  实体域：有 head 历史  60750/80257 个 head, alpha_b=1.3742  alpha_m=2.8483; 无历史  19507 个, alpha_b=1.2604  alpha_m=2.0264
+      全部 test 边      有 head 历史  18504 行 / 无 102867 行  alpha_b 1.2656 vs 1.2636   alpha_m 2.6432 vs 2.0497
+      全新 head        有 head 历史      0 行 / 无 102867 行  alpha_b nan vs 1.2636   alpha_m nan vs 2.0497
+      复发边(硬线层)       有 head 历史  17525 行 / 无      0 行  alpha_b 1.2624 vs nan   alpha_m 2.6464 vs nan
+  >>> 自证伪线：两组 alpha_b 均值差(逐行加权) = -0.0020  (|差| < 0.10 => 门没按行分开 = §25 判失败)  参照: §24 全局标量 alpha_b=1.4006 / §23 1.5557
+  gate_w=[[0.011099999770522118, -0.37689998745918274, 0.23970000445842743], [0.7258999943733215, 0.22579999268054962, 0.7717000246047974]]  gate_c=[0.7806000113487244, 1.3125]
+  实体域：有 head 历史  60750/80257 个 head, alpha_b=1.3199  alpha_m=2.6864; 无历史  19507 个, alpha_b=1.1623  alpha_m=1.9062
+      全部 test 边      有 head 历史  18504 行 / 无 102867 行  alpha_b 1.2657 vs 1.1625   alpha_m 2.5756 vs 1.9242
+      全新 head        有 head 历史      0 行 / 无 102867 行  alpha_b nan vs 1.1625   alpha_m nan vs 1.9242
+      复发边(硬线层)       有 head 历史  17525 行 / 无      0 行  alpha_b 1.2634 vs nan   alpha_m 2.5803 vs nan
+  >>> 自证伪线：两组 alpha_b 均值差(逐行加权) = -0.1032  (|差| < 0.10 => 门没按行分开 = §25 判失败)  参照: §24 全局标量 alpha_b=1.4006 / §23 1.5557

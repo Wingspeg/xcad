@@ -1,0 +1,61 @@
+[raw] rows=13736375 shards=6
+[raw] blank-name rows dropped=124
+[cache] edges=583296 heads=80257 tails=30 taus=65
+[graph] train=394274 valid=67651 test=121371 heads=80257 gpu_base=80257 n_types=30 snapshots=65
+[align] 图边=583296 cache边=583296 对称差=0
+[merge] 边=583296 属性缺失(workload)=0 (0.0000)
+[cohorts] 全部 test 边=121371(100.0%)  head 在 history 从未出现=102867(84.8%)  head 在 history 复发=18504(15.2%)  head 复发 >=2 快照=17990(14.8%)  边 (head,tail) 在 history=17525(14.4%)
+[logit] 特征=10 训练行=461925 类=30
+[logit] 特征=19 训练行=461925 类=30
+[logit] 特征=951 训练行=461925 类=30
+
+===== 同一把尺子（过滤式排名，候选 = 30 个卡型，与 18/19 节口径一致）=====
+通道                                               全部 test 边     head 在 history 从未出现       head 在 history 复发          head 复发 >=2 快照 边 (head,tail) 在 history      直查(v1)
+uniform(全 0 分)                        0.0429/ 0.131/ 121371    0.0432/ 0.132/ 102867    0.0411/ 0.126/  18504    0.0409/ 0.126/  17990    0.0409/ 0.127/  17525      0.0000
+tail_prior(全局最热卡型)                    0.1679/ 0.399/ 121371    0.1651/ 0.382/ 102867    0.1832/ 0.493/  18504    0.1865/ 0.496/  17990    0.1896/ 0.504/  17525      0.0715
+entity_memory(head×卡型历史计数)            0.1457/ 0.246/ 121371    0.0441/ 0.133/ 102867    0.7109/ 0.873/  18504    0.7109/ 0.876/  17990    0.7504/ 0.919/  17525      0.0811
+base_hist(该 base 历史卡型直方图)             0.3166/ 0.584/ 121371    0.2980/ 0.564/ 102867    0.4203/ 0.699/  18504    0.4248/ 0.704/  17990    0.4354/ 0.719/  17525      0.1291
+params_bin_hist                       0.2101/ 0.447/ 121371    0.2031/ 0.437/ 102867    0.2493/ 0.498/  18504    0.2508/ 0.502/  17990    0.2573/ 0.509/  17525      0.1058
+gpu_count_hist                        0.1694/ 0.409/ 121371    0.1613/ 0.389/ 102867    0.2143/ 0.517/  18504    0.2166/ 0.521/  17990    0.2221/ 0.527/  17525      0.0760
+workload_hist                         0.1733/ 0.398/ 121371    0.1648/ 0.380/ 102867    0.2204/ 0.497/  18504    0.2216/ 0.500/  17990    0.2266/ 0.510/  17525      0.0783
+arch_hist                             0.1828/ 0.432/ 121371    0.1775/ 0.415/ 102867    0.2121/ 0.526/  18504    0.2161/ 0.529/  17990    0.2195/ 0.538/  17525      0.0840
+pd_role_hist                          0.1637/ 0.401/ 121371    0.1599/ 0.382/ 102867    0.1849/ 0.504/  18504    0.1879/ 0.506/  17990    0.1912/ 0.515/  17525      0.0720
+base_hist × params_bin                0.2698/ 0.511/ 121371    0.2531/ 0.492/ 102867    0.3624/ 0.612/  18504    0.3666/ 0.616/  17990    0.3756/ 0.629/  17525      0.1155
+logit(三个请求类别)                         0.1925/ 0.434/ 121371    0.1829/ 0.417/ 102867    0.2461/ 0.524/  18504    0.2482/ 0.527/  17990    0.2536/ 0.537/  17525      0.0892
+logit(全部请求侧字段)                        0.2324/ 0.505/ 121371    0.2218/ 0.494/ 102867    0.2910/ 0.570/  18504    0.2931/ 0.573/  17990    0.3019/ 0.582/  17525      0.1177
+logit(请求侧字段 + base_id)                0.3092/ 0.593/ 121371    0.2941/ 0.575/ 102867    0.3932/ 0.696/  18504    0.3974/ 0.701/  17990    0.4088/ 0.714/  17525      0.1264
+prod.entity_memory                    0.1463/ 0.248/ 121371    0.0446/ 0.135/ 102867    0.7119/ 0.874/  18504    0.7116/ 0.877/  17990    0.7513/ 0.920/  17525           -
+prod.tail_prior                       0.1679/ 0.399/ 121371    0.1651/ 0.382/ 102867    0.1832/ 0.493/  18504    0.1865/ 0.496/  17990    0.1896/ 0.504/  17525           -
+模型 base                               0.1263/ 0.361/ 121371    0.1233/ 0.345/ 102867    0.1430/ 0.453/  18504    0.1446/ 0.455/  17990    0.1472/ 0.464/  17525           -
+模型 hetero                             0.1064/ 0.285/ 121371    0.1084/ 0.284/ 102867    0.0949/ 0.290/  18504    0.0929/ 0.289/  17990    0.0961/ 0.291/  17525           -
+模型 static                             0.1895/ 0.408/ 121371    0.1924/ 0.412/ 102867    0.1733/ 0.386/  18504    0.1735/ 0.384/  17990    0.1772/ 0.390/  17525           -
+  (每格 = H@1 / H@3 / n)
+
+[G1] 全新 head 的 base_id 在历史出现率 = 0.9735  (线 0.20)
+[G2/G3] 最佳请求侧通道 = base_hist(该 base 历史卡型直方图) H@1 0.2980  vs tail_prior 0.1651  增益 +0.1329  (线 <0.05 无可学判别 / >=0.15 承重)
+[对照] 全新 head 层：模型 H@1 = {"模型 base": 0.1233, "模型 hetero": 0.1084, "模型 static": 0.1924}  uniform=0.0432  tail_prior=0.1651  entity_memory=0.0441
+[verdict] 中间区(0.05~0.15) => 只允许再来一次 15 分钟级测量，不许直接开三臂
+[out] ~/xcad/xcad_code/outputs/reports/maas_head_fields2.json
+	Command being timed: "~/xcad/xcad_code/.venv/bin/python probe_maas_head_fields_v2.py --out ~/xcad/xcad_code/outputs/reports/maas_head_fields2.json"
+	User time (seconds): 13490.44
+	System time (seconds): 3111.61
+	Percent of CPU this job got: 2145%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 12:53.85
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 15001924
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 7
+	Minor (reclaiming a frame) page faults: 7168581
+	Voluntary context switches: 45809
+	Involuntary context switches: 129485694
+	Swaps: 0
+	File system inputs: 800
+	File system outputs: 54312
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

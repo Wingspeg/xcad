@@ -1,0 +1,105 @@
+Namespace(gpu=0, batch_size=1, dataset='maas', test=True, run_analysis=False, run_statistic=False, multi_step=False, topk=10, add_static_graph=False, add_rel_word=False, relation_evaluation=False, weight=1.0, task_weight=0.7, discount=1.0, angle=10, encoder='uvrgcn', aggregation='none', dropout=0.4, skip_connect=False, n_hidden=200, opn='sub', n_bases=100, n_basis=100, n_layers=2, self_loop=True, layer_norm=False, relation_prediction=False, entity_prediction=True, split_by_relation=False, n_epochs=30, lr=0.001, grad_norm=1.0, weight_decay=1e-05, evaluate_every=5, decoder='convtranse', input_dropout=0.4, hidden_dropout=0.4, feat_dropout=0.4, train_history_len=6, test_history_len=20, dilate_len=1, hetero=True, n_msg_basis=2, node_feat=False, feat_dir='../data/xcad', feat_fusion='residual', feat_scope='all', feat_alpha_fixed=None, decoder_feat=False, decoder_feat_lambda=None, rel_decay=False, no_rel_evolution=False, compat=False, compat_lambda=None, compat_aux_weight=0.5, dump_preds='~/xcad/xcad_code/xcad_model/src/maas_arms/seg_hetero.pt', probe_rel=0, seed=42, ent_segment=[80257, 80286], grid_search=False, tune='n_hidden,n_layers,dropout,n_bases', num_k=500)
+[seed] 42
+loading graph data
+../data/maas
+# Sanity Check:  entities: 80287
+# Sanity Check:  relations: 1
+# Sanity Check:  edges: 394274
+# Sanity Check:  ave node num : 2089.893617, ave rel num : 2.000000, snapshots num: 0047, max edges num: 14264, min edges num: 4551, max union rate: 1.0000, min union rate: 1.0000
+# Sanity Check:  ave node num : 2832.500000, ave rel num : 2.000000, snapshots num: 0006, max edges num: 14390, min edges num: 9785, max union rate: 1.0000, min union rate: 1.0000
+# Sanity Check:  ave node num : 2680.750000, ave rel num : 2.000000, snapshots num: 0012, max edges num: 14875, min edges num: 7064, max union rate: 1.0000, min union rate: 1.0000
+[id-space] num_nodes=80287 r1_tail_max=None -> gpu_base=0 (LEGACY 局部编号)
+# Sanity Check:  ave node num : 2680.750000, ave rel num : 2.000000, snapshots num: 0012, max edges num: 14875, min edges num: 7064, max union rate: 1.0000, min union rate: 1.0000
+# Sanity Check:  ave node num : 2680.750000, ave rel num : 2.000000, snapshots num: 0012, max edges num: 14875, min edges num: 7064, max union rate: 1.0000, min union rate: 1.0000
+# Sanity Check:  ave node num : 2832.500000, ave rel num : 2.000000, snapshots num: 0006, max edges num: 14390, min edges num: 9785, max union rate: 1.0000, min union rate: 1.0000
+# Sanity Check:  ave node num : 2832.500000, ave rel num : 2.000000, snapshots num: 0006, max edges num: 14390, min edges num: 9785, max union rate: 1.0000, min union rate: 1.0000
+Sanity Check: stat name : ../models/maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-seed42
+Sanity Check: Is cuda available ? True
+use layer :uvrgcn
+activate function: <function rrelu at 0x72f65c5c6160>
+activate function: <function rrelu at 0x72f65c5c6160>
+[cand-set] 实体排名 = 正向 tail 段 [80257, 80286] / 逆向 head 段 [0, 80257) —— 非主表口径，闭式基线会走同一段(见 generic_strata 的 universe)；总表 filter_ent 混合正逆两段不可读，只读 rel0 分层表
+Load Model name: ../models/maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-het2-nonf-nodf-seed42. Using best epoch : 15
+
+----------start testing----------
+
+
+  0%|          | 0/12 [00:00<?, ?it/s]~/xcad/xcad_code/.venv/lib/python3.11/site-packages/dgl/heterograph.py:92: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  dgl_warning(
+
+  8%|▊         | 1/12 [00:03<00:35,  3.23s/it]
+ 17%|█▋        | 2/12 [00:05<00:25,  2.52s/it]
+ 25%|██▌       | 3/12 [00:07<00:20,  2.32s/it]
+ 33%|███▎      | 4/12 [00:09<00:18,  2.29s/it]
+ 42%|████▏     | 5/12 [00:12<00:16,  2.40s/it]
+ 50%|█████     | 6/12 [00:14<00:13,  2.26s/it]
+ 58%|█████▊    | 7/12 [00:15<00:10,  2.07s/it]
+ 67%|██████▋   | 8/12 [00:17<00:08,  2.09s/it]
+ 75%|███████▌  | 9/12 [00:19<00:06,  2.03s/it]
+ 83%|████████▎ | 10/12 [00:22<00:04,  2.07s/it]
+ 92%|█████████▏| 11/12 [00:24<00:02,  2.05s/it]
+100%|██████████| 12/12 [00:25<00:00,  2.02s/it]
+100%|██████████| 12/12 [00:25<00:00,  2.16s/it]
+MRR (raw_ent): 0.102117
+Hits (raw_ent) @ 1: 0.036100
+Hits (raw_ent) @ 3: 0.088946
+Hits (raw_ent) @ 10: 0.272347
+MRR (filter_ent): 0.138008
+Hits (filter_ent) @ 1: 0.053225
+Hits (filter_ent) @ 3: 0.142707
+Hits (filter_ent) @ 10: 0.376490
+MRR (raw_rel): 0.750000
+Hits (raw_rel) @ 1: 0.500000
+Hits (raw_rel) @ 3: 1.000000
+Hits (raw_rel) @ 10: 1.000000
+MRR (filter_rel): 0.750000
+Hits (filter_rel) @ 1: 0.500000
+Hits (filter_rel) @ 3: 1.000000
+Hits (filter_rel) @ 10: 1.000000
+
+============================== Per-Relation filter MRR ==============================
+  rel0 (fwd) 0.275117 | H@1 0.106376 H@3 0.285192 H@10 0.752247
+======================================================================
+
+============================ rel0 分层 [test] ============================
+  边数=121371  实体=80287  history 快照=53  编码器窗口=20
+  候选集口径=类型段 (80257, 80286) —— 模型与两条闭式通道同一段
+    全部 test 边                          n=121371 (100.0%)  MRR=0.275117  H@1=0.106376  H@3=0.285192  H@10=0.752247
+                                         entity_memory: MRR=0.261606 H@1=0.146295 H@3=0.247745 H@10=0.520569
+                                         tail_prior: MRR=0.352898 H@1=0.167898 H@3=0.398827 H@10=0.867069
+                                         查表命中(gold 边在 history 出现过)=0.144392
+    head 在 history 以 rel0 复发           n= 18504 ( 15.2%)  MRR=0.271394  H@1=0.094898  H@3=0.290370  H@10=0.750162
+                                         entity_memory: MRR=0.804124 H@1=0.711900 H@3=0.873973 H@10=0.959576
+                                         tail_prior: MRR=0.392514 H@1=0.183204 H@3=0.493353 H@10=0.883863
+                                         查表命中(gold 边在 history 出现过)=0.947093
+    head 在 history 从未出现                n=102867 ( 84.8%)  MRR=0.275787  H@1=0.108441  H@3=0.284260  H@10=0.752622
+                                         entity_memory: MRR=0.164017 H@1=0.044553 H@3=0.135097 H@10=0.441599
+                                         tail_prior: MRR=0.345771 H@1=0.165145 H@3=0.381823 H@10=0.864048
+                                         查表命中(gold 边在 history 出现过)=0.000000
+    head 复发 >=2 快照                     n= 17990 ( 14.8%)  MRR=0.269952  H@1=0.092941  H@3=0.288827  H@10=0.751140
+                                         entity_memory: MRR=0.805220 H@1=0.711618 H@3=0.876932 H@10=0.963091
+                                         tail_prior: MRR=0.395136 H@1=0.186548 H@3=0.495720 H@10=0.883157
+                                         查表命中(gold 边在 history 出现过)=0.952418
+    边 (head,tail) 在 history 里          n= 17525 ( 14.4%)  MRR=0.272589  H@1=0.096091  H@3=0.290899  H@10=0.752810
+                                         entity_memory: MRR=0.843079 H@1=0.751327 H@3=0.919886 H@10=0.994579
+                                         tail_prior: MRR=0.399149 H@1=0.189558 H@3=0.504251 H@10=0.886619
+                                         查表命中(gold 边在 history 出现过)=1.000000
+    边 (head,tail) 不在 history 里         n=103846 ( 85.6%)  MRR=0.275544  H@1=0.108112  H@3=0.284229  H@10=0.752152
+                                         entity_memory: MRR=0.163477 H@1=0.044190 H@3=0.134314 H@10=0.440575
+                                         tail_prior: MRR=0.345092 H@1=0.164243 H@3=0.381035 H@10=0.863769
+                                         查表命中(gold 边在 history 出现过)=0.000000
+    边在编码器窗口(最近快照)里                     n= 17378 ( 14.3%)  MRR=0.272992  H@1=0.096501  H@3=0.291288  H@10=0.753769
+                                         entity_memory: MRR=0.846496 H@1=0.756128 H@3=0.922833 H@10=0.994994
+                                         tail_prior: MRR=0.399702 H@1=0.190471 H@3=0.504661 H@10=0.886638
+                                         查表命中(gold 边在 history 出现过)=1.000000
+    边不在编码器窗口里                          n=103993 ( 85.7%)  MRR=0.275472  H@1=0.108027  H@3=0.284173  H@10=0.751993
+                                         entity_memory: MRR=0.163867 H@1=0.044388 H@3=0.134932 H@10=0.441289
+                                         tail_prior: MRR=0.345076 H@1=0.164126 H@3=0.381141 H@10=0.863799
+                                         查表命中(gold 边在 history 出现过)=0.001414
+
+  [dump] ~/xcad/xcad_code/xcad_model/src/maas_arms/seg_hetero.pt  n=121371
+============================================================================
+  [r1_suits per-GPU] no data
+
+============================ 同口径对照 [test] ============================
+============================================================================

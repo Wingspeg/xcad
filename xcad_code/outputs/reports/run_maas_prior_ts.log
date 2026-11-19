@@ -1,0 +1,41 @@
+==== §26 (H) 时序口径先验 chain start=2026-11-17 07:24:22 ====
+--- [0] 回归对照: §24 旗标 + --test 复用 checkpoint ---
+[headprior_recheck] exit=0 epochs=30 seed=42 extra='--base-prior --head-prior' --test
+[base-prior] ../data/maas/base_prior.npy shape=(919, 30) cols=[80257,80287)  alpha_init=1.0  log1p 上界=8.291
+[head-prior] ../data/maas/head_prior.npy shape=(80287, 30) cols=[80257,80287)  alpha_init=1.0  有历史行的实体=0.7567  log1p 上界=3.989
+[0] 与 §24 逐位对照(应完全一致):
+  headprior:     边 (head,tail) 在 history 里          n= 17525 ( 14.4%)  MRR=0.831345  H@1=0.735692  H@3=0.909101  H@10=0.991441
+  headprior_recheck:     边 (head,tail) 在 history 里          n= 17525 ( 14.4%)  MRR=0.831345  H@1=0.735692  H@3=0.909101  H@10=0.991441
+--- [1] 冒烟: EPOCHS=6 ---
+[priorts_smoke] exit=0 epochs=6 seed=42 extra='--base-prior --head-prior --prior-ts' 
+[prior-ts] 快照 ts: train 1..47(47)  valid 48..53(6)  test 54..65(12)
+[base-prior] ../data/maas/base_prior.npy shape=(919, 30) cols=[80257,80287)  alpha_init=1.0  log1p 上界=8.291
+[head-prior] ../data/maas/head_prior.npy shape=(80287, 30) cols=[80257,80287)  alpha_init=1.0  有历史行的实体=0.7567  log1p 上界=3.989
+[prior-ts] ../data/maas/base_prior_ts.npy shape=(66, 919, 30) (7 MB on cuda:0)
+[prior-ts] ../data/maas/head_prior_ts.npy shape=(66, 80287, 30) (636 MB on cuda:0)
+[prior-ts] 自检: ts=1 有 head 历史的实体=0.0000  ts=65 有 head 历史的实体=0.7567  (静态表=0.7567)
+--- [2] 臂 A: 时序口径双通道(两个全局 alpha) ---
+[priorts] exit=0 epochs=30 seed=42 extra='--base-prior --head-prior --prior-ts' 
+[prior-ts] 快照 ts: train 1..47(47)  valid 48..53(6)  test 54..65(12)
+[base-prior] ../data/maas/base_prior.npy shape=(919, 30) cols=[80257,80287)  alpha_init=1.0  log1p 上界=8.291
+[head-prior] ../data/maas/head_prior.npy shape=(80287, 30) cols=[80257,80287)  alpha_init=1.0  有历史行的实体=0.7567  log1p 上界=3.989
+[prior-ts] ../data/maas/base_prior_ts.npy shape=(66, 919, 30) (7 MB on cuda:0)
+[prior-ts] ../data/maas/head_prior_ts.npy shape=(66, 80287, 30) (636 MB on cuda:0)
+[prior-ts] 自检: ts=1 有 head 历史的实体=0.0000  ts=65 有 head 历史的实体=0.7567  (静态表=0.7567)
+--- [3] 臂 B: 臂 A + 按行信任门 ---
+[priortsgate] exit=0 epochs=30 seed=42 extra='--base-prior --head-prior --prior-ts --prior-gate' 
+[prior-ts] 快照 ts: train 1..47(47)  valid 48..53(6)  test 54..65(12)
+[base-prior] ../data/maas/base_prior.npy shape=(919, 30) cols=[80257,80287)  alpha_init=1.0  log1p 上界=8.291
+[head-prior] ../data/maas/head_prior.npy shape=(80287, 30) cols=[80257,80287)  alpha_init=1.0  有历史行的实体=0.7567  log1p 上界=3.989
+[prior-ts] ../data/maas/base_prior_ts.npy shape=(66, 919, 30) (7 MB on cuda:0)
+[prior-ts] ../data/maas/head_prior_ts.npy shape=(66, 80287, 30) (636 MB on cuda:0)
+[prior-ts] 自检: ts=1 有 head 历史的实体=0.0000  ts=65 有 head 历史的实体=0.7567  (静态表=0.7567)
+--- [4] 臂 A2: 臂 A 第二 seed(噪声带) ---
+[priorts_s43] exit=0 epochs=30 seed=43 extra='--base-prior --head-prior --prior-ts' 
+[prior-ts] 快照 ts: train 1..47(47)  valid 48..53(6)  test 54..65(12)
+[base-prior] ../data/maas/base_prior.npy shape=(919, 30) cols=[80257,80287)  alpha_init=1.0  log1p 上界=8.291
+[head-prior] ../data/maas/head_prior.npy shape=(80287, 30) cols=[80257,80287)  alpha_init=1.0  有历史行的实体=0.7567  log1p 上界=3.989
+[prior-ts] ../data/maas/base_prior_ts.npy shape=(66, 919, 30) (7 MB on cuda:0)
+[prior-ts] ../data/maas/head_prior_ts.npy shape=(66, 80287, 30) (636 MB on cuda:0)
+[prior-ts] 自检: ts=1 有 head 历史的实体=0.0000  ts=65 有 head 历史的实体=0.7567  (静态表=0.7567)
+==== chain done=2026-11-17 07:55:55 ====

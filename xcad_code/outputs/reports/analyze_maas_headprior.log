@@ -1,0 +1,80 @@
+[setup] n=121371 n_ents=80287 gpu_base=80257 n_types=30 n_bases=918 全新 head=0.8475 复发边=0.1444
+[dump] candidate_universe=None num_nodes=80287 dump 自带 entity_memory/tail_prior 秩(下面重算一遍对照)
+
+=== Q0 管道自检：重算的闭式 vs dump 里生产实现算的（H@1，全体/复发）===
+  entity_memory  全部 test 边      重算 H@1=0.1457  生产 H@1=0.1085  秩不同行数=104792
+  entity_memory  复发边(硬线层)       重算 H@1=0.7504  生产 H@1=0.7515  秩不同行数=951
+  tail_prior     全部 test 边      重算 H@1=0.1679  生产 H@1=0.1679  秩不同行数=0
+  tail_prior     复发边(硬线层)       重算 H@1=0.1896  生产 H@1=0.1896  秩不同行数=0
+
+=== Q1 同尺四臂 + 三通道（H@1/H@3/H@10）===
+  全部 test 边        n= 121371
+      base       H@1=0.1263 H@3=0.3615 H@10=0.8372 中位=5.0 p90=12.0 n=121371
+      baseemb    H@1=0.1483 H@3=0.4081 H@10=0.8459 中位=4.0 p90=12.0 n=121371
+      basefeat   H@1=0.1614 H@3=0.3405 H@10=0.7160 中位=6.0 p90=15.0 n=121371
+      baseprior  H@1=0.3093 H@3=0.5771 H@10=0.9013 中位=3.0 p90=10.0 n=121371
+      headprior  H@1=0.3244 H@3=0.5832 H@10=0.9042 中位=3.0 p90=10.0 n=121371
+      base_hist  H@1=0.3180 H@3=0.5864 H@10=0.9138 中位=3.0 p90=10.0 n=121371
+      entity_mem H@1=0.1457 H@3=0.2457 H@10=0.5221 中位=10.0 p90=22.0 n=121371
+      add_hist   H@1=0.3580 H@3=0.6116 H@10=0.9192 中位=2.0 p90=10.0 n=121371
+      tail_prior H@1=0.1679 H@3=0.3988 H@10=0.8671 中位=5.0 p90=12.0 n=121371
+  全新 head          n= 102867
+      base       H@1=0.1233 H@3=0.3451 H@10=0.8281 中位=5.0 p90=13.0 n=102867
+      baseemb    H@1=0.1510 H@3=0.4124 H@10=0.8474 中位=4.0 p90=12.0 n=102867
+      basefeat   H@1=0.1551 H@3=0.3293 H@10=0.7011 中位=6.0 p90=16.0 n=102867
+      baseprior  H@1=0.2877 H@3=0.5533 H@10=0.8953 中位=3.0 p90=11.0 n=102867
+      headprior  H@1=0.2571 H@3=0.5302 H@10=0.8924 中位=3.0 p90=11.0 n=102867
+      base_hist  H@1=0.2981 H@3=0.5643 H@10=0.9095 中位=3.0 p90=10.0 n=102867
+      entity_mem H@1=0.0441 H@3=0.1328 H@10=0.4434 中位=12.0 p90=22.0 n=102867
+      add_hist   H@1=0.2981 H@3=0.5643 H@10=0.9095 中位=3.0 p90=10.0 n=102867
+      tail_prior H@1=0.1651 H@3=0.3818 H@10=0.8640 中位=5.0 p90=12.0 n=102867
+  复发边(硬线层)         n=  17525
+      base       H@1=0.1472 H@3=0.4640 H@10=0.8910 中位=4.0 p90=11.0 n=17525
+      baseemb    H@1=0.1364 H@3=0.3933 H@10=0.8467 中位=5.0 p90=12.0 n=17525
+      basefeat   H@1=0.2015 H@3=0.4099 H@10=0.8033 中位=5.0 p90=14.0 n=17525
+      baseprior  H@1=0.4450 H@3=0.7301 H@10=0.9530 中位=2.0 p90=7.0 n=17525
+      headprior  H@1=0.7357 H@3=0.9091 H@10=0.9914 中位=1.0 p90=3.0 n=17525
+      base_hist  H@1=0.4448 H@3=0.7293 H@10=0.9526 中位=2.0 p90=7.0 n=17525
+      entity_mem H@1=0.7504 H@3=0.9193 H@10=0.9945 中位=1.0 p90=3.0 n=17525
+      add_hist   H@1=0.7271 H@3=0.9045 H@10=0.9902 中位=1.0 p90=3.0 n=17525
+      tail_prior H@1=0.1896 H@3=0.5043 H@10=0.8866 中位=3.0 p90=11.0 n=17525
+
+=== Q1b 先验臂是不是只把先验搬过来：top-1 同率 + 逐边得失（每条先验臂一行）===
+  --- baseprior ---
+  全部 test 边      n= 121371  ∩base_hist=0.9439(top-1 同率)  ∩entity_mem=0.6825  模型对&先验错=  2874  先验对&模型错=  3937
+                   模型对&记忆错= 29194  记忆对&模型错=  9344  两者都错(模型单独答对的空间)= 全体 miss  74490
+  全新 head        n= 102867  ∩base_hist=0.9347(top-1 同率)  ∩entity_mem=0.6952  模型对&先验错=  2828  先验对&模型错=  3892
+                   模型对&记忆错= 28209  记忆对&模型错=  3147  两者都错(模型单独答对的空间)= 全体 miss  70124
+  复发边(硬线层)       n=  17525  ∩base_hist=0.9950(top-1 同率)  ∩entity_mem=0.5986  模型对&先验错=    45  先验对&模型错=    42
+                   模型对&记忆错=   841  记忆对&模型错=  6194  两者都错(模型单独答对的空间)= 全体 miss   3532
+  --- headprior ---
+  全部 test 边      n= 121371  ∩base_hist=0.8647(top-1 同率)  ∩entity_mem=0.7518  模型对&先验错=  8598  先验对&模型错=  7825
+                   模型对&记忆错= 25904  记忆对&模型错=  4218  两者都错(模型单独答对的空间)= 全体 miss  77780
+  全新 head        n= 102867  ∩base_hist=0.8974(top-1 同率)  ∩entity_mem=0.7227  模型对&先验错=  3167  先验对&模型错=  7386
+                   模型对&记忆错= 25215  记忆对&模型错=  3305  两者都错(模型单独答对的空间)= 全体 miss  73119
+  复发边(硬线层)       n=  17525  ∩base_hist=0.6711(top-1 同率)  ∩entity_mem=0.9110  模型对&先验错=  5431  先验对&模型错=   333
+                   模型对&记忆错=   651  记忆对&模型错=   909  两者都错(模型单独答对的空间)= 全体 miss   3723
+
+=== Q2 encoder 的净贡献：在【先验答错】的边上各臂 H@1 ===
+  全部 test 边      base_hist    错 n=  82770  base=0.0971  baseemb=0.1154  basefeat=0.1007  baseprior=0.0347  headprior=0.1039  | 该通道单独 H@1=0.0000
+  全部 test 边      entity_memory错 n= 103684  base=0.1218  baseemb=0.1478  basefeat=0.1529  baseprior=0.2816  headprior=0.2498  | 该通道单独 H@1=0.0000
+  全新 head        base_hist    错 n=  72206  base=0.0966  baseemb=0.1190  basefeat=0.0964  baseprior=0.0392  headprior=0.0439  | 该通道单独 H@1=0.0000
+  全新 head        entity_memory错 n=  98334  base=0.1232  baseemb=0.1500  basefeat=0.1541  baseprior=0.2869  headprior=0.2564  | 该通道单独 H@1=0.0000
+  复发边(硬线层)       base_hist    错 n=   9730  base=0.1039  baseemb=0.0925  basefeat=0.1342  baseprior=0.0046  headprior=0.5582  | 该通道单独 H@1=0.0000
+  复发边(硬线层)       entity_memory错 n=   4374  base=0.1020  baseemb=0.1120  basefeat=0.1363  baseprior=0.1923  headprior=0.1488  | 该通道单独 H@1=0.0000
+
+=== Q3 与『非学习合并』的差距：hit-level oracle（任一通道 top-1 命中即算命中）===
+  --- baseprior ---
+  全部 test 边      baseprior=0.3093  oracle(base∪mem)=0.3947  oracle(+tail)=0.4381  | 单通道 base=0.3180 mem=0.1457 add=0.3580
+  全新 head        baseprior=0.2877  oracle(base∪mem)=0.3283  oracle(+tail)=0.3764  | 单通道 base=0.2981 mem=0.0441 add=0.2981
+  复发边(硬线层)       baseprior=0.4450  oracle(base∪mem)=0.7986  oracle(+tail)=0.8131  | 单通道 base=0.4448 mem=0.7504 add=0.7271
+  --- headprior ---
+  全部 test 边      headprior=0.3244  oracle(base∪mem)=0.3947  oracle(+tail)=0.4381  | 单通道 base=0.3180 mem=0.1457 add=0.3580
+  全新 head        headprior=0.2571  oracle(base∪mem)=0.3283  oracle(+tail)=0.3764  | 单通道 base=0.2981 mem=0.0441 add=0.2981
+  复发边(硬线层)       headprior=0.7357  oracle(base∪mem)=0.7986  oracle(+tail)=0.8131  | 单通道 base=0.4448 mem=0.7504 add=0.7271
+
+=== Q4 学到的信任度 ===
+  baseprior maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseprior-seed42
+            best epoch=25  prior_alpha=1.5557  base_prior max=8.2910
+  headprior maas-uvrgcn-convtranse-ly2-dilate1-his6-weight:1.0-discount:1.0-angle:10-dp0.4|0.4|0.4|0.4-gpu0-nonf-nodf-baseprior-headprior-seed42
+            best epoch=25  prior_alpha=1.4006  head_alpha=1.8313  base_prior max=8.2910  head_prior max=3.9890

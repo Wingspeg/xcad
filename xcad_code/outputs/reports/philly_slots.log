@@ -1,0 +1,55 @@
+==============================================================================
+D1  gpu_index sets per machine, by tier
+==============================================================================
+gpu_label         n_rows
+PHILLY-TIER-2x12  2          83
+                  8         238
+PHILLY-TIER-8x24  8         231
+
+sample rows:
+          gpu_label          machine_gid  n_rows  imin  imax                       set
+0  PHILLY-TIER-2x12    philly#machine:m0       8     0     7  [0, 1, 2, 3, 4, 5, 6, 7]
+1  PHILLY-TIER-2x12    philly#machine:m1       8     0     7  [0, 1, 2, 3, 4, 5, 6, 7]
+2  PHILLY-TIER-2x12  philly#machine:m100       8     0     7  [0, 1, 2, 3, 4, 5, 6, 7]
+3  PHILLY-TIER-2x12  philly#machine:m102       8     0     7  [0, 1, 2, 3, 4, 5, 6, 7]
+4  PHILLY-TIER-2x12  philly#machine:m105       8     0     7  [0, 1, 2, 3, 4, 5, 6, 7]
+5  PHILLY-TIER-2x12  philly#machine:m109       8     0     7  [0, 1, 2, 3, 4, 5, 6, 7]
+6  PHILLY-TIER-2x12   philly#machine:m11       8     0     7  [0, 1, 2, 3, 4, 5, 6, 7]
+7  PHILLY-TIER-2x12  philly#machine:m110       8     0     7  [0, 1, 2, 3, 4, 5, 6, 7]
+
+distinct gpu_index spellings: ['0', '1', '2', '3', '4', '5', '6', '7']
+
+==============================================================================
+D2  nodes: declared vs observed slots
+==============================================================================
+                 n_slots_declared          n_slots_observed               cap_gpu         
+                              min max mean              min max      mean     min max mean
+gpu_label                                                                                 
+PHILLY-TIER-2x12                2   2  2.0                0   8  5.931464       2   2  2.0
+PHILLY-TIER-8x24                8   8  8.0                0   8  1.870130       8   8  8.0
+
+slot_conflict: {False: 314, True: 238}
+label_provenance: {'joined:machine_list': 552}
+
+machines where observed devices != declared slots: 238 of 552
+
+==============================================================================
+D3  raw cluster_machine_list: one ip -> several entries?
+==============================================================================
+files: ['~/xcad/datasets/philly/trace-data/cluster_machine_list']
+~/xcad/datasets/philly/trace-data/cluster_machine_list  shape=(553, 3)
+           0                1                2
+0  machineId   number of GPUs   single GPU mem
+1         m0                2             12GB
+2         m1                2             12GB
+3       m100                2             12GB
+4       m102                2             12GB
+5       m105                2             12GB
+entries per ip: {1: 553}
+
+==============================================================================
+D4  placements capacity conflict + provenance
+==============================================================================
+cap_conflict: {False: 151706, True: 28122}
+label_provenance: {'observed:job_log_gpus_list': 179828}
+n_gpus per placement: {1: 133012, 4: 16513, 2: 16401, 8: 13902}

@@ -1,0 +1,84 @@
+================================================================================================
+PART A  arXiv: which papers mention the Philly trace / these fields
+================================================================================================
+
+### philly by name   q=all:"Philly" AND all:"GPU cluster"
+    2512.10271 2025-12-11 PHILLY  Hybrid Learning and Optimization-Based Dynamic Scheduling for DL Workloads on Heteroge
+
+### gpu cluster trace   q=abs:"GPU cluster trace" AND abs:"job"
+    2610.25066 2026-10-18         Ineffective Occupancy in Heterogeneous GPU Clusters: Prediction, Contribution Analysis
+
+### preemption   q=all:"training jobs" AND all:"preemption" AND all:"GPU cluster"
+    2202.07896 2022-02-16         Aryl: An Elastic Cluster Scheduler for Deep Learning
+
+### re-queue   q=ti:"GPU" AND abs:"re-queue" 
+
+### raw Philly column names   q=all:"machine_configs" OR all:"cluster_job_log"
+
+### does anyone name the cards   q=all:"Philly" AND all:"NVIDIA"
+
+### scheduling + trace-driven   q=abs:"GPU job scheduling" AND abs:"trace-driven"
+
+================================================================================================
+PART B  fetch full text for the Philly-named hits and grep the use vocabulary
+================================================================================================
+candidates: ['2512.10271', '2610.25066', '2202.07896']
+
+--- 2512.10271  Hybrid Learning and Optimization-Based Dynamic Scheduling for DL Workloads on He  chars=85,798
+    [job log fields] n=9    ... such as Gavel ( 45 ) and Sia ( 28 ) , which use predictive, preemptive strategies to optimize throughput and fairness. Yet, these systems rely on profiling, matching new jobs to previously seen ones based on model architecture, dataset, or runtime behavior. In practice, cloud platforms ...
+    [placement target] n=9    ... allocation can address this challenge by anticipating contention and jointly optimizing GPU, CPU, and memory placements. This motivates extending the scheduling formulation through a Mixed-Integer Linear Programming (MILP)-based allocation framework. Given this complexity, reinforcement ...
+    [model name] n=16   ...ity plugin and allocation mechanisms perform under realistic DL workloads. We deployed Slurm (21.08.5) on two P100 nodes (4 GPUs each), configured with SchedulerType=sched/backfill , PriorityType=priority/multifactor , and SelectType=select/cons_tres . We submitted a mix of DL fine-t...
+    [arrival/sim only] n=11   ...ply existing RL policies directly. Table 2 . Summary of CPU and GPU traces comparing wait time, run time, job arrival rate, and total allocated resources (CPUs or GPUs). Trace Type Jobs Avg Wait Avg Run Arrival Rate Total Alloc (s) (s) (jobs/s) (CPUs/GPUs) SDSC-SP2 CPU 2887 10403.6 7319...
+    [prediction task] n=15   ...s. These new characteristics has led to DL-focused schedulers such as Gavel ( 45 ) and Sia ( 28 ) , which use predictive, preemptive strategies to optimize throughput and fairness. Yet, these systems rely on profiling, matching new jobs to previously seen ones based on model architectur...
+
+--- 2610.25066  Ineffective Occupancy in Heterogeneous GPU Clusters: Prediction, Contribution An  chars=89,341
+    [job log fields] n=6    ...ob ratio Placed jobs ÷ \div jobs a machine can accommodate (placement convention) — control Allocation rate / fairness across request-size bins Placed GPUs ÷ \div total cluster GPUs; Jain index of readiness rates across seven request-size bins higher control Note: all metrics refer to a ...
+    [placement target] n=66   ...of compute resources. On the Alibaba GPU cluster trace we find that, even when GPU capacity is sufficient and placement is complete, 52.70% of execution records never became ready. We term this phenomenon ineffective occupancy. Building on this diagnosis, and keeping the placement policy ...
+    [model name] n=19   ...ature-group contribution analysis shows that the model’s score is driven mainly by job profile, duration, and GPU model, with the request-size group contributing least, followed by the scheduling and concurrency group. In GPU terms, RAS reduces the ineffective-occupancy ratio (the share o...
+    [capacity tiers] n=2    ...y least attained service; Gavel [ 11 ] solves a linear program over a speed matrix; Pollux [ 12 ] chooses the number of GPUs by goodput; Sia [ 13 ] mixes coarse- and fine-grained resource allocation; and Synergy [ 14 ] allocates according to resource sensitivity. These works cover the two core...
+    [arrival/sim only] n=10   ...diction-driven scheduling has made several advances in recent years. PRISM [ 22 ] uses an LSTM to predict job arrival patterns and resource demands, reducing mean job completion time (JCT) by 25%–40%. Wind [ 23 ] uses historical execution patterns to predict task demands and completion ...
+    [prediction task] n=94   ... [2610.25066] Ineffective Occupancy in Heterogeneous GPU Clusters: Prediction, Contribution Analysis, and Readiness-Aware Scheduling function detectColorScheme(){ var theme="light"; var current_theme = localStorage.getItem("ar5iv_theme"); if(cu...
+
+--- 2202.07896  Aryl: An Elastic Cluster Scheduler for Deep Learning  chars=101,961
+    [job log fields] n=1    ...hary, Ramachandran Ramjee, Muthian Sivathanu, Nipun Kwatra, and Srinidhi Viswanatha. Balancing efficiency and fairness in heterogeneous GPU clusters for deep learning. In Proc. ACM EuroSys , 2020. [8] Chen Chen, Qizhen Weng, Wei Wang, Baochun Li, and Bo Li. Semi-dynamic load balancing: e...
+    [placement target] n=14   ...al task to utilize the expensive GPU clusters efficiently, by optimizing the job resource allocation and task placement. It is common practice today to separately build and manage two types of GPU clusters, one for training and one for inference. This is because, for the same model, infer...
+    [model name] n=15   ... usually use weaker GPUs, like Nvidia T4, with a fraction of the resources of the training GPUs, e.g., Nvidia V100 and A100. This separation creates problems for both sides ( section 2 ). Our observations are based on experiences of operating production clusters with O O (10K) GPUs f...
+    [capacity tiers] n=4    ...also considered scheduling elastic jobs. Gandiva [ 54 ] adopts an opportunistic approach to grow or shrink of number of GPUs used by a job without considering cluster-wide efficiency. AFS [ 22 ] greedily prioritizes the jobs with the highest throughput per GPU. Pollux [ 42 ] co-optimizes both ...
+    [arrival/sim only] n=1    ... traces from production. It simulates the cluster scale, hardware configuration, and all job events including arrival, completion, scaling, and preemption. Job’s running time in the simulator is derived from actual training time in the traces. For elastic jobs, we compute its actual tra...
+    [prediction task] n=16   ... also contributes to the long queuing time. In addition, training demand does not exhibit a clear pattern for prediction. Capacity loaning. We propose to exploit the unused inference resources in demand trough to run training jobs temporarily, i.e. loaning inference capacity for trainin...
+
+================================================================================================
+PART C  GitHub: who ships a Philly parser, and what columns do they emit
+================================================================================================
+
+### q=philly-traces  total=4
+    msr-fiddle/philly-traces | star 202 | 
+    SahilAhmedHashmi/GPU_anomaly | star 0 | Predicting GPU-level job failures in large-scale clusters using a Spat
+    chichiroxursox-droid/philly-receipts | star 0 | Philly Receipts: what the published evidence actually says about Phila
+    ExperimentScripts/-self-tuning-cei-scheduler | star 0 | Reproducibility artifact for “Self-Tuning Governance of the Energy–Res
+
+### q=philly gpu cluster  total=3
+    karabeara/aiit_jupyter | star 0 | Jupyter widget to access Philly GPU cluster directly from Jupyter Note
+    SahilAhmedHashmi/GPU_anomaly | star 0 | Predicting GPU-level job failures in large-scale clusters using a Spat
+    ExperimentScripts/-self-tuning-cei-scheduler | star 0 | Reproducibility artifact for “Self-Tuning Governance of the Energy–Res
+
+### q=msr-fiddle  total=1
+    richardjcy001/pipedream_experiment | star 1 | private repo of msr-fiddle/pipedream
+
+### q=gpu cluster trace analysis  total=6
+    sultanul-ovi/GPU-Cluster-Spot-Resource-Dataset-Analysis | star 5 | Detailed Analysis Traces for AI jobs leveraging spot GPU resources
+    sultanul-ovi/Alibaba-GPU-Cluster-Dataset-2025-Analysis | star 3 | Detailed Analysis Traces for GPU-Disaggregated Deep Learning Recommend
+    llixin1116/cluster-analysis-v2020 | star 0 | Alibaba Cluster Trace GPU V2020 Analysis
+    Hantang-Li/Analysis-of-MLaaS-GPU-cluster-trace | star 0 | 
+    lbaolin/ipdps24-datacenter | star 1 | Interpretable Analysis of Multi-Tenant GPU Cluster Traces: Discovering
+    iamyogesh2001/RampIndependence | star 0 | Measurement-based analysis of ramp rate independence in co-located AI 
+
+### q=cluster-gpu-trace  total=26
+    qzweng/clusterdata-cluster-trace-gpu-v2020-data | star 2 | 
+    monapatel0/ALIBABA-CLUSTER-TRACE-GPU-2022 | star 2 | 
+    ehsanyousefzadehasl/dl-trace-mapper | star 3 | Generate reproducible deep-learning workload traces by mapping product
+    OSSS-KU/MoSim | star 5 | Official artifact for MoSim, a trace-driven GPU-cluster simulator with
+    yyyyy7105/cluster-trace-gpu-v2020 | star 0 | 
+    llixin1116/cluster-analysis-v2020 | star 0 | Alibaba Cluster Trace GPU V2020 Analysis
+
+DONE

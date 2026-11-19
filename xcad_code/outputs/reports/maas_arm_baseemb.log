@@ -1,0 +1,4 @@
+[baseemb] start=03:53:52
+[baseemb] exit=0 done=04:02:34
+[id-space] num_nodes=80287 r1_tail_max=None -> gpu_base=0 (LEGACY 局部编号)
+[base-emb] map=../data/maas/base_of.npy  n_bases=918  有父实体=80257/80287  pad=918

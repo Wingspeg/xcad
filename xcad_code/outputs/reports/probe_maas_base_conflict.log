@@ -1,0 +1,9 @@
+[raw] rows=13736375
+[dedup] (model,base,day) 行=148618  distinct model=80257  distinct base=1075
+[1] model 对 >1 base 的个数=1935 / 80257 = 2.4110%   max base/model=79
+    #base per model: {1: 78322, 2: 1614, 3: 239, 4: 53, 5: 17, 6: 4, 7: 2, 8: 3}
+[2] 冲突 model 里最热 base 的 day-份额：中位=0.6667 p10=0.5000 p90=0.8750 份额>=0.95 的 model=54
+[3] (model,day) 内多 base 的比例=0.7804%  n_cell=145690
+    冲突 model 的时间跨度（天）中位= 8.0  最大= 65
+[4] test 边=121371  head 无 base 记录=0 (0.0000%)  落在跨期多 base 的 head=5.4090%  当天即多 base=0.5388%
+[5] 全新 head 边=104541 (86.1334%)  其中 base 多值=1.4119%  base 缺失=0.0000%
