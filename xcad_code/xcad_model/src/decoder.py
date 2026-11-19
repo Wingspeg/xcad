@@ -56,7 +56,7 @@ class ConvTransR(torch.nn.Module):
 class ConvTransE(torch.nn.Module):
     def __init__(self, num_entities, embedding_dim, input_dropout=0, hidden_dropout=0, feature_map_dropout=0, channels=50, kernel_size=3, use_bias=True,
                  use_decoder_feat=False, feat_dim_list=None, feat_alpha_fixed=None,
-                 use_compat=False):
+                 use_compat=False, gpu_base=0):
 
         super(ConvTransE, self).__init__()
         # 初始化relation embeddings
@@ -79,6 +79,7 @@ class ConvTransE(torch.nn.Module):
         self.bn_init = torch.nn.BatchNorm1d(embedding_dim)
         self.use_decoder_feat = use_decoder_feat
         self.use_compat = use_compat
+        self.gpu_base = gpu_base
 
         if self.use_decoder_feat:
             assert feat_dim_list is not None, "feat_dim_list required when use_decoder_feat=True"
@@ -140,18 +141,26 @@ class ConvTransE(torch.nn.Module):
             # 兼容性头: 只对 r1_suits 正向边(rel=1), 尺度对齐后注入
             r1_mask = (triplets[:, 1] == 1)
             if r1_mask.any():
+                gb = self.gpu_base
                 r1_idx = r1_mask.nonzero(as_tuple=True)[0]
                 h_ids = triplets[r1_idx, 0]
                 feat = self.compat_feat_algo.to(x.device)[h_ids]
-                compat = self.compat_head(feat)  # [n_r1, 6], 对应 entity 0-5
-                # 主路在 GPU 列(0-5)的尺度
-                main_gpu = x[r1_idx, 0:6]  # [n_r1, 6]
+                compat = self.compat_head(feat)  # [n_r1, 6], 列序 = GPU_TYPES
+                # ── 可选探针: 记下 compat 头自己的 6 类 argmax(与 sklearn 同口径的直读) ──
+                _probe = getattr(self, "compat_probe", None)
+                if _probe is not None:
+                    _probe["pred"].append(compat.argmax(1).detach().cpu())
+                    _probe["gold"].append((triplets[r1_idx, 2].detach().cpu() - gb))
+                    _probe["head"].append(triplets[r1_idx, 0].detach().cpu())
+                    _probe["logit"].append(compat.detach().cpu())
+                # 主路在 GPU 列上的尺度(GPU 段 = [gb, gb+6) )
+                main_gpu = x[r1_idx, gb:gb + 6]  # [n_r1, 6]
                 main_std = main_gpu.std(dim=1, keepdim=True).clamp(min=1e-8)
                 # compat 标准化到主路尺度
                 compat_n = (compat - compat.mean(dim=1, keepdim=True)) / compat.std(dim=1, keepdim=True).clamp(min=1e-8)
                 compat_scaled = compat_n * main_std  # 尺度对齐
                 bias = torch.zeros_like(x)
-                bias[r1_idx, 0:6] = self.compat_lambda * compat_scaled  # 列 0-5 全加(含 CPU, 但 r1 真值不会是 0, 无害)
+                bias[r1_idx, gb:gb + 6] = self.compat_lambda * compat_scaled  # 只加 GPU 段 6 列(含 CPU, 但 r1 真值不会是 CPU)
                 x = x + bias  # 非 in-place, 梯度通畅
         return x
 
