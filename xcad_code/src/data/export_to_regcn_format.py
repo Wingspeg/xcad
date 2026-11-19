@@ -73,10 +73,13 @@ def build_entity_space(nodes_dir: str) -> Tuple[Dict[str, int], Dict[str, int], 
 
     返回:
         entity2id:        全局主字典 {原始字符串 -> 全局 id}, 长度 = num_entities
-        algo_ids:         算法段局部字典 {job_name -> 段内 id 0..N_algo-1}
-        data_ids:         数据段局部字典 {group -> 段内 id 0..N_data-1}
-        compute_ids:      机器段局部字典 {machine -> 段内 id 0..N_machine-1}
-        gpu_type_pool_ids:GPU 池段局部字典 {gpu_type_name -> 段内 id 0..5}
+        algo_ids_g:       算法段 {job_name -> 全局 id}, 区间 [0, N_algo)
+        data_ids_g:       数据段 {group -> 全局 id}, 区间 [N_algo, N_algo+N_data)
+        compute_ids_g:    机器段 {machine -> 全局 id}
+        gpu_ids_g:        GPU 池段 {gpu_type_name -> 全局 id}, 区间末尾 6 个
+
+    注意: 四个返回值字典已全部换算到全局 id 空间, 段间不重叠, 可安全写进
+    RE-GCN 的同构 (s, r, o, tau) 文件。
     """
     logger.info("Building 4-segment entity space from node tables...")
 
@@ -133,7 +136,21 @@ def build_entity_space(nodes_dir: str) -> Tuple[Dict[str, int], Dict[str, int], 
         logger.warning(f"  WARNING: num_entities={num_entities} != expected 124891. "
                        f"Check node tables / GPU_TYPES list.")
 
-    return entity2id, algo_ids, data_ids, compute_ids, gpu_type_pool_ids
+    # ---- 段字典一律换算到【全局】id 空间(加段 offset), 与 entity2id 完全一致 ----
+    # 修复说明: 此前三者混用, 边文件写的是段内局部 idx 而 entity2id 是全局 id,
+    # 导致 algorithm/machine/data/gpu 四套编号互相撞号(id 5 同时是 job、机器、
+    # 数据组和 V100), 且 102610..124890 这 22,281 行嵌入从未被任何边引用。
+    algo_ids_g    = {pk: offset_algo     + idx for pk, idx in algo_ids.items()}
+    data_ids_g    = {pk: offset_data     + idx for pk, idx in data_ids.items()}
+    compute_ids_g = {pk: offset_compute  + idx for pk, idx in compute_ids.items()}
+    gpu_ids_g     = {pk: offset_gpu      + idx for pk, idx in gpu_type_pool_ids.items()}
+
+    logger.info(f"  >>> global segments: algo[{offset_algo},{offset_data-1}] "
+                f"data[{offset_data},{offset_compute-1}] "
+                f"compute[{offset_compute},{offset_gpu-1}] gpu[{offset_gpu},{offset_gpu+n_gpu-1}]")
+
+    # 返回全局段字典(供边映射使用), 顺序与原签名保持一致
+    return entity2id, algo_ids_g, data_ids_g, compute_ids_g, gpu_ids_g
 
 
 # ============================================================
@@ -147,6 +164,9 @@ def map_edge_columns(
     gpu_type_pool_ids: Dict[str, int],
 ) -> Dict[str, pd.DataFrame]:
     """读取 4 类边 parquet, 按边类型分别选字典做 src/dst 映射.
+
+    传入的四个字典均为【全局 id】段字典(见 build_entity_space), 因此写出的
+    s/o 与 entity2id.txt / stat.txt 同一套编号, 四段互不重叠。
 
     placement:   src=algo_ids,        dst=compute_ids        (machine 段)
     r1_suits:    src=algo_ids,        dst=gpu_type_pool_ids  (GPU 池段)
@@ -275,12 +295,12 @@ def main():
     logger.info(f"out-dir:   {args.out_dir}")
     logger.info("=" * 60)
 
-    # 1. 节点表 -> 四段全局 entity2id
-    entity2id, algo_ids, data_ids, compute_ids, gpu_type_pool_ids = build_entity_space(args.nodes_dir)
+    # 1. 节点表 -> 四段全局 entity2id + 四段全局段字典
+    entity2id, algo_ids, data_ids, compute_ids, gpu_ids = build_entity_space(args.nodes_dir)
 
-    # 2. 边按 edge_type 选字典映射 + dropna
+    # 2. 边按 edge_type 选字典映射(全局 id 空间) + dropna
     edges_by_type = map_edge_columns(
-        args.edges_dir, algo_ids, data_ids, compute_ids, gpu_type_pool_ids
+        args.edges_dir, algo_ids, data_ids, compute_ids, gpu_ids
     )
 
     # 3. 关系字典

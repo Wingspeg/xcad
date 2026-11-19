@@ -4,17 +4,22 @@
 为 xCAD 模型导出 r1_suits 边的 success_rate 权重。
 
 【与 train.txt 的 ID 空间对齐 —— 重要】
-train.txt/valid.txt/test.txt 是 export_to_regcn_format.py 用【局部字典】写出的:
-  - src 走 algo_ids (job_name -> 局部 idx 0..N_algo-1)
-  - r1/r2 的 dst 走 gpu_type_pool_ids (CPU/T4/MISC/P100/V100/V100M32 -> 0..5)
-  - r3 的 dst 走 algo_ids
-  - placement 的 dst 走 compute_ids
-—— 而不是走全局 entity2id(带 4 段 offset)。
+train.txt/valid.txt/test.txt 的 (s, o) 编号空间由 --gpu-id-base 指定, 必须与
+export_to_regcn_format.py 当时用的编号方式一致:
 
-所以 r1_suits 边的 (s, o) 在 train.txt 里是【局部 idx】,不能被 entity2id 解释。
-本脚本严格按 export_to_regcn_format.py 的方式重建局部字典:
-  1. algo_ids: 读 algorithm_nodes.parquet 取 job_name unique() 顺序,索引 0..N_algo-1
-  2. gpu_type_pool_ids: 固定顺序 ["CPU","T4","MISC","P100","V100","V100M32"] -> 0..5
+  - data/xcad     (旧, 已投稿结果所用): 段内【局部】字典
+      src 走 algo_ids (job_name -> 0..N_algo-1)
+      r1/r2 的 dst 走 gpu_type_pool_ids -> 0..5
+      placement 的 dst 走 compute_ids -> 0..N_machine-1
+      -> 四套编号互相撞号(同一 id 可同时是算法、机器、数据组和 GPU 类型)
+      -> 本脚本用 --gpu-id-base 0
+  - data/xcad_v2  (修复后): 四段【全局】id, 段间不重叠
+      algo[0,102609] data[102610,122987] compute[122988,124884] gpu[124885,124890]
+      -> 本脚本用 --gpu-id-base 124885
+
+算法段 offset 恒为 0, 所以 src 在两套编号下取值相同, 只有 GPU/r1 的 dst 需要换算。
+本脚本重建字典的方式与 export_to_regcn_format.py 严格一致
+(相同的 pd.read_parquet + dropna().unique().tolist())。
 
 输入:
   - xcad_code/xcad_model/data/xcad/{train,valid,test}.txt
@@ -57,9 +62,14 @@ def build_algo_ids(nodes_dir):
     return {pk: idx for idx, pk in enumerate(algo_unique)}, len(algo_unique)
 
 
-def build_gpu_pool_ids():
-    """固定 GPU 池局部 idx: CPU=0, T4=1, MISC=2, P100=3, V100=4, V100M32=5。"""
-    return {gt: idx for idx, gt in enumerate(GPU_TYPES)}
+def build_gpu_pool_ids(gpu_id_base=0):
+    """GPU 池 id 映射。
+
+    gpu_id_base=0  -> 段内局部 idx (CPU=0..V100M32=5), 对应旧版 xcad/ 边文件
+    gpu_id_base=124885 -> 全局四段 idx, 对应修复后的 xcad_v2/ 边文件
+    算法段 offset 为 0, 故 algo_ids 在两套编号下取值相同, 无需换算。
+    """
+    return {gt: gpu_id_base + idx for idx, gt in enumerate(GPU_TYPES)}
 
 
 def build_r1_lookup(parquet_path, algo_ids, gpu_pool_ids):
@@ -88,14 +98,14 @@ def build_r1_lookup(parquet_path, algo_ids, gpu_pool_ids):
     return lookup, miss
 
 
-def export_split_weights(split_name, lookup):
+def export_split_weights(split_name, lookup, data_dir=DATA_DIR):
     """
     读 split txt 逐行处理, 生成 edge_weights_{split}.npy。
     enumerate 与文件读序一致 -> weights[i] 与 split.txt 第 i 行对齐。
-    train.txt 里 (s, o) 已经是局部 idx, 直接查 lookup 即可。
+    txt 里的 (s, o) 编号空间必须与 lookup 键一致(见 --gpu-id-base)。
     """
-    txt_path = os.path.join(DATA_DIR, f"{split_name}.txt")
-    npy_path = os.path.join(DATA_DIR, f"edge_weights_{split_name}.npy")
+    txt_path = os.path.join(data_dir, f"{split_name}.txt")
+    npy_path = os.path.join(data_dir, f"edge_weights_{split_name}.npy")
 
     with open(txt_path, "r", encoding="utf-8") as f:
         n_lines = sum(1 for _ in f)
@@ -183,6 +193,15 @@ def print_stats(split_name, stat, parquet_miss):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--data-dir", default=DATA_DIR,
+                    help="含 train/valid/test.txt 的目录 (旧局部编号用 data/xcad, 全局编号用 data/xcad_v2)")
+    ap.add_argument("--gpu-id-base", type=int, default=0,
+                    help="GPU 段起始 id: 0=段内局部编号(旧), 124885=全局四段编号(xcad_v2)")
+    args = ap.parse_args()
+    data_dir = args.data_dir
+
     if not os.path.isdir(NODES_DIR):
         sys.exit(f"nodes dir not found: {NODES_DIR}")
     if not os.path.exists(PARQUET_PATH):
@@ -192,8 +211,8 @@ def main():
     algo_ids, n_algo = build_algo_ids(NODES_DIR)
     print(f"  algo_ids size: {n_algo}")
 
-    gpu_pool_ids = build_gpu_pool_ids()
-    print(f"[build] gpu_type_pool_ids = {gpu_pool_ids}  (顺序固定)")
+    gpu_pool_ids = build_gpu_pool_ids(args.gpu_id_base)
+    print(f"[build] gpu_type_pool_ids = {gpu_pool_ids}  (顺序固定, base={args.gpu_id_base})")
 
     print(f"[load] r1_suits parquet from {PARQUET_PATH}")
     lookup, miss = build_r1_lookup(PARQUET_PATH, algo_ids, gpu_pool_ids)
@@ -201,15 +220,15 @@ def main():
 
     if miss > 0:
         warnings.warn(
-            f"r1_suits parquet 有 {miss} 行 src/dst 映射不到局部字典, 已被 skip。"
-            f"请检查 algorithm_nodes.parquet 与 GPU_TYPES 是否与 export 脚本一致。"
+            f"r1_suits parquet 有 {miss} 行 src/dst 映射不到字典, 已被 skip。"
+            f"请检查 algorithm_nodes.parquet 与 GPU_TYPES/--gpu-id-base 是否与 export 脚本一致。"
         )
 
     for split in SPLITS:
-        stat = export_split_weights(split, lookup)
+        stat = export_split_weights(split, lookup, data_dir)
         print_stats(split, stat, miss)
 
-    print("\n[done] all 3 npy written under", DATA_DIR)
+    print("\n[done] all 3 npy written under", data_dir)
 
 
 if __name__ == "__main__":

@@ -63,7 +63,9 @@ def attach_weights_to_snapshots(data_with_tau, weights_npy, snapshot_list=None):
 
 
 # === 主流程 ===
-DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'xcad')
+# 默认校验论文发布用的 data/xcad; 设 XCAD_DATA_SUBDIR=xcad_v2 可校验全局四段编号版本
+DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data',
+                        os.environ.get('XCAD_DATA_SUBDIR', 'xcad'))
 
 
 def load_txt_4col(name):
@@ -193,14 +195,21 @@ def main():
     print(f'  algo_ids size: {len(algo_ids)}, gpu_pool_ids: {{"CPU":0,"T4":1,"MISC":2,"P100":3,"V100":4,"V100M32":5}}')
 
     print('  抽 npy 前 10 个 r1 边 (rel=1), 用 (s, o, t) 查 parquet success_rate:')
+    # o(GPU 段 id)的解析必须两套编号都能命中:
+    #   xcad_v2: o 是全局四段 id(124885..124890) -> 直接用 entity2id 里的名字
+    #   xcad   : o 是段内局部 id(0..5)          -> 只能按 GPU_TYPES 位置反查(旧约定)
+    _gb = 124885 if max((row[2] for row in data_train if row[1] == 1), default=0) >= 124885 else 0
+    print(f'  [id-space] r1 tail 按 {"全局四段编号" if _gb else "旧局部编号"} 解析 (gpu_base={_gb})')
     found = 0
     for i, row in enumerate(data_train):
         if row[1] == 1 and found < 10:
             s, r, o, t = row
             w_npy = w_train[i]
             s_hash = id2ent.get(int(s))
-            if 0 <= int(o) < len(GPU_TYPES):
-                gpu_str = GPU_TYPES[int(o)]
+            if _gb:
+                gpu_str = id2ent.get(int(o), '?')          # 全局 id -> 名字就是 GPU 类型
+            elif 0 <= int(o) < len(GPU_TYPES):
+                gpu_str = GPU_TYPES[int(o)]                # 旧局部 id -> 按位置反查
             else:
                 gpu_str = '?'
             if s_hash:
